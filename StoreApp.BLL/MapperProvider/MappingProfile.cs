@@ -8,7 +8,10 @@ namespace StoreApp.BLL.MapperProvider
     {
         public MappingProfile()
         {
-            CreateMap<UserEntity, UserModel>().ReverseMap();
+            CreateMap<UserModel, UserEntity>()
+                .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
+                .ForMember(dest => dest.CartItems, opt => opt.Ignore());
+
             CreateMap<ProductEntity, ProductModel>().ReverseMap();
             CreateMap<CartItemEntity, CartItemModel>().ReverseMap();
         }
