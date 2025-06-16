@@ -23,6 +23,7 @@ namespace StoreApp.API
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
