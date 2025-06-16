@@ -9,6 +9,9 @@ namespace StoreApp.Shared.Models
 
         [EmailAddress(ErrorMessage = "Incorrect email format")]
         public string Email { get; set; } = null!;
+
+        [MaxLength(32)]
+        public string Password { get; set; } = null!;
         public UserRole Role { get; set; }
     }
 }
