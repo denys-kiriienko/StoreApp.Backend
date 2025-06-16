@@ -5,10 +5,10 @@
         public int Id { get; set; }
 
         public int UserId { get; set; }
-        public UserEntity User { get; set; } = null!;
+        public required UserEntity User { get; set; }
 
         public int ProductId { get; set; }
-        public ProductEntity Product { get; set; } = null!;
+        public required ProductEntity Product { get; set; }
 
         public int Quantity { get; set; }
     }
