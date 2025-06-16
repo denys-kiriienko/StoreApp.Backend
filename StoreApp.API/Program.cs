@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using StoreApp.BLL.MapperProvider;
+using StoreApp.BLL.Services;
 using StoreApp.DAL.Data;
 using StoreApp.DAL.Interfaces.Repositories;
 using StoreApp.DAL.Repositories;
+using StoreApp.Shared.Interfaces.Services;
 
 namespace StoreApp.API
 {
@@ -20,6 +22,8 @@ namespace StoreApp.API
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
