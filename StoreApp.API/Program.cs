@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StoreApp.BLL.MapperProvider;
 using StoreApp.DAL.Data;
 using StoreApp.DAL.Interfaces.Repositories;
 using StoreApp.DAL.Repositories;
@@ -19,6 +20,8 @@ namespace StoreApp.API
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
 
