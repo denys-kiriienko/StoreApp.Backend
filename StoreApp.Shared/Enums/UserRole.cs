@@ -1,4 +1,4 @@
-﻿namespace StoreApp.DAL.Entities
+﻿namespace StoreApp.Shared.Enums
 {
     public enum UserRole
     {

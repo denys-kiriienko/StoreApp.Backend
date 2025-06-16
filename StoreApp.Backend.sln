@@ -11,6 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.API", "StoreApp.AP
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.DAL", "StoreApp.DAL\StoreApp.DAL.csproj", "{5E2B8F08-8E26-44EC-A0F9-277EDA80DB92}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B202D088-6427-478E-B03B-9AE8D1028284} = {B202D088-6427-478E-B03B-9AE8D1028284}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.BLL", "StoreApp.BLL\StoreApp.BLL.csproj", "{169F087B-C222-4BE0-A1B2-F45335CE1376}"
 	ProjectSection(ProjectDependencies) = postProject

@@ -1,4 +1,6 @@
-﻿namespace StoreApp.DAL.Entities
+﻿using StoreApp.Shared.Enums;
+
+namespace StoreApp.DAL.Entities
 {
     public class UserEntity
     {
