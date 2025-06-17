@@ -34,6 +34,7 @@ public class Program
         
         // Repositories
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
         // Services
         builder.Services.AddScoped<IJwtProvider, JwtProvider>();
