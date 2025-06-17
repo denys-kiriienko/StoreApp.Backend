@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using StoreApp.BLL.MapperProvider;
@@ -73,6 +75,19 @@ namespace StoreApp.API
                     };
                 });
 
+            var allowerdOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("Cors", builder =>
+                {
+                    builder
+                        .WithOrigins(allowerdOrigins)
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
+
             builder.Services.AddAuthorization();
 
             var app = builder.Build();
@@ -95,6 +110,15 @@ namespace StoreApp.API
             }
 
             app.UseRouting();
+
+            app.UseCors("Cors");
+
+            app.UseCookiePolicy(new CookiePolicyOptions()
+            {
+                MinimumSameSitePolicy = SameSiteMode.None,  // in future change to strict
+                HttpOnly = HttpOnlyPolicy.Always,
+                Secure = CookieSecurePolicy.Always
+            });
 
             app.UseAuthentication();
             app.UseAuthorization();
