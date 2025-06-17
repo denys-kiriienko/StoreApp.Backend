@@ -16,6 +16,8 @@ namespace StoreApp.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddControllers();
+
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
                 ?? throw new InvalidOperationException("Connection string"
                 + "'DefaultConnection' not found.");
@@ -37,7 +39,9 @@ namespace StoreApp.API
 
             var app = builder.Build();
 
-            app.MapGet("/", () => "Hello World!");
+            app.UseRouting();
+
+            app.MapControllers();
 
             app.Run();
         }
