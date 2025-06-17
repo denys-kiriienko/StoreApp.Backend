@@ -8,7 +8,7 @@ namespace StoreApp.DAL.Interfaces.Repositories
         Task<UserEntity?> GetUserByIdAsync(int id);
         Task<UserEntity?> GetUserByEmailAsync(string email);
         Task AddUserAsync(UserEntity user);
-        Task UpdateUserByIdAsync(UserEntity user);
+        Task UpdateUserAsync(UserEntity user);
         Task DeleteUserByIdAsync(int id);
         Task<bool> UserExistsAsync(int id);
     }

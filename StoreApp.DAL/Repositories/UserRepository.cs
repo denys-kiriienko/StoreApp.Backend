@@ -35,7 +35,7 @@ namespace StoreApp.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateUserByIdAsync(UserEntity user)
+        public async Task UpdateUserAsync(UserEntity user)
         {
             _context.Users.Update(user);
             await _context.SaveChangesAsync();

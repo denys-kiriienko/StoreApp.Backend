@@ -71,7 +71,7 @@ namespace StoreApp.BLL.Services
             existingUser.Email = user.Email;
             existingUser.PasswordHash = _passwordHasher.Hash(user.Password);
 
-            await _userRepository.UpdateUserByIdAsync(existingUser);
+            await _userRepository.UpdateUserAsync(existingUser);
 
             return true;
         }
