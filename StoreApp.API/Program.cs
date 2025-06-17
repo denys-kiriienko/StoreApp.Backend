@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 using StoreApp.BLL.MapperProvider;
 using StoreApp.BLL.Options;
 using StoreApp.BLL.Services;
@@ -16,6 +17,7 @@ namespace StoreApp.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddOpenApi();
             builder.Services.AddControllers();
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
@@ -38,6 +40,23 @@ namespace StoreApp.API
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.MapOpenApi();
+                app.MapScalarApiReference(options =>
+                {
+                    options
+                        .WithTitle("StoreApp API")
+                        .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+                });
+
+                app.MapGet("/", context =>
+                {
+                    context.Response.Redirect("/scalar");
+                    return Task.CompletedTask;
+                });
+            }
 
             app.UseRouting();
 
