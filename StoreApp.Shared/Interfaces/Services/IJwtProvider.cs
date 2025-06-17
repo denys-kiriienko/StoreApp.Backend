@@ -1,10 +1,9 @@
 ﻿using StoreApp.Shared.Dtos;
 
-namespace StoreApp.Shared.Services
+namespace StoreApp.Shared.Services;
+
+public interface IJwtProvider
 {
-    public interface IJwtProvider
-    {
-        string GenerateRefreshToken();
-        string GenerateToken(UserTokenDto user);
-    }
+    string GenerateRefreshToken();
+    string GenerateToken(UserTokenDto user);
 }

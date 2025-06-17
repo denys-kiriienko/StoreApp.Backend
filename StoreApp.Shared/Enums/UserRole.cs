@@ -1,8 +1,7 @@
-﻿namespace StoreApp.Shared.Enums
+﻿namespace StoreApp.Shared.Enums;
+
+public enum UserRole
 {
-    public enum UserRole
-    {
-        User,
-        Admin
-    }
+    User,
+    Admin
 }

@@ -4,110 +4,109 @@ using StoreApp.Shared.Enums;
 using StoreApp.Shared.Interfaces.Services;
 using StoreApp.Shared.Models;
 
-namespace StoreApp.BLL.Services
+namespace StoreApp.BLL.Services;
+
+public class UserService : IUserService
 {
-    public class UserService : IUserService
+    private readonly IUserRepository _userRepository;
+    private readonly IPasswordHasher _passwordHasher;
+    private readonly IMapper _mapper;
+
+    public UserService(
+        IUserRepository userRepository,
+        IPasswordHasher passwordHasher,
+        IMapper mapper)
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IPasswordHasher _passwordHasher;
-        private readonly IMapper _mapper;
+        _userRepository = userRepository;
+        _passwordHasher = passwordHasher;
+        _mapper = mapper;
+    }
 
-        public UserService(
-            IUserRepository userRepository,
-            IPasswordHasher passwordHasher,
-            IMapper mapper)
+    public async Task<IEnumerable<UserModel>> GetAllUsersAsync()
+    {
+        var userEntities = await _userRepository.GetAllUsersAsync();
+
+        return _mapper.Map<IEnumerable<UserModel>>(userEntities);
+    }
+
+    public async Task<UserModel?> GetUserByIdAsync(int id)
+    {
+        var userEntity = await _userRepository.GetUserByIdAsync(id);
+        if (userEntity != null)
         {
-            _userRepository = userRepository;
-            _passwordHasher = passwordHasher;
-            _mapper = mapper;
+            return _mapper.Map<UserModel>(userEntity);
         }
 
-        public async Task<IEnumerable<UserModel>> GetAllUsersAsync()
-        {
-            var userEntities = await _userRepository.GetAllUsersAsync();
+        return null;
+    }
 
-            return _mapper.Map<IEnumerable<UserModel>>(userEntities);
+    public async Task<UserModel?> GetUserByEmailAsync(string email)
+    {
+        var userEntity = await _userRepository.GetUserByEmailAsync(email);
+        if (userEntity != null)
+        {
+            return _mapper.Map<UserModel>(userEntity);
         }
 
-        public async Task<UserModel?> GetUserByIdAsync(int id)
-        {
-            var userEntity = await _userRepository.GetUserByIdAsync(id);
-            if (userEntity != null)
-            {
-                return _mapper.Map<UserModel>(userEntity);
-            }
+        return null;
+    }
 
-            return null;
+    public async Task<bool> UpdateUserByIdAsync(int id, UserModel user)
+    {
+        if (!await _userRepository.UserExistsAsync(id))
+        {
+            return false;
         }
 
-        public async Task<UserModel?> GetUserByEmailAsync(string email)
+        var existingUser = await _userRepository.GetUserByEmailAsync(user.Email);
+        if (existingUser != null && existingUser.Id != id)
         {
-            var userEntity = await _userRepository.GetUserByEmailAsync(email);
-            if (userEntity != null)
-            {
-                return _mapper.Map<UserModel>(userEntity);
-            }
-
-            return null;
+            return false;
         }
 
-        public async Task<bool> UpdateUserByIdAsync(int id, UserModel user)
+        if (existingUser == null)
         {
-            if (!await _userRepository.UserExistsAsync(id))
-            {
-                return false;
-            }
+            return false;
+        }
 
-            var existingUser = await _userRepository.GetUserByEmailAsync(user.Email);
-            if (existingUser != null && existingUser.Id != id)
-            {
-                return false;
-            }
+        existingUser.Email = user.Email;
+        existingUser.PasswordHash = _passwordHasher.Hash(user.Password);
 
-            if (existingUser == null)
-            {
-                return false;
-            }
+        await _userRepository.UpdateUserAsync(existingUser);
 
-            existingUser.Email = user.Email;
-            existingUser.PasswordHash = _passwordHasher.Hash(user.Password);
+        return true;
+    }
 
+    public async Task<bool> UpdateRoleByIdAsync(int id, string role)
+    {
+        var existingUser = await _userRepository.GetUserByIdAsync(id);
+        if (existingUser == null)
+        {
+            return false;
+        }
+
+        if (Enum.TryParse(role, out UserRole newRole))
+        {
+            existingUser.Role = newRole;
             await _userRepository.UpdateUserAsync(existingUser);
-
+            
             return true;
         }
-
-        public async Task<bool> UpdateRoleByIdAsync(int id, string role)
+        else
         {
-            var existingUser = await _userRepository.GetUserByIdAsync(id);
-            if (existingUser == null)
-            {
-                return false;
-            }
+            return false;
+        }
+    }
 
-            if (Enum.TryParse(role, out UserRole newRole))
-            {
-                existingUser.Role = newRole;
-                await _userRepository.UpdateUserAsync(existingUser);
-                
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+    public async Task<bool> DeleteUserByIdAsync(int id)
+    {
+        if (!await _userRepository.UserExistsAsync(id))
+        {
+            return false;
         }
 
-        public async Task<bool> DeleteUserByIdAsync(int id)
-        {
-            if (!await _userRepository.UserExistsAsync(id))
-            {
-                return false;
-            }
+        await _userRepository.DeleteUserByIdAsync(id);
 
-            await _userRepository.DeleteUserByIdAsync(id);
-
-            return true;
-        }
+        return true;
     }
 }

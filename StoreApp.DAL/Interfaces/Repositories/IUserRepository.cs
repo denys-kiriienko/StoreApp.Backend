@@ -1,16 +1,15 @@
 ﻿using StoreApp.DAL.Entities;
 
-namespace StoreApp.DAL.Interfaces.Repositories
+namespace StoreApp.DAL.Interfaces.Repositories;
+
+public interface IUserRepository
 {
-    public interface IUserRepository
-    {
-        Task<IEnumerable<UserEntity>> GetAllUsersAsync();
-        Task<UserEntity?> GetUserByIdAsync(int id);
-        Task<UserEntity?> GetUserByEmailAsync(string email);
-        Task<UserEntity?> GetUserByRefreshTokenAsync(string refreshToken);
-        Task AddUserAsync(UserEntity user);
-        Task UpdateUserAsync(UserEntity user);
-        Task DeleteUserByIdAsync(int id);
-        Task<bool> UserExistsAsync(int id);
-    }
+    Task<IEnumerable<UserEntity>> GetAllUsersAsync();
+    Task<UserEntity?> GetUserByIdAsync(int id);
+    Task<UserEntity?> GetUserByEmailAsync(string email);
+    Task<UserEntity?> GetUserByRefreshTokenAsync(string refreshToken);
+    Task AddUserAsync(UserEntity user);
+    Task UpdateUserAsync(UserEntity user);
+    Task DeleteUserByIdAsync(int id);
+    Task<bool> UserExistsAsync(int id);
 }

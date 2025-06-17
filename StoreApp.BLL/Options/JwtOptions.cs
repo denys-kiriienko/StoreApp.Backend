@@ -1,8 +1,7 @@
-﻿namespace StoreApp.BLL.Options
+﻿namespace StoreApp.BLL.Options;
+
+public class JwtOptions
 {
-    public class JwtOptions
-    {
-        public string SecretKey { get; set; } = string.Empty;
-        public int ExpiresMinutes { get; set; }
-    }
+    public string SecretKey { get; set; } = string.Empty;
+    public int ExpiresMinutes { get; set; }
 }

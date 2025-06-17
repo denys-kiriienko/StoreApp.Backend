@@ -1,17 +1,16 @@
 ﻿using StoreApp.Shared.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace StoreApp.Shared.Models
+namespace StoreApp.Shared.Models;
+
+public class UserModel
 {
-    public class UserModel
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        [EmailAddress(ErrorMessage = "Incorrect email format")]
-        public required string Email { get; set; }
+    [EmailAddress(ErrorMessage = "Incorrect email format")]
+    public required string Email { get; set; }
 
-        [MaxLength(32)]
-        public required string Password { get; set; }
-        public UserRole Role { get; set; }
-    }
+    [MaxLength(32)]
+    public required string Password { get; set; }
+    public UserRole Role { get; set; }
 }
