@@ -32,6 +32,7 @@ namespace StoreApp.API
 
             builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 
+            builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             builder.Services.AddScoped<IUserService, UserService>();
