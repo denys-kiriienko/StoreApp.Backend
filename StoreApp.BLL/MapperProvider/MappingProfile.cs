@@ -13,6 +13,7 @@ namespace StoreApp.BLL.MapperProvider
                 .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
                 .ForMember(dest => dest.CartItems, opt => opt.Ignore());
 
+            CreateMap<UserEntity, UserModel>();
             CreateMap<UserEntity, UserTokenDto>();
             CreateMap<ProductEntity, ProductModel>().ReverseMap();
             CreateMap<CartItemEntity, CartItemModel>().ReverseMap();
