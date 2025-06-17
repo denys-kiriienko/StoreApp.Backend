@@ -41,6 +41,7 @@ public class Program
         builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
         builder.Services.AddScoped<IAuthService, AuthService>();
         builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<IProductService, ProductService>();
 
         // Mapper
         builder.Services.AddAutoMapper(typeof(MappingProfile));
