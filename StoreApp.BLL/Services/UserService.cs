@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using StoreApp.DAL.Interfaces.Repositories;
+using StoreApp.Shared.Enums;
 using StoreApp.Shared.Interfaces.Services;
 using StoreApp.Shared.Models;
 
@@ -50,7 +51,7 @@ namespace StoreApp.BLL.Services
             return null;
         }
 
-        public async Task<bool> UpdateUserAsyncById(int id, UserModel user)
+        public async Task<bool> UpdateUserByIdAsync(int id, UserModel user)
         {
             if (!await _userRepository.UserExistsAsync(id))
             {
@@ -74,6 +75,27 @@ namespace StoreApp.BLL.Services
             await _userRepository.UpdateUserAsync(existingUser);
 
             return true;
+        }
+
+        public async Task<bool> UpdateRoleByIdAsync(int id, string role)
+        {
+            var existingUser = await _userRepository.GetUserByIdAsync(id);
+            if (existingUser == null)
+            {
+                return false;
+            }
+
+            if (Enum.TryParse(role, out UserRole newRole))
+            {
+                existingUser.Role = newRole;
+                await _userRepository.UpdateUserAsync(existingUser);
+                
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<bool> DeleteUserByIdAsync(int id)

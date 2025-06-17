@@ -8,6 +8,7 @@ namespace StoreApp.BLL.Services
         Task<IEnumerable<UserModel>> GetAllUsersAsync();
         Task<UserModel?> GetUserByEmailAsync(string email);
         Task<UserModel?> GetUserByIdAsync(int id);
-        Task<bool> UpdateUserAsyncById(int id, UserModel user);
+        Task<bool> UpdateUserByIdAsync(int id, UserModel user);
+        Task<bool> UpdateRoleByIdAsync(int id, string role);
     }
 }
