@@ -29,6 +29,12 @@ namespace StoreApp.DAL.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
+        public async Task<UserEntity?> GetUserByRefreshTokenAsync(string refreshToken)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u =>
+                u.RefreshToken == refreshToken);
+        }
+
         public async Task AddUserAsync(UserEntity user)
         {
             _context.Users.Add(user);
