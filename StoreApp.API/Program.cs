@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using StoreApp.BLL.MapperProvider;
+using StoreApp.BLL.Options;
 using StoreApp.BLL.Services;
 using StoreApp.DAL.Data;
 using StoreApp.DAL.Interfaces.Repositories;
 using StoreApp.DAL.Repositories;
 using StoreApp.Shared.Interfaces.Services;
+using StoreApp.Shared.Services;
 
 namespace StoreApp.API
 {
@@ -20,6 +22,11 @@ namespace StoreApp.API
 
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            builder.Services.Configure<JwtOptions>(builder.Configuration
+                .GetSection(nameof(JwtOptions)));
+
+            builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
