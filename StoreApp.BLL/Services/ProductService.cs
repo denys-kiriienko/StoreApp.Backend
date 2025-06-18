@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using StoreApp.DAL.Entities;
 using StoreApp.DAL.Interfaces.Repositories;
 using StoreApp.Shared.Models;
 using StoreApp.Shared.Services;
@@ -32,6 +33,15 @@ public class ProductService : IProductService
         }
 
         return null;
+    }
+
+    public async Task<bool> AddProductAsync(ProductModel product)
+    {
+        var productEntity = _mapper.Map<ProductEntity>(product);
+
+        await _productRepository.AddProductAsync(productEntity);
+
+        return true;
     }
 
     public async Task<bool> UpdateProductByIdAsync(int id, ProductModel product)
