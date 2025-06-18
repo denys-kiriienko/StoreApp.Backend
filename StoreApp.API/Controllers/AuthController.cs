@@ -54,7 +54,7 @@ public class AuthController : ControllerBase
             Expires = DateTime.UtcNow.AddDays(AuthConstants.RefreshTokenExpiresDays)
         });
 
-        return Ok();
+        return Ok( new { accessToken, refreshToken });
     }
 
     [HttpPost("refresh-token")]
@@ -81,7 +81,7 @@ public class AuthController : ControllerBase
             Expires = DateTime.UtcNow.AddDays(AuthConstants.RefreshTokenExpiresDays)
         });
 
-        return Ok();
+        return Ok( new { accessToken, refreshToken });
     }
 
     [HttpPost("logout")]
