@@ -43,6 +43,7 @@ public class Program
         builder.Services.AddScoped<IAuthService, AuthService>();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IProductService, ProductService>();
+        builder.Services.AddScoped<ICartItemService, CartItemService>();
 
         // Mapper
         builder.Services.AddAutoMapper(typeof(MappingProfile));
