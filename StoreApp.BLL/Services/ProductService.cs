@@ -32,7 +32,7 @@ public class ProductService : IProductService
             return _mapper.Map<ProductModel>(productEntity);
         }
 
-        return null;
+        return _mapper.Map<ProductModel>(productEntity);
     }
 
     public async Task<bool> AddProductAsync(ProductModel product)
