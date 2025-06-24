@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.API", "StoreApp.API\StoreApp.API.csproj", "{9F93AFFE-18A4-498D-948E-78F2AE4F87BD}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -22,6 +22,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.BLL", "StoreApp.BL
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.Shared", "StoreApp.Shared\StoreApp.Shared.csproj", "{B202D088-6427-478E-B03B-9AE8D1028284}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.Admin.Client", "StoreApp.Admin.Client\StoreApp.Admin.Client.csproj", "{23A120CC-7D50-4A5A-8815-819B166C37B7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B202D088-6427-478E-B03B-9AE8D1028284} = {B202D088-6427-478E-B03B-9AE8D1028284}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +50,10 @@ Global
 		{B202D088-6427-478E-B03B-9AE8D1028284}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B202D088-6427-478E-B03B-9AE8D1028284}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B202D088-6427-478E-B03B-9AE8D1028284}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23A120CC-7D50-4A5A-8815-819B166C37B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23A120CC-7D50-4A5A-8815-819B166C37B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23A120CC-7D50-4A5A-8815-819B166C37B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23A120CC-7D50-4A5A-8815-819B166C37B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
