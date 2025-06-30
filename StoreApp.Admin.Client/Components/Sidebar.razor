@@ -1,0 +1,59 @@
+﻿<div class="sidebar @(isOpen ? "open" : "")">
+    <div class="sidebar-content">
+        <button class="sidebar-button" @onclick="Toggle">
+            <img src="https://www.svgrepo.com/show/504111/app-lounge.svg" class="icon" />
+            @if (isOpen)
+            {
+                <span class="label">Store App</span>
+                <img src="https://www.svgrepo.com/show/533625/arrow-square-left.svg" class="icon" />
+            }
+        </button>
+
+        <nav>
+            <button class="sidebar-button">
+                <img src="https://www.svgrepo.com/show/502602/dashboard-1.svg" class="icon" />
+                @if (isOpen)
+                {
+                    <span class="label">Dashboard</span>
+                }
+            </button>
+
+            <div class="dropdown">
+                <button class="sidebar-button" @onclick="ToggleDropdown">
+                    <img src="https://www.svgrepo.com/show/499594/components.svg" class="icon" />
+                    @if (isOpen)
+                    {
+                        <span class="label">Components</span>
+                        <span class="dropdown-arrow @(dropdownOpen ? "open" : "")">
+                            <img src="https://www.svgrepo.com/show/509905/dropdown-arrow.svg" class="icon" />
+                        </span>
+                    }
+                </button>
+
+                <div class="dropdown-menu-wrapper @(dropdownOpen && isOpen ? "open" : "")">
+                    <div class="custom-dropdown-menu">
+                        <button class="dropdown-item">Calendar</button>
+                        <button class="dropdown-item">Cropper</button>
+                        <button class="dropdown-item">Expanded menu</button>
+                        <button class="dropdown-item">Modal</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="sidebar-button">
+                <img src="https://www.svgrepo.com/show/502788/payment-card.svg" class="icon" />
+                @if (isOpen)
+                {
+                    <span class="label">Subscriptions</span>
+                }
+            </button>
+        </nav>
+    </div>
+
+    @if (!isOpen)
+    {
+        <button class="sidebar-toggle-button" @onclick="Toggle">
+            <img src="https://www.svgrepo.com/show/533627/arrow-square-right.svg" class="icon" />
+        </button>
+    }
+</div>
