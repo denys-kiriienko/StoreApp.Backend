@@ -1,0 +1,29 @@
+﻿.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.navbar-right {
+    display: flex;
+    gap: 15px;
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 16px;
+}
+
+.navbar-title {
+    font-size: 20px;
+}

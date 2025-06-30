@@ -1,0 +1,20 @@
+﻿<nav class="navbar">
+    <div class="navbar-title">
+        StoreApp Admin
+    </div>
+    <div class="navbar-right">
+        <div>
+            <button class="navbar-item" @onclick="NavigateToProducts">Products</button>
+        </div>
+        <div>
+            @if (AuthApiService.IsAuthenticated)
+            {
+                <button class="navbar-item" @onclick="Logout">Logout</button>
+            }
+            else
+            {
+                <button class="navbar-item" @onclick="NavigateToLogin">Login</button>
+            }
+        </div>
+    </div>
+</nav>
