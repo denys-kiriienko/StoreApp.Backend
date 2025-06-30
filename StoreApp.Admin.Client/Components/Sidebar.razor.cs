@@ -21,12 +21,18 @@ namespace StoreApp.Admin.Client.Components
             await OnSidebarToggle.InvokeAsync(isOpen);
         }
 
-        protected void ToggleDropdown()
+        protected async Task ToggleDropdown()
         {
-            dropdownOpen = !dropdownOpen;
-
             if (!isOpen)
+            {
                 isOpen = true;
+                dropdownOpen = true;
+                await OnSidebarToggle.InvokeAsync(isOpen);
+            }
+            else
+            {
+                dropdownOpen = !dropdownOpen;
+            }
         }
     }
 }
