@@ -1,0 +1,35 @@
+﻿@page "/products"
+@inject FetchInterop FetchInterop
+@inject IProductApiService ProductApiService
+
+<h3>Список товарів</h3>
+
+@if (products == null)
+{
+    <p>Loading...</p>
+}
+else if (!products.Any())
+{
+    <p>No products available</p>
+}
+else
+{
+    <ul>
+        @foreach (var product in products)
+        {
+            <li>
+                <strong>@product.Name</strong> — @product.Price грн
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private List<ProductModel>? products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FetchInterop.InitializeAsync();
+        products = await ProductApiService.GetAllProductsAsync();
+    }
+}
