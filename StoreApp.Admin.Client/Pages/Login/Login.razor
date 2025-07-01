@@ -1,0 +1,24 @@
+﻿@page "/login"
+
+<div class="login-form-container center">
+    <form class="login-form" @onsubmit="HandleSubmit">
+        <h1 class="title">Log in</h1>
+
+        <div class="email-container">
+            <label for="email" class="input-label">Email address</label>
+            <input id="email" class="login-input" type="email" placeholder="example@gmail.com" @bind="email" />
+        </div>
+
+        <div class="password-container">
+            <label for="password" class="input-label">Password</label>
+            <div class="password-wrapper">
+                <input id="password" class="login-input" type="@(showPassword ? "text" : "password")" placeholder="Enter your password" @bind="password" />
+                <button type="button" class="toggle-password-btn" @onclick="TogglePasswordVisibility">
+                    @(showPassword ? "Hide" : "Show")
+                </button>
+            </div>
+        </div>
+
+        <button type="submit" class="login-button button-large">Login</button>
+    </form>
+</div>

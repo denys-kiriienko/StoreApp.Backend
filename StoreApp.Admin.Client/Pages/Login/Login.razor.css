@@ -1,0 +1,64 @@
+﻿.login-form-container {
+    margin-top: 100px;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+    margin-bottom: 40px;
+}
+
+.login-form {
+    width: 360px;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: lightgray;
+}
+
+.login-input {
+    height: 56px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-button {
+    width: 100%;
+}
+
+.email-container {
+    margin-bottom: 15px;
+}
+
+.password-container {
+    margin-bottom: 30px;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    padding: 4px 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: gray;
+}
+
+    .toggle-password-btn:hover {
+        color: #000;
+    }
