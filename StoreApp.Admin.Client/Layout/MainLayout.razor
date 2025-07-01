@@ -1,16 +1,13 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+<div class="layout-container">
+    <Navbar />
 
-        <article class="content px-4">
+    <div class="content-layout">
+        <Sidebar StartOpen="sidebarOpen" OnSidebarToggle="SidebarToggled" />
+
+        <main class="main-content @(sidebarOpen ? "sidebar-open" : "sidebar-closed")">
             @Body
-        </article>
-    </main>
+        </main>
+    </div>
 </div>
