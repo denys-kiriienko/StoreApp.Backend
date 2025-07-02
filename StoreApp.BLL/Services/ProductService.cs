@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using StoreApp.DAL.Entities;
-using StoreApp.DAL.Interfaces.Repositories;
+using StoreApp.DAL.Repositories.Interfaces;
 using StoreApp.Shared.Models;
 using StoreApp.Shared.Services;
 
@@ -27,7 +27,7 @@ public class ProductService : IProductService
     public async Task<ProductModel?> GetProductByIdAsync(int id)
     {
         var productEntity = await _productRepository.GetProductByIdAsync(id);
-        if (productEntity != null)
+        if (productEntity is not null)
         {
             return _mapper.Map<ProductModel>(productEntity);
         }
@@ -47,10 +47,7 @@ public class ProductService : IProductService
     public async Task<bool> UpdateProductByIdAsync(int id, ProductModel product)
     {
         var existingProduct = await _productRepository.GetProductByIdAsync(id);
-        if (existingProduct == null)
-        {
-            return false;
-        }
+        if (existingProduct is null) return false;
 
         existingProduct.Name = product.Name;
         existingProduct.Description = product.Description;
@@ -64,10 +61,7 @@ public class ProductService : IProductService
 
     public async Task<bool> DeleteProductByIdAsync(int id)
     {
-        if (!await _productRepository.ProductExistsAsync(id))
-        {
-            return false;
-        }
+        if (!await _productRepository.ProductExistsAsync(id)) return false;
 
         await _productRepository.DeleteProductByIdAsync(id);
 

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using StoreApp.DAL.Interfaces.Repositories;
+using StoreApp.DAL.Repositories.Interfaces;
 using StoreApp.Shared.Enums;
 using StoreApp.Shared.Interfaces.Services;
 using StoreApp.Shared.Models;

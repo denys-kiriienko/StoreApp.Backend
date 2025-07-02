@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using StoreApp.DAL.Entities;
-using StoreApp.DAL.Interfaces.Repositories;
+using StoreApp.DAL.Repositories.Interfaces;
 using StoreApp.Shared.Interfaces.Services;
 using StoreApp.Shared.Models;
 
@@ -28,7 +28,7 @@ public class CartItemService : ICartItemService
     {
         var existingItem = await _cartItemRepository.GetCartItemAsync(userId, productId);
 
-        if (existingItem != null)
+        if (existingItem is not null)
         {
             existingItem.Quantity += quantity;
             await _cartItemRepository.UpdateCartItemAsync(existingItem);
@@ -51,11 +51,8 @@ public class CartItemService : ICartItemService
     public async Task<bool> DeleteCartItemAsync(int userId, int productId)
     {
         var cartItem = await _cartItemRepository.GetCartItemAsync(userId, productId);
-        if (cartItem == null)
-        {
-            return false;
-        }
-
+        if (cartItem is null) return false;
+        
         await _cartItemRepository.DeleteCartItemAsync(cartItem);
 
         return true;
@@ -64,10 +61,7 @@ public class CartItemService : ICartItemService
     public async Task<bool> UpdateCartItemAsync(int userId, int productId, int quantity)
     {
         var cartItem = await _cartItemRepository.GetCartItemAsync(userId, productId);
-        if (cartItem == null)
-        {
-            return false;
-        } 
+        if (cartItem is null) return false;
         
         cartItem.Quantity = quantity;
         

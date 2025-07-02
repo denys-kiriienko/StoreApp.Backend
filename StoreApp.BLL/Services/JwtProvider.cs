@@ -12,11 +12,11 @@ namespace StoreApp.BLL.Services;
 
 public class JwtProvider : IJwtProvider
 {
-    private readonly JwtOptions _options;
+    private readonly JwtOptions _jwtOptions;
 
-    public JwtProvider(IOptions<JwtOptions> options)
+    public JwtProvider(IOptions<JwtOptions> jwtOptions)
     {
-        _options = options.Value;
+        _jwtOptions = jwtOptions.Value;
     }
 
     public string GenerateToken(UserTokenDto user)
@@ -27,13 +27,13 @@ public class JwtProvider : IJwtProvider
             new(ClaimTypes.Email, user.Email)];
 
         var signingCredentials = new SigningCredentials(
-            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)),
+            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey)),
             SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
             claims: claims,
             signingCredentials: signingCredentials,
-            expires: DateTime.UtcNow.AddMinutes(_options.ExpiresMinutes));
+            expires: DateTime.UtcNow.AddMinutes(_jwtOptions.ExpiresMinutes));
 
         var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using StoreApp.DAL.Entities;
-using StoreApp.DAL.Interfaces.Repositories;
+using StoreApp.DAL.Repositories.Interfaces;
 using StoreApp.Shared.Dtos;
 using StoreApp.Shared.Interfaces.Services;
 using StoreApp.Shared.Models;
@@ -30,10 +30,7 @@ public class AuthService : IAuthService
     public async Task<bool> RegisterUserAsync(UserModel user)
     {
         var existingUser = await _userRepository.GetUserByEmailAsync(user.Email);
-        if (existingUser != null)
-        {
-            return false;
-        }
+        if (existingUser is not null) return false;
 
         var userEntity = _mapper.Map<UserEntity>(user);
 
@@ -48,32 +45,25 @@ public class AuthService : IAuthService
     public async Task<(string?, string?)> LoginUserAsync(UserModel user)
     {
         var existingUser = await _userRepository.GetUserByEmailAsync(user.Email);
-        if (existingUser == null)
-        {
+        if (existingUser is null) return (null, null);
+
+        if (!_passwordHasher.Verify(user.Password, existingUser.PasswordHash)) 
             return (null, null);
-        }
 
-        if (!_passwordHasher.Verify(user.Password, existingUser.PasswordHash))
-        {
-            return (null, null);
-        }
-
-        var tokens = await GenerateAndSaveTokensAsync(existingUser);
-
-        return tokens;  // access, refresh
+        return await GenerateAndSaveTokensAsync(existingUser);  // access, refresh
     }
 
     public async Task<(string?, string?)> RefreshTokenAsync(string refreshToken)
     {
         var user = await _userRepository.GetUserByRefreshTokenAsync(refreshToken);
-        if (user == null || user.RefreshTokenExpiryTime == null || user.RefreshTokenExpiryTime < DateTime.UtcNow)
-        {
-            return (null, null);
-        }
 
-        var tokens = await GenerateAndSaveTokensAsync(user);
+        var isValid = user is not null &&
+                  user.RefreshTokenExpiryTime is not null &&
+                  user.RefreshTokenExpiryTime > DateTime.UtcNow;
 
-        return tokens;  // access, refresh
+        if (!isValid) return (null, null);
+
+        return await GenerateAndSaveTokensAsync(user!);          // access, refresh
     }
 
     private async Task<(string, string)> GenerateAndSaveTokensAsync(UserEntity user)
