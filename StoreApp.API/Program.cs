@@ -7,8 +7,8 @@ using StoreApp.BLL.MapperProvider;
 using StoreApp.BLL.Options;
 using StoreApp.BLL.Services;
 using StoreApp.DAL.Data;
-using StoreApp.DAL.Interfaces.Repositories;
 using StoreApp.DAL.Repositories;
+using StoreApp.DAL.Repositories.Interfaces;
 using StoreApp.Shared.Constants;
 using StoreApp.Shared.Interfaces.Services;
 using StoreApp.Shared.Services;
@@ -52,7 +52,7 @@ public class Program
         builder.Services.Configure<JwtOptions>(builder.Configuration
             .GetSection(nameof(JwtOptions)));
 
-        var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
+        var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();        // TODO: null
 
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
@@ -78,7 +78,7 @@ public class Program
                 };
             });
 
-        var allowerdOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+        var allowerdOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();  // TODO: null
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("Cors", builder =>
@@ -118,7 +118,7 @@ public class Program
 
         app.UseCookiePolicy(new CookiePolicyOptions()
         {
-            MinimumSameSitePolicy = SameSiteMode.None,  // in future change to strict
+            MinimumSameSitePolicy = SameSiteMode.None,  // TODO: in future change to strict
             HttpOnly = HttpOnlyPolicy.Always,
             Secure = CookieSecurePolicy.Always
         });

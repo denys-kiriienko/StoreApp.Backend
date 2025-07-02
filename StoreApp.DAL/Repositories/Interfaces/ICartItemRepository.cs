@@ -1,6 +1,6 @@
 ﻿using StoreApp.DAL.Entities;
 
-namespace StoreApp.DAL.Interfaces.Repositories;
+namespace StoreApp.DAL.Repositories.Interfaces;
 
 public interface ICartItemRepository
 {

@@ -1,53 +1,52 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StoreApp.DAL.Data;
 using StoreApp.DAL.Entities;
-using StoreApp.DAL.Interfaces.Repositories;
+using StoreApp.DAL.Repositories.Interfaces;
 
 namespace StoreApp.DAL.Repositories;
 
 public class ProductRepository : IProductRepository
 {
-    private readonly AppDbContext _context;
+    private readonly AppDbContext _appDbContext;
 
-    public ProductRepository(AppDbContext context)
+    public ProductRepository(AppDbContext appDbContext)
     {
-        _context = context;
+        _appDbContext = appDbContext;
     }
 
     public async Task<IEnumerable<ProductEntity>> GetAllProductsAsync()
     {
-        return await _context.Products.ToListAsync();
+        return await _appDbContext.Products.ToListAsync();
     }
 
     public async Task<ProductEntity?> GetProductByIdAsync(int id)
     {
-        return await _context.Products.FindAsync(id);
+        return await _appDbContext.Products.FindAsync(id);
     }
 
     public async Task AddProductAsync(ProductEntity product)
     {
-        _context.Products.Add(product);
-        await _context.SaveChangesAsync();
+        _appDbContext.Products.Add(product);
+        await _appDbContext.SaveChangesAsync();
     }
 
     public async Task UpdateProductAsync(ProductEntity product)
     {
-        _context.Products.Update(product);
-        await _context.SaveChangesAsync();
+        _appDbContext.Products.Update(product);
+        await _appDbContext.SaveChangesAsync();
     }
 
     public async Task DeleteProductByIdAsync(int id)
     {
         var product = await GetProductByIdAsync(id);
-        if (product != null)
-        {
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
-        }
+        if (product == null) return;
+
+        _appDbContext.Products.Remove(product);
+        await _appDbContext.SaveChangesAsync();
     }
 
     public async Task<bool> ProductExistsAsync(int id)
     {
-        return await _context.Products.AnyAsync(p => p.Id == id);
+        return await _appDbContext.Products.AnyAsync(p => p.Id == id);
     }
 }
