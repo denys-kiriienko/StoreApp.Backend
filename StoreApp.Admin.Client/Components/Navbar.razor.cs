@@ -10,9 +10,8 @@ namespace StoreApp.Admin.Client.Components
 
         protected bool isAuthenticated = false;
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
-            await AuthApiService.InitializeAsync();
             AuthApiService.AuthStateChanged += OnAuthChanged;
             StateHasChanged();
         }

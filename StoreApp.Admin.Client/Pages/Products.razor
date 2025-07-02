@@ -1,8 +1,7 @@
 ﻿@page "/products"
-@inject FetchInterop FetchInterop
 @inject IProductApiService ProductApiService
 
-<h3>Список товарів</h3>
+<h3>Products list</h3>
 
 @if (products == null)
 {
@@ -18,7 +17,7 @@ else
         @foreach (var product in products)
         {
             <li>
-                <strong>@product.Name</strong> — @product.Price грн
+                <strong>@product.Name</strong> — @product.Price UAH
             </li>
         }
     </ul>
@@ -29,7 +28,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await FetchInterop.InitializeAsync();
         products = await ProductApiService.GetAllProductsAsync();
     }
 }

@@ -12,11 +12,17 @@ namespace StoreApp.Admin.Client
             builder.RootComponents.Add<App>("#app");
             builder.RootComponents.Add<HeadOutlet>("head::after");
 
+            builder.Services.AddScoped<AuthHttpHandler>();
             builder.Services.AddScoped(sp =>
-                new HttpClient { BaseAddress = new Uri("https://localhost:7056/") });
+            {
+                var handler = sp.GetRequiredService<AuthHttpHandler>();
+                return new HttpClient(handler)
+                {
+                    BaseAddress = new Uri("https://localhost:7056/")
+                };
+            });
 
-            builder.Services.AddScoped<IAuthInterop, AuthInterop>();
-            builder.Services.AddScoped<FetchInterop>();
+
             builder.Services.AddScoped<IAuthApiService, AuthApiService>();
             builder.Services.AddScoped<IProductApiService, ProductApiService>();
 
