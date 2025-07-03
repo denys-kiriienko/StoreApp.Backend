@@ -22,7 +22,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] CredentialsDto model)
+    public async Task<IActionResult> RegisterAsync([FromBody] CredentialsDto model)
     {
         var userModel = _mapper.Map<UserModel>(model);
         userModel.Role = UserRole.User;
@@ -33,7 +33,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] CredentialsDto model)
+    public async Task<IActionResult> LoginAsync([FromBody] CredentialsDto model)
     {
         var userModel = _mapper.Map<UserModel>(model);
         userModel.Role = UserRole.User;
@@ -58,7 +58,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("refresh-token")]
-    public async Task<IActionResult> RefreshToken()
+    public async Task<IActionResult> RefreshTokenAsync()
     {
         if (!Request.Cookies.TryGetValue(AuthConstants.RefreshTokenCookie, out var oldRefreshToken))
         {

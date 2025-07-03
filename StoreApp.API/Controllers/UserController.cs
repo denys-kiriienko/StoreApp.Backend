@@ -17,62 +17,46 @@ public class UserController : ControllerBase
 
     [Authorize(Roles = "Admin")]
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAllAsync()
     {
-        var users = await _userService.GetAllUsersAsync();
-
-        return Ok(users);
+        return Ok(await _userService.GetAllUsersAsync());
     }
 
     [Authorize]
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetByIdAsync(int id)
     {
         var user = await _userService.GetUserByIdAsync(id);
-        if (user == null)
-        {
-            return BadRequest();
-        }
-
-        return Ok(user);
+        return user is not null
+            ? Ok(user)
+            : NotFound(); 
     }
 
     [Authorize]
     [HttpGet("by-email")]
-    public async Task<IActionResult> GetByEmail([FromQuery] string email)
+    public async Task<IActionResult> GetByEmailAsync([FromQuery] string email)
     {
         var user = await _userService.GetUserByEmailAsync(email);
-        if (user == null)
-        {
-            return NotFound();
-        }
-
-        return Ok(user);
+        return user is not null
+            ? Ok(user)
+            : NotFound();
     }
 
     [Authorize]
     [HttpPut("{id}/role")]
-    public async Task<IActionResult> UpdateRoleById(int id, [FromQuery] string role)
+    public async Task<IActionResult> UpdateRoleByIdAsync(int id, [FromQuery] string role)
     {
-        var result = await _userService.UpdateRoleByIdAsync(id, role);
-        if (!result)
-        {
-            return BadRequest();
-        }
-
-        return Ok();
+        return (await _userService.UpdateRoleByIdAsync(id, role))
+            ? Ok()
+            : BadRequest();
     }
 
     [Authorize]
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteById(int id)
+    public async Task<IActionResult> DeleteByIdAsync(int id)
     {
-        var result = await _userService.DeleteUserByIdAsync(id);
-        if (!result)
-        {
-            return BadRequest();
-        }
-
-        return NoContent();
+        return (await _userService.DeleteUserByIdAsync(id))
+            ? NoContent()
+            : BadRequest();
     }
 }

@@ -17,62 +17,44 @@ public class CartItemController : ControllerBase
 
     [Authorize]
     [HttpGet("{userId}")]
-    public async Task<IActionResult> GetByUserId(int userId)
+    public async Task<IActionResult> GetByUserIdAsync(int userId)
     {
-        var items = await _cartItemService.GetCartItemsByUserIdAsync(userId);
-        return Ok(items);
+        return Ok(await _cartItemService.GetCartItemsByUserIdAsync(userId));
     }
 
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> AddToCart([FromQuery] int userId, [FromQuery] int productId, [FromQuery] int quantity)
+    public async Task<IActionResult> AddToCartAsync([FromQuery] int userId, [FromQuery] int productId, [FromQuery] int quantity)
     {
-        var result = await _cartItemService.AddToCartAsync(userId, productId, quantity);
-        if (!result)
-        {
-            return BadRequest();
-        }
-
-        return Ok();
+        return await _cartItemService.AddToCartAsync(userId, productId, quantity)
+            ? Ok()
+            : BadRequest();
     }
 
     [Authorize]
     [HttpPut]
-    public async Task<IActionResult> UpdateQuantity([FromQuery] int userId, [FromQuery] int productId, [FromQuery] int quantity)
+    public async Task<IActionResult> UpdateQuantityAsync([FromQuery] int userId, [FromQuery] int productId, [FromQuery] int quantity)
     {
-        var result = await _cartItemService.UpdateCartItemAsync(userId, productId, quantity);
-        if (!result)
-        {
-            return BadRequest();
-        }
-
-        return Ok();
+        return await _cartItemService.UpdateCartItemAsync(userId, productId, quantity)
+            ? Ok() 
+            : BadRequest();
     }
 
     [Authorize]
     [HttpDelete]
-    public async Task<IActionResult> DeleteItem([FromQuery] int userId, [FromQuery] int productId)
+    public async Task<IActionResult> DeleteItemAsync([FromQuery] int userId, [FromQuery] int productId)
     {
-        var result = await _cartItemService.DeleteCartItemAsync(userId, productId);
-        if (!result)
-        {
-            return BadRequest();
-        }
-
-        return NoContent();
+        return(await _cartItemService.DeleteCartItemAsync(userId, productId))
+            ? NoContent()
+            : BadRequest();
     }
 
     [Authorize]
     [HttpDelete("clear/{userId}")]
-    public async Task<IActionResult> ClearCart(int userId)
+    public async Task<IActionResult> ClearCartAsync(int userId)
     {
-        var result = await _cartItemService.ClearCartItemsByUserIdAsync(userId);
-        if (!result)
-        {
-            return BadRequest();
-        }
-
-        return NoContent();
+        return(await _cartItemService.ClearCartItemsByUserIdAsync(userId))
+            ? NoContent()
+            : BadRequest();
     }
-
 }
