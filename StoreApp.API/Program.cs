@@ -52,7 +52,11 @@ public class Program
         builder.Services.Configure<JwtOptions>(builder.Configuration
             .GetSection(nameof(JwtOptions)));
 
-        var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();        // TODO: null
+        var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
+        if (jwtOptions is null)
+        {
+            throw new InvalidOperationException("Incorrectly configured JwtOptions");
+        }
 
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
@@ -78,13 +82,18 @@ public class Program
                 };
             });
 
-        var allowerdOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();  // TODO: null
+        var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+        if (allowedOrigins is null || allowedOrigins.Length == 0)
+        {
+            throw new InvalidOperationException("CORS configuration is missing or empty");
+        }
+
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("Cors", builder =>
             {
                 builder
-                    .WithOrigins(allowerdOrigins)
+                    .WithOrigins(allowedOrigins)
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();
@@ -118,7 +127,7 @@ public class Program
 
         app.UseCookiePolicy(new CookiePolicyOptions()
         {
-            MinimumSameSitePolicy = SameSiteMode.None,  // TODO: in future change to strict
+            MinimumSameSitePolicy = SameSiteMode.None,  // TODO: in future change to strict for more security
             HttpOnly = HttpOnlyPolicy.Always,
             Secure = CookieSecurePolicy.Always
         });
