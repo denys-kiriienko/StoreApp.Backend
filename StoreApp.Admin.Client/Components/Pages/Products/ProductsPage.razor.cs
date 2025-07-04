@@ -14,4 +14,22 @@ public partial class ProductsPage
     {
         products = await ProductApiService.GetAllProductsAsync();
     }
+
+    private void OnAddProduct()
+    {
+        // TODO: implement in future
+        Console.WriteLine("Add clicked");
+    }
+
+    private void OnEdit(ProductModel product)
+    {
+        // TODO: implement in future
+        Console.WriteLine($"Edit: {product.Name}");
+    }
+
+    private void OnDelete(ProductModel product)
+    {
+        // TODO: implement in future
+        Console.WriteLine($"Delete: {product.Name}");
+    } 
 }

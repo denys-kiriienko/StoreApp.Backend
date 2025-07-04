@@ -1,23 +1,39 @@
 ﻿@page "/products"
 
-<h3>Products list</h3>
+<div class="product-list-wrapper">
+    <div class="product-list-header">
+        <h2>Products</h2>
+        <button @onclick="OnAddProduct">Add Product</button>
+    </div>
 
-@if (products is null)
-{
-    <p>Loading...</p>
-}
-else if (!products.Any())
-{
-    <p>No products available</p>
-}
-else
-{
-    <ul>
-        @foreach (var product in products)
-        {
-            <li @key="product">
-                <strong>@product.Name</strong> — @product.Price UAH
-            </li>
-        }
-    </ul>
-}
+    @if (products is null)
+    {
+        <p>No products available.</p>
+    }
+    else
+    {
+        <div class="product-list">
+            @foreach (var product in products)
+            {
+                <div @key="product.Id" class="product-item">
+                    <div>
+                        @if (product.ImageData is { Length: > 0 })
+                        {
+                            <img src="data:image/png;base64,@Convert.ToBase64String(product.ImageData)" class="product-image" />
+                        }
+                    </div>
+                    <div class="product-details">
+                        <h3>@product.Name</h3>
+                        <p>@product.Description</p>
+                        <p>Price: @product.Price</p>
+                    </div>
+                    <div class="product-actions">
+                        <button @onclick="() => OnEdit(product)">Edit</button>
+                        <button @onclick="() => OnDelete(product)">Delete</button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+</div>
