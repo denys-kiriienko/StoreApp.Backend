@@ -1,9 +1,8 @@
 ﻿@page "/products"
-@inject IProductApiService ProductApiService
 
 <h3>Products list</h3>
 
-@if (products == null)
+@if (products is null)
 {
     <p>Loading...</p>
 }
@@ -21,13 +20,4 @@ else
             </li>
         }
     </ul>
-}
-
-@code {
-    private List<ProductModel>? products;
-
-    protected override async Task OnInitializedAsync()
-    {
-        products = await ProductApiService.GetAllProductsAsync();
-    }
 }
