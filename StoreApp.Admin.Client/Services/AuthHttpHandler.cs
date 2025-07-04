@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using System.Net;
 
+namespace StoreApp.Admin.Client.Services;
+
 public class AuthHttpHandler : DelegatingHandler
 {
     private readonly NavigationManager _navigationManager;
