@@ -3,8 +3,8 @@
 }
 
 .main-layout {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
     transition: margin-left 0.3s ease;
 }
@@ -18,17 +18,17 @@
     }
 
 .top-row {
-    height: 60px;
-    background-color: #222;
-    color: white;
     display: flex;
     align-items: center;
+    height: 60px;
+    color: #FFFFFF;
+    background-color: #222222;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
 
 .content {
     flex: 1;
+    padding: 16px;
     overflow: auto;
-    padding: 1rem;
 }
