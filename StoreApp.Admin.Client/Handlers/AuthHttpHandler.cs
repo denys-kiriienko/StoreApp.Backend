@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using System.Net;
 
-namespace StoreApp.Admin.Client.Services;
+namespace StoreApp.Admin.Client.Handlers;
 
 public class AuthHttpHandler : DelegatingHandler
 {

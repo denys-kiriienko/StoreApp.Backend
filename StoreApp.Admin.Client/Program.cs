@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using StoreApp.Admin.Client.Handlers;
 using StoreApp.Admin.Client.Services;
 using StoreApp.Admin.Client.Services.Interfaces;
 
