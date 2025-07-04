@@ -1,0 +1,36 @@
+﻿.product-form-wrapper {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .product-form-wrapper .product-form {
+        width: 350px;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: lightgray;
+    }
+
+    .product-form-wrapper .form-field {
+        margin-bottom: 15px;
+    }
+
+    .product-form-wrapper .form-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .product-form-wrapper .image-container {
+        max-width: 350px;
+        overflow: hidden;
+    }
+
+    .product-form-wrapper .product-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+

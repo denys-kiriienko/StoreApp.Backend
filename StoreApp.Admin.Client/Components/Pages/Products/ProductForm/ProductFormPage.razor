@@ -1,0 +1,48 @@
+﻿@page "/product-form/{Id:int?}"
+
+<h2>@(IsEditMode ? "Edit" : "Add") product</h2>
+
+@if (ProductModel is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="product-form-wrapper">
+        <EditForm Model="ProductModel" OnValidSubmit="HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="product-form">
+                <div class="form-field name-container">
+                    <label class="input-label">Name</label>
+                    <InputText @bind-Value="ProductModel.Name" class="form-control" />
+                </div>
+
+                <div class="form-field description-container">
+                    <label class="input-label">Description</label>
+                    <InputTextArea @bind-Value="ProductModel.Description" class="form-control" />
+                </div>
+
+                <div class="form-field price-container">
+                    <label class="input-label">Price</label>
+                    <InputNumber @bind-Value="ProductModel.Price" class="form-control" />
+                </div>
+
+                <div class="form-field image-container">
+                    @if (ProductModel.ImageData is not null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(ProductModel.ImageData)" class="product-image" />
+                    }
+
+                    <InputFile OnChange="OnFileSelected" />
+                </div>
+
+                <div class="form-field form-actions">
+                    <button type="submit">@((IsEditMode ? "Update" : "Add") + " product")</button>
+                    <button type="button" @onclick="GoBack">Go back</button>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+}

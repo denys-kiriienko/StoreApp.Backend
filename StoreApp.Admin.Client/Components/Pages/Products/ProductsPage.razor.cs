@@ -7,6 +7,7 @@ namespace StoreApp.Admin.Client.Components.Pages.Products;
 public partial class ProductsPage
 {
     [Inject] public required IProductApiService ProductApiService { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
     private List<ProductModel>? products;
 
@@ -17,14 +18,12 @@ public partial class ProductsPage
 
     private void OnAddProduct()
     {
-        // TODO: implement in future
-        Console.WriteLine("Add clicked");
+        NavigationManager.NavigateTo($"/product-form/");
     }
 
     private void OnEdit(ProductModel product)
     {
-        // TODO: implement in future
-        Console.WriteLine($"Edit: {product.Name}");
+        NavigationManager.NavigateTo($"/product-form/{product.Id}");
     }
 
     private void OnDelete(ProductModel product)
