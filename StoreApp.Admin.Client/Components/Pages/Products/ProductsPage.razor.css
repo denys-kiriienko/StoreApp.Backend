@@ -54,3 +54,7 @@
         justify-content: space-between;
         width: 100%;
     }
+
+        .product-list-wrapper .product-actions .action-button {
+            width: 80px;
+        } 

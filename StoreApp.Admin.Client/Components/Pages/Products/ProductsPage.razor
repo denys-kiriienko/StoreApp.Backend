@@ -28,8 +28,8 @@
                         <p>Price: @product.Price</p>
                     </div>
                     <div class="product-actions">
-                        <button @onclick="() => OnEdit(product)">Edit</button>
-                        <button @onclick="() => OnDelete(product)">Delete</button>
+                        <button class="action-button" @onclick="() => OnEdit(product)">Edit</button>
+                        <button class="action-button" @onclick ="() => OnDelete(product)">Delete</button>
                     </div>
                 </div>
             }
