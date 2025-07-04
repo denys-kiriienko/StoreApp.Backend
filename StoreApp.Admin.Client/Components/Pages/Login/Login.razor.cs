@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using StoreApp.Admin.Client.Services;
+using StoreApp.Admin.Client.Services.Interfaces;
 
 namespace StoreApp.Admin.Client.Components.Pages.Login
 {

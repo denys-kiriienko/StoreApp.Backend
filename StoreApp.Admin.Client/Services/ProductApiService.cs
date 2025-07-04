@@ -1,6 +1,7 @@
 ﻿using StoreApp.Shared.Models;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
+using StoreApp.Admin.Client.Services.Interfaces;
 
 namespace StoreApp.Admin.Client.Services;
 

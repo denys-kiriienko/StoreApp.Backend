@@ -1,6 +1,6 @@
 ﻿using StoreApp.Shared.Models;
 
-namespace StoreApp.Admin.Client.Services;
+namespace StoreApp.Admin.Client.Services.Interfaces;
 
 public interface IProductApiService
 {

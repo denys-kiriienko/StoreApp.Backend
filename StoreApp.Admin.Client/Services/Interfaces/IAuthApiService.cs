@@ -1,4 +1,4 @@
-﻿namespace StoreApp.Admin.Client.Services;
+﻿namespace StoreApp.Admin.Client.Services.Interfaces;
 
 public interface IAuthApiService
 {

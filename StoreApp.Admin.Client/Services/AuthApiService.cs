@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Net.Http.Json;
+using StoreApp.Admin.Client.Services.Interfaces;
 
 namespace StoreApp.Admin.Client.Services;
 
