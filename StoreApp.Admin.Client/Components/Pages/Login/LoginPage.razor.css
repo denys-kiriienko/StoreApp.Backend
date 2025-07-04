@@ -1,64 +1,61 @@
-﻿.login-form-container {
-    margin-top: 100px;
-}
-
-.center {
+﻿.login-form-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
 }
 
-.title {
-    display: flex;
-    justify-content: center;
-    align-self: flex-start;
-    margin-bottom: 40px;
-}
-
-.login-form {
-    width: 360px;
-    border-radius: 8px;
-    padding: 20px;
-    background-color: lightgray;
-}
-
-.login-input {
-    height: 56px;
-    border-radius: 8px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.login-button {
-    width: 100%;
-}
-
-.email-container {
-    margin-bottom: 15px;
-}
-
-.password-container {
-    margin-bottom: 30px;
-}
-
-.password-wrapper {
-    position: relative;
-}
-
-.toggle-password-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    padding: 4px 8px;
-    right: 8px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: gray;
-}
-
-    .toggle-password-btn:hover {
-        color: #000;
+    .login-form-wrapper .title {
+        display: flex;
+        justify-content: center;
+        align-self: flex-start;
+        margin-bottom: 40px;
     }
+
+    .login-form-wrapper .login-form {
+        width: 360px;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #D3D3D3;
+    }
+
+    .login-form-wrapper .login-input {
+        width: 100%;
+        height: 56px;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+
+    .login-form-wrapper .login-button {
+        width: 100%;
+    }
+
+    .login-form-wrapper .email-container {
+        margin-bottom: 15px;
+    }
+
+    .login-form-wrapper .password-container {
+        margin-bottom: 30px;
+    }
+
+    .login-form-wrapper .password-wrapper {
+        position: relative;
+    }
+
+    .login-form-wrapper .toggle-password-btn {
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        padding: 4px 8px;
+        font-size: 14px;
+        border: none;
+        background: none;
+        color: #808080;
+        cursor: pointer;
+        transform: translateY(-50%);
+    }
+
+        .login-form-wrapper .toggle-password-btn:hover {
+            color: #000000;
+        }
