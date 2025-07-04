@@ -1,4 +1,4 @@
-﻿<div class="sidebar @(isOpen ? "open" : "")">
+﻿<div class="sidebar-wrapper @(isOpen ? "open" : "")">
     <div class="sidebar-content">
         <button class="sidebar-button" @onclick="Toggle">
             <img src="https://www.svgrepo.com/show/504111/app-lounge.svg" class="icon" />
@@ -9,7 +9,7 @@
             }
         </button>
 
-        <nav>
+        <div>
             <button class="sidebar-button">
                 <img src="https://www.svgrepo.com/show/502602/dashboard-1.svg" class="icon" />
                 @if (isOpen)
@@ -47,7 +47,7 @@
                     <span class="label">Subscriptions</span>
                 }
             </button>
-        </nav>
+        </div>
     </div>
 
     @if (!isOpen)

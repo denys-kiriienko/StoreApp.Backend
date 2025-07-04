@@ -1,112 +1,111 @@
-﻿.sidebar {
-    height: 100%;
-    width: 60px;
-    height: calc(100vh - 60px);
-    background-color: #333;
-    color: white;
-    transition: width 0.3s ease;
-    overflow: hidden;
+﻿.sidebar-wrapper {
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 60px);
+    width: 60px;
+    color: #FFFFFF;
+    background-color: #333333;
+    transition: width 0.3s ease;
+    overflow: hidden;
 }
 
-    .sidebar.open {
+    .sidebar-wrapper.open {
         width: 200px;
     }
 
-.sidebar-content {
-    flex: 1;
-}
-
-.sidebar-toggle-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 60px;
-    background-color: transparent;
-    cursor: pointer;
-    border: none;
-}
-
-.sidebar-button {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 60px;
-    padding: 1rem;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-    .sidebar-button:hover {
-        background-color: #555;
+    .sidebar-wrapper .sidebar-content {
+        flex: 1;
     }
 
-.icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    filter: brightness(0) invert(1);
-}
-
-.label {
-    margin-left: 1rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.dropdown-arrow {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s ease;
-    margin-left: auto;
-}
-
-    .dropdown-arrow.open {
-        transform: rotate(180deg);
+    .sidebar-wrapper .sidebar-toggle-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 60px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
     }
 
-.dropdown-menu-wrapper {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease;
-}
-
-    .dropdown-menu-wrapper.open {
-        max-height: 300px;
+    .sidebar-wrapper .sidebar-button {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 60px;
+        padding: 16px;
+        color: white;
+        background-color: #444444;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        transition: background-color 0.2s;
     }
 
-.custom-dropdown-menu {
-    background-color: #444;
-}
+        .sidebar-wrapper .sidebar-button:hover {
+            background-color: #555555;
+        }
 
-.dropdown-item {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 3rem;
-    background: #555;
-    color: white;
-    border: none;
-    border-radius: 0;
-    text-align: left;
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-    .dropdown-item:hover {
-        background-color: #666;
+    .sidebar-wrapper .icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        filter: brightness(0) invert(1);
     }
 
-    .sidebar-button:active,
-    .dropdown-item:active,
-    .sidebar-toggle-button:active {
-        transform: none;
+    .sidebar-wrapper .label {
+        margin-left: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
+
+    .sidebar-wrapper .dropdown-arrow {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
+        margin-left: auto;
+    }
+
+        .sidebar-wrapper .dropdown-arrow.open {
+            transform: rotate(180deg);
+        }
+
+    .sidebar-wrapper .dropdown-menu-wrapper {
+        max-height: 0;
+        transition: max-height 0.3s ease;
+        overflow: hidden;
+    }
+
+        .sidebar-wrapper .dropdown-menu-wrapper.open {
+            max-height: 300px;
+        }
+
+    .sidebar-wrapper .custom-dropdown-menu {
+        background-color: #444444;
+    }
+
+    .sidebar-wrapper .dropdown-item {
+        display: block;
+        text-align: left;
+        width: 100%;
+        padding: 12px 16px 12px 48px;
+        border: none;
+        color: #FFFFFF;
+        background: #555555;
+        border-radius: 0;
+        cursor: pointer;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+        .sidebar-wrapper .dropdown-item:hover {
+            background-color: #666666;
+        }
+
+        .sidebar-wrapper .sidebar-button:active,
+        .sidebar-wrapper .dropdown-item:active,
+        .sidebar-wrapper .sidebar-toggle-button:active {
+            transform: none;
+        }
