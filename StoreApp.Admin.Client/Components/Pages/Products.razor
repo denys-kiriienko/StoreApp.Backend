@@ -16,7 +16,7 @@ else
     <ul>
         @foreach (var product in products)
         {
-            <li>
+            <li @key="product">
                 <strong>@product.Name</strong> — @product.Price UAH
             </li>
         }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using StoreApp.Admin.Client.Services;
 
-namespace StoreApp.Admin.Client.Pages.Login
+namespace StoreApp.Admin.Client.Components.Pages.Login
 {
     public partial class Login 
     {
