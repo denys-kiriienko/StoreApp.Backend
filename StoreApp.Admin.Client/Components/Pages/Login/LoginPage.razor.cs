@@ -3,7 +3,7 @@ using StoreApp.Admin.Client.Services.Interfaces;
 
 namespace StoreApp.Admin.Client.Components.Pages.Login;
 
-public partial class Login 
+public partial class LoginPage 
 {
     [Inject] public required NavigationManager NavigationManager { get; set; }
     [Inject] public required IAuthApiService AuthApiService { get; set; }
