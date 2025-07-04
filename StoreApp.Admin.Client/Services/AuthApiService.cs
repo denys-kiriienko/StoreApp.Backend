@@ -1,29 +1,31 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using StoreApp.Admin.Client.Services;
 using System.Net.Http.Json;
+
+namespace StoreApp.Admin.Client.Services;
 
 public class AuthApiService : IAuthApiService
 {
-    private readonly HttpClient _http;
-    private readonly NavigationManager _navigation;
+    private readonly HttpClient _httpClient;
+    private readonly NavigationManager _navigationManager;
     private readonly IJSRuntime _jsRuntime;
+
     public bool IsAuthenticated { get; private set; }
     public event Action<bool>? AuthStateChanged;
 
     public AuthApiService(
-        HttpClient http,
-        NavigationManager navigation,
+        HttpClient httpClient,
+        NavigationManager navigationManager,
         IJSRuntime jsRuntime)
     {
-        _http = http;
-        _navigation = navigation;
+        _httpClient = httpClient;
+        _navigationManager = navigationManager;
         _jsRuntime = jsRuntime;
     }
 
     public async Task<bool> LoginAsync(string email, string password)
     {
-        var response = await _http.PostAsJsonAsync("api/auth/login", new { email, password });
+        var response = await _httpClient.PostAsJsonAsync("api/auth/login", new { email, password });
 
         if (response.IsSuccessStatusCode)
         {
@@ -39,7 +41,8 @@ public class AuthApiService : IAuthApiService
     {
         try
         {
-            var result = await _http.PostAsync("api/auth/refresh-token", null);
+            // null because we don't need to send any content for this endpoint
+            var result = await _httpClient.PostAsync("api/auth/refresh-token", null);
 
             if (result.IsSuccessStatusCode)
             {
@@ -58,9 +61,11 @@ public class AuthApiService : IAuthApiService
 
     public async Task LogoutAsync()
     {
-        await _http.PostAsync("api/auth/logout", null);
+        // null because we don't need to send any content for this endpoint
+        await _httpClient.PostAsync("api/auth/logout", null);
+
         SetAuthenticated(false);
-        _navigation.NavigateTo("/login", forceLoad: true);
+        _navigationManager.NavigateTo("/login", forceLoad: true);
     }
 
     private async void SetAuthenticated(bool value)

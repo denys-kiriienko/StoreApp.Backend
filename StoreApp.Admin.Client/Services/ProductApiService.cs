@@ -1,5 +1,4 @@
 ﻿using StoreApp.Shared.Models;
-using System.Net.Http;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
@@ -7,12 +6,12 @@ namespace StoreApp.Admin.Client.Services;
 
 public class ProductApiService : IProductApiService
 {
-    private readonly HttpClient _http;
+    private readonly HttpClient _httpClient;
     private const string ApiPath = "api/Product";
 
-    public ProductApiService(HttpClient http)
+    public ProductApiService(HttpClient httpClient)
     {
-        _http = http;
+        _httpClient = httpClient;
     }
 
     public async Task<List<ProductModel>> GetAllProductsAsync()
@@ -20,7 +19,7 @@ public class ProductApiService : IProductApiService
         var request = new HttpRequestMessage(HttpMethod.Get, ApiPath);
         request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 
-        var response = await _http.SendAsync(request);
+        var response = await _httpClient.SendAsync(request);
         response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadFromJsonAsync<List<ProductModel>>() ?? new();
@@ -31,7 +30,7 @@ public class ProductApiService : IProductApiService
         var request = new HttpRequestMessage(HttpMethod.Get, $"{ApiPath}/{id}");
         request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 
-        var response = await _http.SendAsync(request);
+        var response = await _httpClient.SendAsync(request);
         response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadFromJsonAsync<ProductModel>();
@@ -45,7 +44,7 @@ public class ProductApiService : IProductApiService
         };
         request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 
-        var response = await _http.SendAsync(request);
+        var response = await _httpClient.SendAsync(request);
         return response.IsSuccessStatusCode;
     }
 
@@ -57,7 +56,7 @@ public class ProductApiService : IProductApiService
         };
         request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 
-        var response = await _http.SendAsync(request);
+        var response = await _httpClient.SendAsync(request);
         return response.IsSuccessStatusCode;
     }
 
@@ -66,7 +65,7 @@ public class ProductApiService : IProductApiService
         var request = new HttpRequestMessage(HttpMethod.Delete, $"{ApiPath}/{id}");
         request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 
-        var response = await _http.SendAsync(request);
+        var response = await _httpClient.SendAsync(request);
         return response.IsSuccessStatusCode;
     }
 }

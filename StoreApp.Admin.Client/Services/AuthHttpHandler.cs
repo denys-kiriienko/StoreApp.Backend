@@ -4,11 +4,11 @@ using System.Net;
 
 public class AuthHttpHandler : DelegatingHandler
 {
-    private readonly NavigationManager _navigation;
+    private readonly NavigationManager _navigationManager;
 
-    public AuthHttpHandler(NavigationManager navigation)
+    public AuthHttpHandler(NavigationManager navigationManager)
     {
-        _navigation = navigation;
+        _navigationManager = navigationManager;
         InnerHandler = new HttpClientHandler();
     }
 
@@ -32,7 +32,7 @@ public class AuthHttpHandler : DelegatingHandler
                 return await base.SendAsync(retryRequest, cancellationToken);
             }
 
-            _navigation.NavigateTo("/login");
+            _navigationManager.NavigateTo("/login");
         }
 
         return response;
@@ -45,7 +45,7 @@ public class AuthHttpHandler : DelegatingHandler
         foreach (var header in request.Headers)
             clone.Headers.TryAddWithoutValidation(header.Key, header.Value);
 
-        if (request.Content != null)
+        if (request.Content is not null)
         {
             var content = await request.Content.ReadAsByteArrayAsync();
             clone.Content = new ByteArrayContent(content);
