@@ -1,11 +1,12 @@
 ﻿@inherits LayoutComponentBase
+@using StoreApp.Admin.Client.Components.Navbar
+@using StoreApp.Admin.Client.Components.Sidebar
 
 <div class="layout-container">
-    <Navbar />
+    <NavbarComponent />
 
     <div class="content-layout">
-        <Sidebar StartOpen="sidebarOpen" OnSidebarToggle="SidebarToggled" />
-
+        <SidebarComponent StartOpen="sidebarOpen" OnSidebarToggle="SidebarToggled" />
         <main class="main-content @(sidebarOpen ? "sidebar-open" : "sidebar-closed")">
             @Body
         </main>

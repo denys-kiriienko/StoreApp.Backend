@@ -9,7 +9,7 @@
         <div>
             @if (AuthApiService.IsAuthenticated)
             {
-                <button class="navbar-item" @onclick="Logout">Logout</button>
+                <button class="navbar-item" @onclick="LogoutAsync">Logout</button>
             }
             else
             {
