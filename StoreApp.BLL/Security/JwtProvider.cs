@@ -2,13 +2,13 @@
 using Microsoft.IdentityModel.Tokens;
 using StoreApp.BLL.Options;
 using StoreApp.Shared.Dtos;
-using StoreApp.Shared.Services;
+using StoreApp.Shared.Interfaces.Security;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace StoreApp.BLL.Services;
+namespace StoreApp.BLL.Security;
 
 public class JwtProvider : IJwtProvider
 {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using StoreApp.DAL.Repositories.Interfaces;
 using StoreApp.Shared.Enums;
-using StoreApp.Shared.Interfaces.Services;
+using StoreApp.Shared.Interfaces.Security;
 using StoreApp.Shared.Models;
 
 namespace StoreApp.BLL.Services;

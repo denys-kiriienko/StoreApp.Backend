@@ -1,6 +1,6 @@
 ﻿using StoreApp.Shared.Dtos;
 
-namespace StoreApp.Shared.Services;
+namespace StoreApp.Shared.Interfaces.Security;
 
 public interface IJwtProvider
 {

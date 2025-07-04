@@ -2,7 +2,7 @@
 using StoreApp.DAL.Entities;
 using StoreApp.DAL.Repositories.Interfaces;
 using StoreApp.Shared.Dtos;
-using StoreApp.Shared.Interfaces.Services;
+using StoreApp.Shared.Interfaces.Security;
 using StoreApp.Shared.Models;
 using StoreApp.Shared.Services;
 

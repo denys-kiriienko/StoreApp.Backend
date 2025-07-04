@@ -1,4 +1,4 @@
-﻿namespace StoreApp.Shared.Interfaces.Services;
+﻿namespace StoreApp.Shared.Interfaces.Security;
 
 public interface IPasswordHasher
 {

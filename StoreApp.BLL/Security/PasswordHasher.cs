@@ -1,6 +1,6 @@
-﻿using StoreApp.Shared.Interfaces.Services;
+﻿using StoreApp.Shared.Interfaces.Security;
 
-namespace StoreApp.BLL.Services;
+namespace StoreApp.BLL.Security;
 
 public class PasswordHasher : IPasswordHasher
 {
