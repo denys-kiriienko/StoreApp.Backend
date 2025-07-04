@@ -2,31 +2,29 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using StoreApp.Admin.Client.Services;
 
-namespace StoreApp.Admin.Client
+namespace StoreApp.Admin.Client;
+
+public class Program
 {
-    public class Program
+    public static async Task Main(string[] args)
     {
-        public static async Task Main(string[] args)
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.RootComponents.Add<App>("#app");
+        builder.RootComponents.Add<HeadOutlet>("head::after");
+
+        builder.Services.AddScoped<AuthHttpHandler>();
+        builder.Services.AddScoped(sp =>
         {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
-            builder.RootComponents.Add<HeadOutlet>("head::after");
-
-            builder.Services.AddScoped<AuthHttpHandler>();
-            builder.Services.AddScoped(sp =>
+            var handler = sp.GetRequiredService<AuthHttpHandler>();
+            return new HttpClient(handler)
             {
-                var handler = sp.GetRequiredService<AuthHttpHandler>();
-                return new HttpClient(handler)
-                {
-                    BaseAddress = new Uri("https://localhost:7056/")
-                };
-            });
+                BaseAddress = new Uri("https://localhost:7056/")
+            };
+        });
 
+        builder.Services.AddScoped<IAuthApiService, AuthApiService>();
+        builder.Services.AddScoped<IProductApiService, ProductApiService>();
 
-            builder.Services.AddScoped<IAuthApiService, AuthApiService>();
-            builder.Services.AddScoped<IProductApiService, ProductApiService>();
-
-            await builder.Build().RunAsync();
-        }
+        await builder.Build().RunAsync();
     }
 }
