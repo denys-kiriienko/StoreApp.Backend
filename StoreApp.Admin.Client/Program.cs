@@ -15,12 +15,19 @@ public class Program
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
         builder.Services.AddScoped<AuthHttpHandler>();
+
+        var baseApiUrl = builder.Configuration["ApiSettings:BaseUrl"];
+        if (baseApiUrl is null)
+        {
+            throw new InvalidOperationException("Incorrectly configured ApiSettings: BaseUrl");
+        }
+
         builder.Services.AddScoped(sp =>
         {
             var handler = sp.GetRequiredService<AuthHttpHandler>();
             return new HttpClient(handler)
             {
-                BaseAddress = new Uri("https://localhost:7056/")
+                BaseAddress = new Uri(baseApiUrl)
             };
         });
 
