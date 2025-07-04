@@ -1,4 +1,4 @@
-﻿.navbar {
+﻿.navbar-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,27 +10,27 @@
     padding: 0 16px;
 }
 
-.navbar-title {
-    font-size: 20px;
-}
-
-.navbar-right {
-    display: flex;
-    gap: 15px;
-}
-
-.navbar-item {
-    padding: 8px 12px;
-    background: rgb(104, 104, 104);
-    border: none;
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background 0.15s;
-}
-
-    .navbar-item:hover {
-        background: #bebebe;
-        color: #333;
+    .navbar-wrapper .navbar-title {
+        font-size: 20px;
     }
+
+    .navbar-wrapper .navbar-right {
+        display: flex;
+        gap: 15px;
+    }
+
+    .navbar-wrapper .navbar-item {
+        padding: 8px 12px;
+        background: rgb(104, 104, 104);
+        border: none;
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background 0.15s;
+    }
+
+        .navbar-wrapper .navbar-item:hover {
+            background: #bebebe;
+            color: #333;
+        }
