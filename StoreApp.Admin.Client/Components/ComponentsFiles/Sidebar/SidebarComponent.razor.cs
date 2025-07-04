@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace StoreApp.Admin.Client.Components.Sidebar;
+namespace StoreApp.Admin.Client.Components.ComponentsFiles.Sidebar;
 
 public partial class SidebarComponent : ComponentBase
 {

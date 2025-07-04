@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using StoreApp.Admin.Client.Services;
 
-namespace StoreApp.Admin.Client.Components.Navbar;
+namespace StoreApp.Admin.Client.Components.ComponentsFiles.Navbar;
 
 public partial class NavbarComponent : IDisposable
 {
