@@ -2,7 +2,7 @@
 
 public partial class MainLayout
 {
-    private bool sidebarOpen = false;
+    private bool sidebarOpen;
     
     private void SidebarToggled(bool open)
     {

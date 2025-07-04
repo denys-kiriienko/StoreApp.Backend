@@ -2,7 +2,7 @@
 
 namespace StoreApp.Admin.Client.Components.ComponentsFiles.Sidebar;
 
-public partial class SidebarComponent : ComponentBase
+public partial class SidebarComponent
 {
     [Parameter] public EventCallback<bool> OnSidebarToggle { get; set; }
     [Parameter] public bool StartOpen { get; set; }
