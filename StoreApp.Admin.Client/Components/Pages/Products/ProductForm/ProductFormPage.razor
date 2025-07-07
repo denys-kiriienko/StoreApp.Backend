@@ -32,11 +32,15 @@ else
                 </div>
 
                 <div class="form-field image-container">
-                    @if (ProductModel.ImageData is not null)
+                    @if (ProductModel.ImageData is not null && ProductModel.ImageData.Length > 0)
                     {
-                        <img src="data:image/png;base64,@Convert.ToBase64String(ProductModel.ImageData)" class="product-image" />
+                        <img class="product-image" src="data:image/png;base64,@Convert.ToBase64String(ProductModel.ImageData)" />
                     }
-
+                    else if (!string.IsNullOrWhiteSpace(ProductModel.ImageUrl))
+                    {
+                        <img class="product-image" src="@($"{BaseUrl}{ProductModel.ImageUrl}")" />
+                    }
+                    
                     <InputFileComponent Width="100%" OnFileSelectedCallback="OnFileSelected" />
                 </div>
 

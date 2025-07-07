@@ -7,19 +7,22 @@ namespace StoreApp.Admin.Client.Components.Pages.Products.ProductForm;
 
 public partial class ProductFormPage
 {
+    [Inject] public required IConfiguration Configuration { get; set; }
     [Inject] public required NavigationManager NavigationManager { get; set; }
     [Inject] public required IProductApiService ProductApiService { get; set; }
-
     [Parameter] public int? Id { get; set; }
 
-    private bool IsEditMode => Id.HasValue;
-
     private ProductModel? ProductModel { get; set; }
+
+    private bool IsEditMode => Id.HasValue;
+    private string BaseUrl = string.Empty;
+
 
     protected override async Task OnInitializedAsync()
     {
         if (IsEditMode)
         {
+            BaseUrl = Configuration["ApiSettings:BaseUrl"] ?? "";
             var product = await ProductApiService.GetProductByIdAsync(Id.Value);
 
             if (product is null)
