@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using StoreApp.DAL.Entities;
 using StoreApp.DAL.Repositories.Interfaces;
+using StoreApp.Shared.Constants;
 using StoreApp.Shared.Models;
 using StoreApp.Shared.Services;
 
@@ -38,6 +39,7 @@ public class ProductService : IProductService
     public async Task<bool> AddProductAsync(ProductModel product)
     {
         var productEntity = _mapper.Map<ProductEntity>(product);
+        productEntity.ImageUrl = await SaveImageToDiskAsync(product.ImageData);
 
         await _productRepository.AddProductAsync(productEntity);
 
@@ -52,7 +54,13 @@ public class ProductService : IProductService
         existingProduct.Name = product.Name;
         existingProduct.Description = product.Description;
         existingProduct.Price = product.Price;
-        existingProduct.ImageData = product.ImageData;
+
+        if (product.ImageData?.Length > 0)
+        {
+            DeleteImageFile(existingProduct.ImageUrl);
+
+            existingProduct.ImageUrl = await SaveImageToDiskAsync(product.ImageData);
+        }
 
         await _productRepository.UpdateProductAsync(existingProduct);
 
@@ -61,10 +69,50 @@ public class ProductService : IProductService
 
     public async Task<bool> DeleteProductByIdAsync(int id)
     {
-        if (!await _productRepository.ProductExistsAsync(id)) return false;
+        var product = await _productRepository.GetProductByIdAsync(id);
+        if (product is null) return false;
+
+        DeleteImageFile(product.ImageUrl);
 
         await _productRepository.DeleteProductByIdAsync(id);
-
+        
         return true;
+    }
+
+    private async Task<string?> SaveImageToDiskAsync(byte[]? imageData)
+    {
+        if (imageData is null || imageData.Length == 0)
+            return null;
+
+        var uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), FilesConstants.ImageFolder);
+        if (!Directory.Exists(uploadsPath))
+            Directory.CreateDirectory(uploadsPath);
+
+        var fileName = $"{Guid.NewGuid()}.jpg";
+        var filePath = Path.Combine(uploadsPath, fileName);
+
+        await File.WriteAllBytesAsync(filePath, imageData);
+
+        return $"/images/{fileName}";
+    }
+
+    private void DeleteImageFile(string? imageUrl)
+    {
+        if (string.IsNullOrEmpty(imageUrl)) return;
+
+        var webRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+        var imagePath = Path.Combine(webRootPath, imageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+
+        if (File.Exists(imagePath))
+        {
+            try
+            {
+                File.Delete(imagePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
