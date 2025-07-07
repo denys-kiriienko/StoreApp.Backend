@@ -1,4 +1,6 @@
-﻿@page "/products"
+﻿@using StoreApp.Admin.Client.Components.Pages.Products.Components.ProductCard
+
+@page "/products"
 
 <div class="product-list-wrapper">
     <div class="product-list-header">
@@ -15,25 +17,12 @@
         <div class="product-list">
             @foreach (var product in products)
             {
-                <div @key="product.Id" class="product-item">
-                    <div>
-                        @if (product.ImageData is { Length: > 0 })
-                        {
-                            <img src="data:image/png;base64,@Convert.ToBase64String(product.ImageData)" class="product-image" />
-                        }
-                    </div>
-                    <div class="product-details">
-                        <h3>@product.Name</h3>
-                        <p>@product.Description</p>
-                        <p>Price: @product.Price</p>
-                    </div>
-                    <div class="product-actions">
-                        <button class="action-button" @onclick="() => OnEdit(product)">Edit</button>
-                        <button class="action-button" @onclick ="() => OnDelete(product)">Delete</button>
-                    </div>
-                </div>
+                <ProductCardComponent
+                    @key="product.Id"
+                    Product="product"
+                    OnEdit="OnEdit"
+                    OnDelete="OnDelete" />
             }
         </div>
     }
-
 </div>
