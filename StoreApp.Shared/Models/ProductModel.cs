@@ -17,4 +17,6 @@ public class ProductModel
 
     [MaxLength(4 * 1024 * 1024, ErrorMessage = "Image size should not exceed 4MB")]
     public byte[]? ImageData { get; set; }
+
+    public string? ImageUrl { get; set; }
 }
