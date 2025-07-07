@@ -1,17 +1,17 @@
 ﻿<div class="product-card-wrapper">
     <div>
-        @if (!string.IsNullOrWhiteSpace(Product.ImageUrl))
+        @if (!string.IsNullOrWhiteSpace(ProductModel.ImageUrl))
         {
-            <img class="product-image" src="@($"{BaseUrl}{Product.ImageUrl}")" />
+            <img class="product-image" src="@($"{BaseUrl}{ProductModel.ImageUrl}")" />
         }
     </div>
     <div class="product-details">
-        <h3>@Product.Name</h3>
-        <p>@Product.Description</p>
-        <p>Price: @Product.Price</p>
+        <h3>@ProductModel.Name</h3>
+        <p>@ProductModel.Description</p>
+        <p>Price: @ProductModel.Price</p>
     </div>
     <div class="product-actions">
-        <button class="action-button" @onclick="() => OnEdit.InvokeAsync(Product)">Edit</button>
-        <button class="action-button" @onclick="() => OnDelete.InvokeAsync(Product)">Delete</button>
+        <button class="action-button" @onclick="() => OnEdit.InvokeAsync(ProductModel)">Edit</button>
+        <button class="action-button" @onclick="() => OnDelete.InvokeAsync(ProductModel)">Delete</button>
     </div>
 </div>
