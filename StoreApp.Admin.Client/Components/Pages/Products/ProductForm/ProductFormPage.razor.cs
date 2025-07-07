@@ -58,12 +58,15 @@ public partial class ProductFormPage
         var file = e.File;
         if (file is not null)
         {
-            using var stream = file.OpenReadStream();
+            using var stream = file.OpenReadStream(maxAllowedSize: 4_000_000);
             using var ms = new MemoryStream();
             await stream.CopyToAsync(ms);
             ProductModel!.ImageData = ms.ToArray();
+
+            await InvokeAsync(StateHasChanged);
         }
     }
+
 
     private void GoBack()
     {

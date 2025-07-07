@@ -1,4 +1,6 @@
-﻿@page "/product-form/{Id:int?}"
+﻿@using StoreApp.Admin.Client.Components.ComponentsFiles.InputFile
+
+@page "/product-form/{Id:int?}"
 
 <h2>@(IsEditMode ? "Edit" : "Add") product</h2>
 
@@ -35,7 +37,7 @@ else
                         <img src="data:image/png;base64,@Convert.ToBase64String(ProductModel.ImageData)" class="product-image" />
                     }
 
-                    <InputFile OnChange="OnFileSelected" />
+                    <InputFileComponent Width="100%" OnFileSelectedCallback="OnFileSelected" />
                 </div>
 
                 <div class="form-field form-actions">
