@@ -6,6 +6,7 @@ namespace StoreApp.Admin.Client.Components.ComponentsFiles.InputFile;
 public partial class InputFileComponent
 {
     [Parameter] public string ButtonText { get; set; } = "Upload File";
+    [Parameter] public string? Width { get; set; }
     [Parameter] public EventCallback<InputFileChangeEventArgs> OnFileSelectedCallback { get; set; }
 
     private string? FileName;

@@ -225,6 +225,11 @@ input {
         border-color: #ff4d4d;
     }
 
+    /* hiding standard input file, use InputFileComponent */
+    input[type="file"] {
+        display: none;
+    }
+
 .input-label {
     display: block;
     padding-left: 10px;

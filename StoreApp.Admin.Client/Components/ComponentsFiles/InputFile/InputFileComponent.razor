@@ -1,8 +1,9 @@
-﻿<div class="file-upload">
-    <label class="file-label">
+﻿<div class="file-upload-wrapper">
+    <label class="file-label" style="width:@Width">
         <InputFile OnChange="OnFileSelected" />
         <span>@ButtonText</span>
     </label>
+
     @if (!string.IsNullOrEmpty(FileName))
     {
         <div class="file-name">@FileName</div>

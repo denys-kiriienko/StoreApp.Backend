@@ -1,23 +1,25 @@
-﻿.file-upload input[type="file"] {
-    display: none;
+﻿.file-upload-wrapper {
+
 }
 
-.file-label {
-    display: inline-block;
-    padding: 12px 16px;
-    border-radius: 4px;
-    color: #FFFFFF;
-    background-color: #339B6A;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-    .file-label:hover {
-        background-color: #246D4B;
+    .file-upload-wrapper .file-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 16px;
+        border-radius: 4px;
+        color: #FFFFFF;
+        background-color: #339B6A;
+        cursor: pointer;
+        transition: background-color 0.2s;
     }
 
-.file-name {
-    margin-top: 8px;
-    font-size: 12px;
-    color: #222222;
-}
+        .file-upload-wrapper .file-label:hover {
+            background-color: #246D4B;
+        }
+
+    .file-upload-wrapper .file-name {
+        margin-top: 8px;
+        font-size: 12px;
+        color: #222222;
+    }
