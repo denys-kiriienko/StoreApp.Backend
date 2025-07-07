@@ -1,14 +1,24 @@
-﻿.loader {
-    width: var(--spinner-width, 48px);
-    height: var(--spinner-height, 48px);
-    border: 8px solid var(--spinner-color, #808080);
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
+﻿.loading-spinner-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 
+    .loading-spinner-wrapper .loader {
+        width: var(--spinner-width, 48px);
+        height: var(--spinner-height, 48px);
+        border: 8px solid var(--spinner-color, #808080);
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+
+    .loading-spinner-wrapper .loading-text {
+        font-size: 16px;
+    }
 
 @keyframes rotation {
     0% {

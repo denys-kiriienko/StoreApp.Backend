@@ -8,6 +8,7 @@ public partial class LoadingSpinnerComponent
     [Parameter] public string? Width { get; set; }
     [Parameter] public string? Height { get; set; }
     [Parameter] public string? Color { get; set; }
+    [Parameter] public string? LoadingText { get; set; }
 
     protected override void OnInitialized()
     {

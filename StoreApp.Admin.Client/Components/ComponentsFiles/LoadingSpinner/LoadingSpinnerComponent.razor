@@ -1,1 +1,7 @@
-﻿<div class="loader" style="@BuildStyle()" />
+﻿<div class="loading-spinner-wrapper" style="@BuildStyle()">
+    <div class="loader" />
+    @if (!string.IsNullOrWhiteSpace(LoadingText))
+    {
+        <span class="loading-text">@LoadingText</span>
+    }
+</div>
