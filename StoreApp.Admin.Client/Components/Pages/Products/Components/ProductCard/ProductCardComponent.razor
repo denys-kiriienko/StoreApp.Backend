@@ -1,8 +1,8 @@
 ﻿<div class="product-card-wrapper">
     <div>
-        @if (Product.ImageData is { Length: > 0 })
+        @if (!string.IsNullOrWhiteSpace(Product.ImageUrl))
         {
-            <img src="data:image/png;base64,@Convert.ToBase64String(Product.ImageData)" class="product-image" loading="lazy" />
+            <img class="product-image" src="@($"{BaseUrl}{Product.ImageUrl}")" />
         }
     </div>
     <div class="product-details">
