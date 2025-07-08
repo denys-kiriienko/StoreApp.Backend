@@ -1,4 +1,8 @@
-﻿.start-section-wrapper {
+﻿*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.start-section-wrapper {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -114,6 +118,8 @@
                 .start-section-wrapper .start-inner-wrapper .hero-container .stars-wrapper .big-star {
                     position: absolute;
                     top: 12%;
+                    width: 104px;
+                    height: auto;
                     right: 0%;
                     z-index: 1;
                 }
@@ -121,6 +127,8 @@
                 .start-section-wrapper .start-inner-wrapper .hero-container .stars-wrapper .small-star {
                     position: absolute;
                     top: 44%;
+                    width: 56px;
+                    height: auto;
                     left: 0%;
                     z-index: 1;
                 }
@@ -141,3 +149,166 @@
         max-width: 1240px;
         box-sizing: border-box;
     }
+
+
+@media (min-width: 641px) {
+    .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 596px;
+        gap: 32px;
+    }
+
+        .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper .metrics-row {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper .separator {
+            width: 1px;
+            height: 74px;
+            background-color: #000000;
+            opacity: 0.1;
+            margin: 0;
+        }
+}
+
+
+@media (max-width: 640px) {
+    .start-section-wrapper {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+        .start-section-wrapper .start-inner-wrapper {
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .start-section-wrapper .start-inner-wrapper .block-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 40px 16px 0 16px;
+                margin: 0 0 -8% 0;
+                position: relative;
+                z-index: 10;
+            }
+
+            .start-section-wrapper .start-inner-wrapper .hero-container {
+                width: 100%;
+                max-width: 100%;
+            }
+
+                .start-section-wrapper .start-inner-wrapper .hero-container .hero-image {
+                    height: auto;
+                    max-width: 100%;
+                    margin-top: 0;
+                    margin-bottom: -44%;
+                }
+
+                .start-section-wrapper .start-inner-wrapper .hero-container .stars-wrapper {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                    z-index: 2;
+                }
+
+                    .start-section-wrapper .start-inner-wrapper .hero-container .stars-wrapper .big-star {
+                        top: 10%;
+                        right: 5%;
+                        width: 15%;
+                        height: auto;
+                        z-index: 3;
+                    }
+
+                    .start-section-wrapper .start-inner-wrapper .hero-container .stars-wrapper .small-star {
+                        top: 40%;
+                        left: 5%;
+                        width: 8%;
+                        height: auto;
+                        z-index: 3;
+                    }
+
+            .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+                
+                .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper .metrics-row {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: nowrap;
+                }
+
+                .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper .metric-item {
+                    text-align: center;
+                    flex: 0 1 auto;
+                }
+
+                    .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper .metric-item:last-child {
+                        margin-top: 8px;
+                    }
+
+                .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper .separator {
+                    width: 1px;
+                    height: 40px;
+                    background-color: #000000;
+                    opacity: 0.1;
+                }
+
+                .second-separator {
+                    display: none;
+                }
+
+            .start-section-wrapper .start-inner-wrapper .block-container .shop-button-wrapper {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .start-section-wrapper .start-inner-wrapper .block-container .headline {
+                max-width: 315px;
+                font-size: 36px;
+            }
+
+            .start-section-wrapper .start-inner-wrapper .block-container .description {
+                max-width: 358px;
+                font-size: 14px;
+                line-height: 20px;
+                margin-bottom: 24px;
+            }
+
+            .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper .metric-item .metric-count {
+                font-size: 28px;
+            }
+
+            .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper .metric-item .metric-text {
+                font-size: 14px;
+            }
+
+    .brands-section-wrapper {
+        height: auto;
+        padding: 32px 16px;
+    }
+
+        .brands-section-wrapper .brands-wrapper {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+        }
+
+            .brands-section-wrapper .brands-wrapper .brand-item {
+                flex: 0 1 40%;
+                display: flex;
+                justify-content: center;
+            }
+}
