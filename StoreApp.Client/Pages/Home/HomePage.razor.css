@@ -11,7 +11,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        max-width: 1440px;
+        max-width: 1240px;
         box-sizing: border-box;
     }
 
@@ -48,6 +48,9 @@
                 .start-section-wrapper .start-inner-wrapper .block-container .shop-button-wrapper .shop-button {
                     width: 100%;
                     height: 100%;
+                    font-family: 'Satoshi Medium', sans-serif;
+                    font-weight: 500;
+                    font-size: 16px;
                     color: #FFFFFF;
                     background-color: #000000;
                     border-radius: 64px;
@@ -111,14 +114,14 @@
                 .start-section-wrapper .start-inner-wrapper .hero-container .stars-wrapper .big-star {
                     position: absolute;
                     top: 12%;
-                    right: 8%;
+                    right: 0%;
                     z-index: 1;
                 }
 
                 .start-section-wrapper .start-inner-wrapper .hero-container .stars-wrapper .small-star {
                     position: absolute;
-                    top: 50%;
-                    left: 10%;
+                    top: 44%;
+                    left: 0%;
                     z-index: 1;
                 }
 
@@ -135,6 +138,6 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        max-width: 1440px;
+        max-width: 1240px;
         box-sizing: border-box;
     }
