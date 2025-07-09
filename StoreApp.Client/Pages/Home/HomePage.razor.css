@@ -20,6 +20,10 @@
         gap: 0 40px;
     }
 
+        .header-section-wrapper .header-block-container .menu-icon-wrapper {
+            display: none;
+        }
+
         .header-section-wrapper .header-block-container .logo-wrapper {
             margin: auto 0;
             text-align: center;
@@ -74,6 +78,7 @@
 
                 .header-section-wrapper .header-block-container .searchbar-wrapper .searchbar .magnifier-logo {
                     margin-left: 16px;
+                    opacity: 40%;
                 }
 
                 .header-section-wrapper .header-block-container .searchbar-wrapper .searchbar input {
@@ -272,6 +277,64 @@
 
 
 @media (max-width: 640px) {
+    .header-section-wrapper .header-block-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 0 16px;
+    }
+
+        .header-section-wrapper .header-block-container .menu-icon-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-section-wrapper .header-block-container .navbar-wrapper {
+            display: none;
+        }
+        
+        .header-section-wrapper .header-block-container .menu-icon-wrapper {
+            order: 0;
+        }
+
+        .header-section-wrapper .header-block-container .logo-wrapper {
+            display: flex;
+            justify-content: start;
+            flex: 1;
+            order: 1;
+        }
+
+        .header-section-wrapper .header-block-container .searchbar-wrapper {
+            width: auto;
+            height: 32px;
+            order: 2;
+        }
+        .header-section-wrapper .header-block-container .user-actions-wrapper {
+            order: 3;
+        }
+
+            .header-section-wrapper .header-block-container .searchbar-wrapper .searchbar {
+                width: 32px;
+                height: 32px;
+                padding: 0;
+                border-radius: 50%;
+                background-color: transparent;
+            }
+
+                .header-section-wrapper .header-block-container .searchbar-wrapper .searchbar input {
+                    display: none;
+                }
+
+                .header-section-wrapper .header-block-container .searchbar-wrapper .searchbar .magnifier-logo {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                    margin-left: 0;
+                    opacity: 100%;
+                }
+
     .start-section-wrapper {
         flex-direction: column;
         align-items: center;
