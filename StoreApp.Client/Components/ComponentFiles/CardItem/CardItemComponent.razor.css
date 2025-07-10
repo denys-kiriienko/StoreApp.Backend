@@ -73,3 +73,22 @@
                 color: #FF3333;
                 padding: 2px 12px;
             }
+
+@media (max-width: 640px) {
+    .card-item .card-item-image-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
+    .card-item .card-item-title {
+        font-size: 16px;
+    }
+
+    .card-item .card-item-rating .rating-text {
+        font-size: 14px;
+    }
+
+    .card-item .card-item-price {
+        font-size: 20px;
+    }
+}
