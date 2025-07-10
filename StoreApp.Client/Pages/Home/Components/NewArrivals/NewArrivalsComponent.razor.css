@@ -1,0 +1,121 @@
+﻿.new-arrivals-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 744px;
+}
+
+    .new-arrivals-wrapper .head-text {
+        display: flex;
+        justify-content: center;
+        margin: 72px 0 56px 0;
+        font-family: 'Integral CF Bold', sans-serif;
+        line-height: 1;
+        font-size: 48px;
+        font-weight: 700;
+        letter-spacing: 0px;
+    }
+
+    .new-arrivals-wrapper .cards-list-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 0 20px;
+    }
+
+        .new-arrivals-wrapper .cards-list-wrapper .card-item {
+        }
+
+            .new-arrivals-wrapper .cards-list-wrapper .card-item .card-item-image-wrapper {
+                width: 294px;
+                height: 294px;
+                background-color: #F0EEED;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+
+                .new-arrivals-wrapper .cards-list-wrapper .card-item .card-item-image-wrapper .card-item-image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    display: block;
+                }
+
+            .new-arrivals-wrapper .cards-list-wrapper .card-item .card-item-title {
+                font-family: 'Satoshi Bold', sans-serif;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 100%;
+                letter-spacing: 0;
+                margin-top: 16px;
+            }
+
+            .new-arrivals-wrapper .cards-list-wrapper .card-item .card-item-rating {
+                display: flex;
+                align-items: center;
+                margin-top: 8px;
+            }
+
+                .new-arrivals-wrapper .cards-list-wrapper .card-item .card-item-rating .rating-text {
+                    margin-left: 12px;
+                    font-family: 'Satoshi Regular', sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 100%;
+                    letter-spacing: 0;
+                }
+
+            .new-arrivals-wrapper .cards-list-wrapper .card-item .card-item-price {
+                display: flex;
+                align-items: center;
+                font-family: 'Satoshi Bold', sans-serif;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 100%;
+                letter-spacing: 0;
+                margin-top: 8px;
+                gap: 0 10px;
+            }
+
+                .new-arrivals-wrapper .cards-list-wrapper .card-item .card-item-price .old-price {
+                    opacity: 40%;
+                    text-decoration: line-through;
+                }
+
+                .new-arrivals-wrapper .cards-list-wrapper .card-item .card-item-price .discount {
+                    border-radius: 64px;
+                    background-color: rgba(255, 51, 51, 0.1);
+                }
+
+
+                    .new-arrivals-wrapper .cards-list-wrapper .card-item .card-item-price .discount .discount-text {
+                        font-family: 'Satoshi Medium', sans-serif;
+                        font-weight: 500;
+                        font-size: 12px;
+                        opacity: 100%;
+                        color: #FF3333;
+                        padding: 4px 12px;
+                    }
+
+    .new-arrivals-wrapper .new-arrivals .view-all-button-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 36px;
+    }
+
+        .new-arrivals-wrapper .new-arrivals .view-all-button-wrapper .view-all-button {
+            width: 216px;
+            height: 52px;
+            font-family: 'Satoshi Medium', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: #000000;
+            background-color: #FFFFFF;
+            border-color: rgba(0, 0, 0, 0.1);
+            border-radius: 64px;
+            cursor: pointer;
+        }
+
+
+@media (max-width: 640px) {
+
+}
