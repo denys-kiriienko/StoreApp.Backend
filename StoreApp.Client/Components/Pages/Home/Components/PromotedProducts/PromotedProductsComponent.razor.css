@@ -2,13 +2,12 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 744px;
 }
 
     .promoted-products-wrapper .head-text {
         display: flex;
         justify-content: center;
-        margin: 72px 0 56px 0;
+        margin: 0 0 56px 0;
         font-family: 'Integral CF Bold', sans-serif;
         line-height: 1;
         font-size: 48px;

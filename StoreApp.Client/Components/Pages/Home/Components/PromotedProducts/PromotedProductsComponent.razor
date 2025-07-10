@@ -5,37 +5,16 @@
     <div class="promoted-products">
         <div class="head-text">@HeaderText</div>
         <div class="cards-list-wrapper">
-            <CardItemComponent
-                ImageSrc="/images/card-item-1.png"
-                Title="T-shirt with Tape Details"
-                Rating="4.5"
-                RatingText="4.5/5"
-                CurrentPrice="$120" />
-
-            <CardItemComponent
-                ImageSrc="/images/card-item-2.png"
-                Title="Skinny Fit Jeans"
-                Rating="3.5"
-                RatingText="3.5/5"
-                CurrentPrice="$240"
-                OldPrice="$260"
-                Discount="-20%" />
-
-            <CardItemComponent
-                ImageSrc="/images/card-item-3.png"
-                Title="Checkered Shirt"
-                Rating="4.5"
-                RatingText="4.5/5"
-                CurrentPrice="$180" />
-
-            <CardItemComponent
-                ImageSrc="/images/card-item-4.png"
-                Title="Sleeve Striped T-shirt"
-                Rating="4.5"
-                RatingText="4.5/5"
-                CurrentPrice="$130"
-                OldPrice="$160"
-                Discount="-30%" />
+            @foreach (var product in ProductList)
+            {
+                <CardItemComponent ImageSrc="@product.ImageSrc"
+                                   Title="@product.Title"
+                                   Rating="@product.Rating"
+                                   RatingText="@($"{product.Rating}/5")"
+                                   CurrentPrice="@product.CurrentPrice"
+                                   OldPrice="@product.OldPrice"
+                                   Discount="@product.Discount" />
+            }
         </div>
         @if (IsVisibleViewAllButton)
         {

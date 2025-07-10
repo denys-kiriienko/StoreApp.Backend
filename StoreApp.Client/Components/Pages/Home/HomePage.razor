@@ -7,9 +7,16 @@
 @using StoreApp.Client.Components.Pages.Home.Components.PromotedProducts
 
 
-<PromoComponent />
-<HeaderComponent />
-<StartComponent />
-<BrandsComponent />
-<PromotedProductsComponent HeaderText="NEW ARRIVALS" />
-<PromotedProductsComponent HeaderText="TOP SELLING" />
+<div class="home-page-wrapper">
+    <PromoComponent />
+    <HeaderComponent />
+    <StartComponent />
+    <BrandsComponent />
+    <div class="products-wrapper">
+        <PromotedProductsComponent HeaderText="NEW ARRIVALS" ProductList="NewArrivals" />
+        <div class="separator-wrapper">
+            <div class="separator"></div>
+        </div>
+        <PromotedProductsComponent HeaderText="TOP SELLING" ProductList="TopSelling" />
+    </div>
+</div>
