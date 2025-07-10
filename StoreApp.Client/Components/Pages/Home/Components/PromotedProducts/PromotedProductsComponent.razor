@@ -1,10 +1,9 @@
 ﻿@using StoreApp.Client.Components.ComponentFiles.CardItem
-@using StoreApp.Client.Components.ComponentFiles.SvgFiles
 
 
-<div class="new-arrivals-wrapper">
-    <div class="new-arrivals">
-        <div class="head-text">NEW ARRIVALS</div>
+<div class="promoted-products-wrapper">
+    <div class="promoted-products">
+        <div class="head-text">@HeaderText</div>
         <div class="cards-list-wrapper">
             <CardItemComponent
                 ImageSrc="/images/card-item-1.png"
@@ -38,6 +37,11 @@
                 OldPrice="$160"
                 Discount="-30%" />
         </div>
-
+        @if (IsVisibleViewAllButton)
+        {
+            <div class="view-all-button-wrapper">
+                <button class="view-all-button">View All</button>
+            </div>
+        }
     </div>
 </div>
