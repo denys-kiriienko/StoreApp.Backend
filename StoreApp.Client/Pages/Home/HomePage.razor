@@ -2,32 +2,14 @@
 @using StoreApp.Client.Components.ComponentFiles.Promo
 @using StoreApp.Client.Components.ComponentFiles.Header
 @using StoreApp.Client.Components.ComponentFiles.SvgFiles
-@using StoreApp.Client.Components.ComponentFiles.SvgFiles.Brands
 @using StoreApp.Client.Pages.Home.Components.Start
+@using StoreApp.Client.Pages.Home.Components.Brands
 
 
 <PromoComponent />
 <HeaderComponent />
 <StartComponent />
-<div class="brands-section-wrapper">
-    <div class="brands-wrapper">
-        <div class="brand-item">
-            <SvgVersaceBrandComponent Width="100%" Height="100%" />
-        </div>
-        <div class="brand-item">
-            <SvgZaraBrandComponent Width="100%" Height="100%" />
-        </div>
-        <div class="brand-item">
-            <SvgGucciBrandComponent Width="100%" Height="100%" />
-        </div>
-        <div class="brand-item">
-            <SvgPradaBrandComponent Width="100%" Height="100%" />
-        </div>
-        <div class="brand-item">
-            <SvgCalvinKleinComponent Width="100%" Height="100%" />
-        </div>
-    </div>
-</div>
+<BrandsComponent />
 <div class="new-arrivals-wrapper">
     <div class="new-arrivals">
         <div class="head-text">NEW ARRIVALS</div>
