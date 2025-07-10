@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace StoreApp.Client.Components.SvgFiles;
+namespace StoreApp.Client.Components.ComponentFiles.SvgFiles;
 
 public partial class SvgMenuComponent
 {

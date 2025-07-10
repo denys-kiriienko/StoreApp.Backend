@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace StoreApp.Client.Components.SvgFiles.Brands;
+namespace StoreApp.Client.Components.ComponentFiles.SvgFiles.Brands;
 
 public partial class SvgVersaceBrandComponent
 {
