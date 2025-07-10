@@ -1,0 +1,38 @@
+﻿@using StoreApp.Client.Components.ComponentFiles.SvgFiles
+
+<div class="card-item">
+    <div class="card-item-image-wrapper">
+        <img class="card-item-image" src="@ImageSrc" />
+    </div>
+    <div class="card-item-title">@Title</div>
+    <div class="card-item-rating">
+        <div class="rating-stars">
+            @for (int i = 1; i <= 5; i++)
+            {
+                if (Rating >= i)
+                {
+                    <SvgRatingStarComponent />
+                }
+                else if (Rating > i - 1 && Rating < i)
+                {
+                    <SvgRatingStarTrimmedComponent />
+                }
+            }
+        </div>
+        <div class="rating-text">@RatingText</div>
+    </div>
+
+    <div class="card-item-price">
+        <div class="current-price">@CurrentPrice</div>
+        @if (!string.IsNullOrEmpty(OldPrice))
+        {
+            <div class="old-price">@OldPrice</div>
+        }
+        @if (!string.IsNullOrEmpty(Discount))
+        {
+            <div class="discount">
+                <div class="discount-text">@Discount</div>
+            </div>
+        }
+    </div>
+</div>
