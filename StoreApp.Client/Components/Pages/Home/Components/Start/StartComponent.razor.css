@@ -163,6 +163,7 @@
         .start-section-wrapper .start-inner-wrapper {
             flex-direction: column;
             align-items: center;
+            padding: 0 16px;
         }
 
             .start-section-wrapper .start-inner-wrapper .block-container {
