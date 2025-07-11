@@ -1,0 +1,94 @@
+﻿.styles-section-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+    .styles-section-wrapper .styles-wrapper {
+        width: 100%;
+        max-width: 1240px;
+        margin-top: 80px;
+        border-radius: 40px;
+        background-color: #F0F0F0;
+    }
+
+        .styles-section-wrapper .styles-wrapper .styles-header-text {
+            display: flex;
+            justify-content: center;
+            margin-top: 70px;
+            font-family: 'Integral CF Bold', sans-serif;
+            font-weight: 700;
+            font-size: 48px;
+            text-align: center;
+            line-height: 1;
+            letter-spacing: 0px;
+        }
+
+        .styles-section-wrapper .styles-wrapper .style-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin: 64px auto 70px;
+            max-width: 1240px;
+        }
+
+            .styles-section-wrapper .styles-wrapper .style-cards .style-item {
+                width: 408px;
+                height: 288px;
+                background-color: #FFFFFF;
+                border-radius: 20px;
+                position: relative;
+            }
+
+            .styles-section-wrapper .styles-wrapper .style-cards .wide-style-item {
+                width: 684px;
+            }
+
+                .styles-section-wrapper .styles-wrapper .style-cards .style-item .style-item-text {
+                    font-family: 'Satoshi Bold', sans-serif;
+                    font-size: 36px;
+                    font-weight: 700;
+                    line-height: 1;
+                    letter-spacing: 0;
+                    position: absolute;
+                    top: 25px;
+                    left: 36px;
+                    z-index: 2;
+                }
+
+            .styles-section-wrapper .styles-wrapper .style-cards .style-item .style-image-wrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+
+.style-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.style-image-wrapper .casual-image {
+    height: 680px;
+    object-position: -292px -150px;
+}
+
+.style-image-wrapper .formal-image {
+    height: 940px;
+    object-position: -60px -158px;
+}
+
+.style-image-wrapper .party-image {
+    object-position: 100px -140px;
+}
+
+.style-image-wrapper .gym-image {
+    height: 700px;
+    object-position: 40px -154px;
+}
+
