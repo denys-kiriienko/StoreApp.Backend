@@ -45,23 +45,11 @@
                 margin-bottom: 48px;
             }
 
-                .start-section-wrapper .start-inner-wrapper .block-container .shop-button-wrapper .shop-button {
-                    width: 100%;
-                    height: 100%;
-                    font-family: 'Satoshi Medium', sans-serif;
-                    font-weight: 500;
-                    font-size: 16px;
-                    color: #FFFFFF;
-                    background-color: #000000;
-                    border-radius: 64px;
-                }
-
             .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper {
                 display: flex;
                 align-items: center;
                 width: 596px;
             }
-
 
                 .start-section-wrapper .start-inner-wrapper .block-container .metrics-wrapper .metric-item .metric-count {
                     font-family: 'Satoshi Bold', sans-serif;

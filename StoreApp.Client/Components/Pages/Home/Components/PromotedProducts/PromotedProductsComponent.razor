@@ -1,4 +1,5 @@
-﻿@using StoreApp.Client.Components.ComponentFiles.CardItem
+﻿@using StoreApp.Client.Components.ComponentFiles.Buttons.BasicButton
+@using StoreApp.Client.Components.ComponentFiles.CardItem
 
 
 <div class="promoted-products-wrapper">
@@ -19,7 +20,9 @@
         @if (IsVisibleViewAllButton)
         {
             <div class="view-all-button-wrapper">
-                <button class="view-all-button">View All</button>
+                <div class="view-all-button">
+                    <BasicButtonComponent Text="View All" IsRevert="true" />
+                </div>
             </div>
         }
     </div>

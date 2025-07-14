@@ -65,14 +65,8 @@
                     opacity: 60%;
                 }
 
-            .footer-section-wrapper .newsletter-wrapper .newsletter-input-wrapper button {
+            .footer-section-wrapper .newsletter-wrapper .newsletter-input-wrapper .subscribe-button-wrapper {
                 height: 48px;
-                border: none;
-                border-radius: 64px;
-                cursor: pointer;
-                font-family: 'Satoshi Medium', sans-serif;
-                font-weight: 500;
-                font-size: 16px;
             }
 
     .footer-section-wrapper .footer-wrapper {
