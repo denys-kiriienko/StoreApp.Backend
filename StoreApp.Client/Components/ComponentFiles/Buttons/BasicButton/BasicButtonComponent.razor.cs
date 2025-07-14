@@ -9,7 +9,7 @@ public partial class BasicButtonComponent
     [Parameter] public string? Text { get; set; }
     [Parameter] public string FontSize { get; set; } = "16px";
     [Parameter] public bool IsRevert { get; set; }
-    [Parameter] public string? BackgroundColor { get; set; } = "#000000";
+    [Parameter] public string? BackgroundColor { get; set; }
     [Parameter] public bool Disabled { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
 
