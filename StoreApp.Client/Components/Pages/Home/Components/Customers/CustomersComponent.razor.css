@@ -102,6 +102,7 @@
 @media (max-width: 640px) {
     .customers-section-wrapper {
         margin-top: 48px;
+        margin-bottom: 50px
     }
 
     .customers-section-wrapper .customers-wrapper .customers-header {

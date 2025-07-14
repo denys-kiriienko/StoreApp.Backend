@@ -129,36 +129,42 @@
                         cursor: pointer;
                     }
 
-            .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-wrapper {
+            .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid {
                 display: flex;
-                flex-direction: column;
-                gap: 26px;
+                justify-content: space-between;
+                gap: 112px;
             }
 
-                .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-wrapper .submenu-header {
-                    font-family: 'Satoshi Medium', sans-serif;
-                    font-weight: 500;
-                    font-size: 16px;
-                    line-height: 18px;
-                    letter-spacing: 3px;
-                }
-
-                .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-wrapper .submenu-items-wrapper {
+                .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid .submenu-wrapper {
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
-                    height: 100%;
+                    gap: 26px;
                 }
 
-                    .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-wrapper .submenu-items-wrapper .submenu-item {
-                        font-family: 'Satoshi Regular', sans-serif;
-                        font-weight: 400;
+                    .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid .submenu-wrapper .submenu-header {
+                        font-family: 'Satoshi Medium', sans-serif;
+                        font-weight: 500;
                         font-size: 16px;
                         line-height: 18px;
-                        letter-spacing: 0;
-                        opacity: 60%;
-                        cursor: pointer;
+                        letter-spacing: 3px;
                     }
+
+                    .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid .submenu-wrapper .submenu-items-wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        height: 100%;
+                    }
+
+                        .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid .submenu-wrapper .submenu-items-wrapper .submenu-item {
+                            font-family: 'Satoshi Regular', sans-serif;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 18px;
+                            letter-spacing: 0;
+                            opacity: 60%;
+                            cursor: pointer;
+                        }
 
         .footer-section-wrapper .footer-wrapper .separator-wrapper {
             display: flex;
@@ -206,3 +212,109 @@
                 border-color: #D6DCE5;
                 border-radius: 6px;
             }
+
+@media (max-width: 640px) {
+    .footer-section-wrapper .newsletter-wrapper {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+        .footer-section-wrapper .newsletter-wrapper .newsletter {
+            flex-direction: column;
+            text-align: center;
+            margin: 32px 28px 28px 24px;
+        }
+
+        .footer-section-wrapper .newsletter-wrapper .newsletter-title {
+            margin-bottom: 32px;
+            font-size: 32px;
+            line-height: 35px;
+        }
+
+        .footer-section-wrapper .newsletter-wrapper .newsletter-input-wrapper {
+            width: 100%;
+        }
+
+            .footer-section-wrapper .newsletter-wrapper .newsletter-input-wrapper .input-wrapper input {
+                font-size: 14px;
+            }
+
+            .footer-section-wrapper .newsletter-wrapper .newsletter-input-wrapper button {
+                font-size: 14px;
+            }
+
+    .footer-section-wrapper .footer-wrapper {
+        margin-top: -28%;
+        padding-top: 28%;
+        height: 100%;
+    }
+
+        .footer-section-wrapper .footer-wrapper .footer-nav-wrapper {
+            width: 95%;
+            margin-top: 32px;
+            flex-direction: column;
+            gap: 30px;
+            height: auto;
+        }
+
+            .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .footer-info {
+                width: 100%;
+                gap: 0px;
+            }
+
+                .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .footer-info .logo-text {
+                    margin-bottom: 14px;
+                    font-size: 28px;
+                }
+
+                .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .footer-info .footer-description {
+                    margin-bottom: 20px;
+                    max-width: 360px;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+
+            .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 20px;
+                width: 100%;
+            }
+
+            .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-wrapper {
+                width: 100%;
+                gap: 16px;
+            }
+
+            .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid .submenu-wrapper .submenu-header {
+                font-size: 14px
+            }
+
+            .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid .submenu-wrapper .submenu-items-wrapper {
+                height: auto;
+                gap: 12px;
+            }
+
+                .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid .submenu-wrapper .submenu-items-wrapper .submenu-item {
+                    font-size: 14px
+                }
+
+        .footer-section-wrapper .footer-wrapper .separator-wrapper {
+            width: 95%;
+            padding: 40px 0 16px 0;
+        }
+
+    .footer-section-wrapper .footer-bottom-wrapper {
+        flex-direction: column;
+        text-align: center;
+        width: 95%;
+        gap: 16px;
+        margin-bottom: 120px;
+    }
+
+        .footer-section-wrapper .footer-bottom-wrapper .payments-wrapper {
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+}
