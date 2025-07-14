@@ -1,4 +1,5 @@
 ﻿@using StoreApp.Client.Components.ComponentFiles.Buttons.BasicButton
+@using StoreApp.Client.Components.ComponentFiles.Inputs.BasicInput
 @using StoreApp.Client.Components.ComponentFiles.SvgFiles
 @using StoreApp.Client.Components.ComponentFiles.SvgFiles.Payments
 @using StoreApp.Client.Components.ComponentFiles.SvgFiles.SocialNetworks
@@ -10,10 +11,11 @@
             <div class="newsletter-title">STAY UPTO DATE ABOUT OUR LATEST OFFERS</div>є
             <div class="newsletter-input-wrapper">
                 <div class="input-wrapper">
-                    <div class="message-icon">
-                        <SvgMessageComponent />
-                    </div>
-                    <input placeholder="Enter your email address" />
+                    <BasicInputComponent Placeholder="Enter your email address" IconOpacity="0.6">
+                        <Icon>
+                            <SvgMessageComponent />
+                        </Icon>
+                    </BasicInputComponent>
                 </div>
                 <div class="subscribe-button-wrapper">
                     <BasicButtonComponent Text="Subscribe to Newsletter" IsRevert="true" BackgroundColor="#FFFFFF" />

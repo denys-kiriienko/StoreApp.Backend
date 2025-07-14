@@ -44,26 +44,7 @@
                 display: flex;
                 align-items: center;
                 height: 48px;
-                border-radius: 64px;
-                background-color: #FFFFFF;
             }
-
-                .footer-section-wrapper .newsletter-wrapper .newsletter-input-wrapper .input-wrapper .message-icon {
-                    padding: 12px 12px 12px 16px;
-                    opacity: 40%;
-                }
-
-                .footer-section-wrapper .newsletter-wrapper .newsletter-input-wrapper .input-wrapper input {
-                    flex: 1;
-                    min-width: 0;
-                    border: none;
-                    outline: none;
-                    background-color: transparent;
-                    font-family: 'Satoshi Regular', sans-serif;
-                    font-weight: 400;
-                    font-size: 16px;
-                    opacity: 60%;
-                }
 
             .footer-section-wrapper .newsletter-wrapper .newsletter-input-wrapper .subscribe-button-wrapper {
                 height: 48px;
