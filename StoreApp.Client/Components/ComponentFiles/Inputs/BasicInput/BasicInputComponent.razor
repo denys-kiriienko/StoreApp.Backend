@@ -4,8 +4,10 @@
 <div class="input-wrapper" style="@GetWrapperStyle()">
     @if (Icon is not null)
     {
-        <div class="input-icon-wrapper" style="opacity: @IconOpacity;">
-            @Icon
+        <div class="input-icon-wrapper">
+            <div style="opacity: @IconOpacity;">
+                @Icon
+            </div>
         </div>
     }
     <input placeholder="@Placeholder" style="@GetInputStyle()" />
