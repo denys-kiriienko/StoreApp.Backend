@@ -1,0 +1,12 @@
+﻿@using StoreApp.Client.Components.ComponentFiles.SvgFiles
+
+
+<div class="input-wrapper" style="@GetWrapperStyle()">
+    @if (Icon is not null)
+    {
+        <div class="input-icon-wrapper" style="opacity: @IconOpacity;">
+            @Icon
+        </div>
+    }
+    <input placeholder="@Placeholder" style="@GetInputStyle()" />
+</div>
