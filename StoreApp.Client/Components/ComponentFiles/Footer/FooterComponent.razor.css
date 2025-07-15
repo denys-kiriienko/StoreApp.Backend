@@ -144,15 +144,9 @@
         .footer-section-wrapper .footer-wrapper .separator-wrapper {
             display: flex;
             justify-content: center;
+            width: 100%;
             padding: 50px 0 20px 0;
         }
-
-            .footer-section-wrapper .footer-wrapper .separator-wrapper .separator {
-                width: 1240px;
-                height: 1px;
-                background-color: #000000;
-                opacity: 10%;
-            }
 
     .footer-section-wrapper .footer-bottom-wrapper {
         display: flex;
@@ -275,7 +269,6 @@
                 }
 
         .footer-section-wrapper .footer-wrapper .separator-wrapper {
-            width: 95%;
             padding: 40px 0 16px 0;
         }
 

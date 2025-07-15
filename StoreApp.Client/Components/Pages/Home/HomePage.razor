@@ -3,6 +3,7 @@
 @using StoreApp.Client.Components.ComponentFiles.Promo
 @using StoreApp.Client.Components.ComponentFiles.Header
 @using StoreApp.Client.Components.ComponentFiles.Footer
+@using StoreApp.Client.Components.ComponentFiles.Separator
 @using StoreApp.Client.Components.Pages.Home.Components.Start
 @using StoreApp.Client.Components.Pages.Home.Components.Brands
 @using StoreApp.Client.Components.Pages.Home.Components.PromotedProducts
@@ -18,7 +19,7 @@
     <div class="products-wrapper">
         <PromotedProductsComponent HeaderText="NEW ARRIVALS" ProductList="NewArrivals" />
         <div class="separator-wrapper">
-            <div class="separator"></div>
+            <SeparatorComponent />
         </div>
         <PromotedProductsComponent HeaderText="TOP SELLING" ProductList="TopSelling" />
     </div>
