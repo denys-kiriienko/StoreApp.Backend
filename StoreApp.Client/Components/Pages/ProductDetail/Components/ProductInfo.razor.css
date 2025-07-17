@@ -1,0 +1,103 @@
+.product-detail {
+    display: flex;
+    gap: 30px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.product-title {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    vertical-align: middle;
+}
+
+.product-rating {
+    font-size: 16px;
+}
+
+.product-price {
+    font-size: 16px;
+}
+
+.secondary-text {
+    font-family: "Satoshi", serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0;
+}
+
+.selection-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.color-options {
+    display: flex;
+    gap: 10px;
+}
+
+.color-option {
+    border: none;
+    border-radius: 50%;
+    width: 37px;
+    height: 37px;
+}
+
+.color-option .checkmark {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.size-options {
+    display: flex;
+    gap: 10px;
+}
+
+.size-option {
+    border: none;
+    padding: 12px 24px;
+    background-color: rgba(240, 240, 240, 1);
+    border-radius: 62px;
+}
+
+.size-option.selected {
+    background-color: black;
+    color: white;
+}
+
+.product-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.add-to-cart-button {
+    font-family: "Satoshi", serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 62px;
+    flex: 1;
+    padding: 16px 0;
+    background-color: black;
+}
+
+hr {
+    margin: 0;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
