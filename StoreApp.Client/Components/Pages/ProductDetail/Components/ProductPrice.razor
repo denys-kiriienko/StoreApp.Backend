@@ -1,0 +1,24 @@
+<div class="product-price">
+    <div class="current-price">@CurrentPrice</div>
+    @if (!string.IsNullOrEmpty(OldPrice))
+    {
+        <div class="old-price">@OldPrice</div>
+    }
+    @if (!string.IsNullOrEmpty(Discount))
+    {
+        <div class="discount">
+            <div class="discount-text">@Discount</div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string CurrentPrice { get; set; } = string.Empty;
+
+    [Parameter]
+    public string OldPrice { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Discount { get; set; } = string.Empty;
+}

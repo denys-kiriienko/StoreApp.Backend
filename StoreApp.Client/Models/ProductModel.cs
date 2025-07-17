@@ -8,4 +8,13 @@ public class ProductModel
     public string? OldPrice { get; set; }
     public string? Discount { get; set; }
     public string ImageSrc { get; set; } = String.Empty;
+
+    public string Description { get; set; } = String.Empty;
+
+    public int UnitsInStock { get; set; } = 1;
+    public List<string> Images { get; set; } = [];
+
+    public List<string> Sizes { get; set; } = [];
+
+    public List<string> Colors { get; set; } = [];
 }
