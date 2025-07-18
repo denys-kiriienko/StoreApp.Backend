@@ -1,6 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
 .product-detail {
     display: flex;
+    flex-direction: row;
     gap: 30px;
+    justify-content: center;
 }
 
 .product-info {
@@ -100,4 +106,30 @@ hr {
     margin: 0;
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 640px) {
+    .product-detail {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-info {
+        padding: 0 16px;
+    }
+
+    .product-title {
+        font-size: 32px;
+    }
+
+    .product-rating,
+    .product-price,
+    .secondary-text {
+        font-size: 14px;
+    }
+    
+    .size-option {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }
