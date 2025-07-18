@@ -25,8 +25,8 @@
 }
 
 .image-wrapper-main {
-    width: 466px;
-    height: 466px;
+    width: 478px;
+    height: 478px;
     background-color: #F0EEED;
     border-radius: 20px;
     overflow: hidden;
@@ -52,14 +52,13 @@
         justify-content: center;
     }
 
-    .thumbnail {
-        width: 80px;
-        height: 80px;
+    .image-wrapper {
+        width: 100px;
+        height: 100px;
     }
-
-    .main-image img {
-        height: auto;
-        width: 100%;
-        max-width: 100%;
+    
+    .image-wrapper-main {
+        width: 328px;
+        height: 328px;
     }
 }

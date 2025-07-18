@@ -1,6 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
 .counter-controls {
     display: flex;
     flex-direction: row;
+    width: 170px;
 }
 
 .minus-button {
@@ -12,6 +17,9 @@
     border-bottom-left-radius: 62px;
     border-top-left-radius: 62px;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .plus-button {
@@ -23,6 +31,9 @@
     border-bottom-right-radius: 62px;
     border-top-right-radius: 62px;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .counter-value {
@@ -32,4 +43,21 @@
     flex-grow: 1;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 640px) {
+    .counter-controls {
+        width: 110px;
+    }
+    
+    .plus-button {
+        padding-right: 20px;
+        padding-left: 0;
+    }
+
+    .minus-button {
+        padding-right: 0;
+        padding-left: 20px;
+    }
 }
