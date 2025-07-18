@@ -21,6 +21,7 @@
 
 .svg-dots-wrapper {
     display: block;
+    cursor: pointer;
 }
 
 .review-wrapper .review .review-author {

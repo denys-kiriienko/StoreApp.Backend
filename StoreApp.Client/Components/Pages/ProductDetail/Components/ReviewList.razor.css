@@ -49,6 +49,7 @@
     border: none;
     border-radius: 50%;
     background: rgba(240, 240, 240, 1);
+    cursor: pointer;
 }
 
 .date-filter-button {
@@ -61,6 +62,7 @@
     background: rgba(240, 240, 240, 1);
     min-width: 120px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .create-review-button {
@@ -73,6 +75,7 @@
     flex: 1;
     padding: 16px 0;
     background-color: black;
+    cursor: pointer;
 }
 
 .review-list {
