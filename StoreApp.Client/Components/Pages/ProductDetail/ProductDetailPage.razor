@@ -1,9 +1,27 @@
 @page "/ProductDetail"
 @using StoreApp.Client.Components.Pages.ProductDetail.Components
+@using StoreApp.Client.Components.ComponentFiles.Promo
+@using StoreApp.Client.Components.ComponentFiles.Header
+@using StoreApp.Client.Components.ComponentFiles.Footer
+@using StoreApp.Client.Components.Pages.Home.Components.PromotedProducts
 
-@* <PromoComponent /> *@
-@* <HeaderComponent /> *@
+<PromoComponent />
+<HeaderComponent />
 
-<ProductInfo></ProductInfo>
+<div class="product-detail-page-wrapper">
+    <ProductInfo Product="@product"></ProductInfo>
 
-@* <FooterComponent /> *@
+    <div class="tabs">
+        <button class="tab-button">Product Detail</button>
+        <button class="tab-button active">Rating & Reviews</button>
+        <button class="tab-button">FAQs</button>
+    </div>
+    
+    <ReviewList Reviews="@Reviews"></ReviewList>
+    
+    <div class="also-see-wrapper">
+        <PromotedProductsComponent HeaderText="YOU MIGHT ALSO LIKE" ProductList="AlsoLike" IsVisibleViewAllButton="false" />
+    </div>
+</div>
+
+<FooterComponent />
