@@ -1,0 +1,60 @@
+@using StoreApp.Client.Components.ComponentFiles.Counter
+@using StoreApp.Client.Components.ComponentFiles.SvgFiles
+<div class="product-detail">
+    <ImageGallery Images="@Product.Images"></ImageGallery>
+    <div class="product-info">
+        
+        <h3 class="product-title">@Product.Title</h3>
+        
+        <div class="product-rating">
+            <ProductRating Rating="@Product.Rating" RatingText=@($"{Product.Rating}/5")></ProductRating>
+        </div>
+        
+        <div class="product-price">
+            <ProductPrice Discount="@Product.Discount" CurrentPrice="@Product.CurrentPrice" OldPrice="@Product.OldPrice"></ProductPrice>
+        </div>
+        
+        <p class="secondary-text">@Product.Description</p>
+
+        <hr/>
+
+        <div class="selection-block">
+            <p class="secondary-text">Select Colors</p>
+            <div class="color-options">
+                @foreach (var (color, index) in Product.Colors.Select((c, i) => (c, i)))
+                {
+                    <button class="color-option"
+                            style="background-color:@color;"
+                            @onclick="() => SelectedColorIndex = index">
+                        @if (SelectedColorIndex == index)
+                        {
+                            <SvgCheckMarkComponent/>
+                        }
+                    </button>
+                }
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="selection-block">
+            <p class="secondary-text">Choose Size</p>
+            <div class="size-options">
+                @foreach (var (size, index) in Product.Sizes.Select((s, i) => (s, i)))
+                {
+                <button class="size-option secondary-text @(SelectedSizeIndex == index ? "selected" : "")"
+                        @onclick="() => SelectedSizeIndex = index">
+                    @size
+                </button>
+                }
+            </div>
+        </div>
+
+        <hr/>
+        
+        <div class="product-buttons">
+            <Counter Min="1" Max="@Product.UnitsInStock"></Counter>
+            <button class="add-to-cart-button">Add to Cart</button>
+        </div>
+    </div>
+</div>
