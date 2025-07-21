@@ -124,6 +124,25 @@ public static class Mocks
         {
             UserName = "Alice Johnson", Rating = 3, Comment = "Average product, nothing special.",
             CreatedAt = DateTime.Now.AddDays(-10)
-        }
+        },
+        new()
+        {
+            UserName = "Bob Brown", Rating = 2, Comment = "Not what I expected, quality could be better.",
+            CreatedAt = DateTime.Now.AddDays(-15)
+        },
+        new()
+        {
+            UserName = "John Doe", Rating = 5, Comment = "Great quality and fit!", CreatedAt = DateTime.Now.AddDays(-2)
+        },
+        new()
+        {
+            UserName = "Jane Smith", Rating = 4, Comment = "Very comfortable, but a bit pricey.",
+            CreatedAt = DateTime.Now.AddDays(-5)
+        },
+        new()
+        {
+            UserName = "Alice Johnson", Rating = 3, Comment = "Average product, nothing special.",
+            CreatedAt = DateTime.Now.AddDays(-10)
+        },
     ];
 }

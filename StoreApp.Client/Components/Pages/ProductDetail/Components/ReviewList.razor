@@ -1,5 +1,7 @@
 @using StoreApp.Client.Components.ComponentFiles.Buttons.BasicButton
-@using StoreApp.Client.Components.ComponentFiles.SvgFiles
+@using StoreApp.Client.Components.ComponentFiles.Select
+@using StoreApp.Client.Enums
+
 <div class="review-list-wrapper">
     <div class="review-list-header">
         <div class="review-list-title">
@@ -8,15 +10,7 @@
         </div>
 
         <div class="review-actions">
-            <button class="filter-button">
-                <SvgFilterComponent/>
-            </button>
-            <div>
-                <button class="date-filter-button">
-                    Latest
-                    <SvgDropdownArrowComponent></SvgDropdownArrowComponent>
-                </button>
-            </div>
+            <BasicSelect TKey="ReviewSortOptions" Value="selectedSortOption" Options="sortOptions" ValueChanged="option => selectedSortOption = option" />
             @if (!IsReadOnly)
             {
                 <button @onclick="() => isReviewFormVisible = true" class="create-review-button">Write a Review</button>
@@ -25,22 +19,28 @@
     </div>
 
     <div class="review-list">
-        @foreach (var review in Reviews)
+        @foreach (var review in DisplayedReviews())
         {
             <ProductReview Review="@review" />
         }
     </div>
 
-    <div class="all-review-wrapper">
-        <div class="load-button-wrapper">
-            <div class="load-button">
-                <BasicButtonComponent Text="Load More Reviews" IsRevert="true" />
+    @if (Reviews.Count > 6)
+    {
+        <div class="all-review-wrapper">
+            <div class="load-button-wrapper">
+                <div class="load-button">
+                    <BasicButtonComponent 
+                        Text="@ToggleButtonText" 
+                        IsRevert="true" 
+                        OnClick="ToggleShowAll" />
+                </div>
             </div>
         </div>
-    </div>
+    }
 </div>
 
 @if (isReviewFormVisible)
 {
-    <ReviewForm OnSubmit="OnWriteReviewClicked" OnClose="() => isReviewFormVisible = false"></ReviewForm>
+    <ReviewForm OnSubmit="OnWriteReviewClicked" OnClose="() => isReviewFormVisible = false" />
 }
