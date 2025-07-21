@@ -10,7 +10,7 @@ namespace StoreApp.API.Controllers;
 public class CartItemController(ICartItemService cartItemService) : ControllerBase
 {
     [Authorize]
-    [HttpGet("{userId}")]
+    [HttpGet]
     public async Task<IActionResult> GetByUserIdAsync()
     {
         return Ok(await cartItemService.GetCartItemsByUserIdAsync(GetUserId()));
@@ -44,7 +44,7 @@ public class CartItemController(ICartItemService cartItemService) : ControllerBa
     }
 
     [Authorize]
-    [HttpDelete("clear/{userId}")]
+    [HttpDelete("clear")]
     public async Task<IActionResult> ClearCartAsync()
     {
         return await cartItemService.ClearCartItemsByUserIdAsync(GetUserId())
@@ -54,7 +54,7 @@ public class CartItemController(ICartItemService cartItemService) : ControllerBa
 
     private int GetUserId()
     {
-        var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid);
+        var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
 
         if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out var userId))
         {
