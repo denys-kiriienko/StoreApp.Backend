@@ -1,24 +1,24 @@
 <div class="product-price">
-    <div class="current-price">@CurrentPrice</div>
-    @if (!string.IsNullOrEmpty(OldPrice))
+    <div class="current-price">@CurrentPrice.ToString("C") $</div>
+    @if (OldPrice is not null)
     {
-        <div class="old-price">@OldPrice</div>
+        <div class="old-price">@OldPrice.Value.ToString("C") $</div>
     }
-    @if (!string.IsNullOrEmpty(Discount))
+    @if (Discount is not null)
     {
         <div class="discount">
-            <div class="discount-text">@Discount</div>
+            <div class="discount-text">@Discount.Value.ToString("P")</div>
         </div>
     }
 </div>
 
 @code {
     [Parameter]
-    public string CurrentPrice { get; set; } = string.Empty;
+    public int CurrentPrice { get; set; }
 
     [Parameter]
-    public string OldPrice { get; set; } = string.Empty;
+    public int? OldPrice { get; set; }
 
     [Parameter]
-    public string Discount { get; set; } = string.Empty;
+    public double? Discount { get; set; }
 }
