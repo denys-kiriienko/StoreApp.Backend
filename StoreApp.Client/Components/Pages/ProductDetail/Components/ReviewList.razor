@@ -42,5 +42,5 @@
 
 @if (isReviewFormVisible)
 {
-    <ReviewForm OnSubmit="OnWriteReviewClicked"></ReviewForm>
+    <ReviewForm OnSubmit="OnWriteReviewClicked" OnClose="() => isReviewFormVisible = false"></ReviewForm>
 }
