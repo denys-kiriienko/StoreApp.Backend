@@ -1,5 +1,21 @@
-﻿namespace StoreApp.Client.Components.ComponentFiles.Header;
+﻿using Microsoft.AspNetCore.Components;
+using StoreApp.Client.Services;
 
-public partial class HeaderComponent
+namespace StoreApp.Client.Components.ComponentFiles.Header;
+
+public partial class HeaderComponent(ICartService cartService) : ComponentBase
 {
+    private int cartItemCount;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cartItemCount = await cartService.GetCartItemCountAsync();
+        cartService.OnCartItemCountChanged += OnCartItemCountChanged;
+    }
+
+    private void OnCartItemCountChanged(int count)
+    {
+        cartItemCount = count;
+        StateHasChanged();
+    }
 }

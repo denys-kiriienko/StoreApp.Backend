@@ -32,7 +32,14 @@
 
         <div class="user-actions-wrapper">
             <div class="user-actions">
-                <SvgShoppingCartComponent />
+                <div class="cart-icon-wrapper">
+                    <SvgShoppingCartComponent />
+
+                    @if (cartItemCount > 0)
+                    {
+                        <span class="cart-badge">@cartItemCount</span>
+                    }
+                </div>
                 <SvgUserProfileComponent />
             </div>
         </div>
