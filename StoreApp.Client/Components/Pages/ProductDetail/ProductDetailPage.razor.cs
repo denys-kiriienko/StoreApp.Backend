@@ -7,6 +7,7 @@ namespace StoreApp.Client.Components.Pages.ProductDetail;
 public partial class ProductDetailPage(
     IProductService productService,
     IReviewService reviewService,
+    ICartService cartService,
     NavigationManager navigationManager) : ComponentBase
 {
     [Parameter]
@@ -37,6 +38,22 @@ public partial class ProductDetailPage(
         Reviews = await reviewService.GetProductReviewsAsync(Id);
 
         isLoading = false;
+    }
+
+    private async Task OnAddToCartClicked(int quantity)
+    {
+        if (quantity <= 0)
+        {
+            return;
+        }
+
+        var cartItem = new OrderItemModel
+        {
+            Quantity = quantity,
+            ProductModel = product,
+        };
+
+        await cartService.AddToCartAsync(cartItem);
     }
 
     private async Task OnWriteReviewClicked(ReviewModel review)
