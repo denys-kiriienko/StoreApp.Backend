@@ -4,26 +4,23 @@ using StoreApp.Client.Services;
 
 namespace StoreApp.Client.Components.Pages.ProductDetail;
 
-public partial class ProductDetailPage(IProductService productService, NavigationManager navigationManager) : ComponentBase
+public partial class ProductDetailPage(
+    IProductService productService,
+    IReviewService reviewService,
+    NavigationManager navigationManager) : ComponentBase
 {
     [Parameter]
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     private ProductModel product;
 
     private List<ProductModel> AlsoLike;
 
     private List<ReviewModel> Reviews;
-    
+
     protected override async Task OnInitializedAsync()
     {
-        if (Id is null)
-        {
-            navigationManager.NavigateTo("/home");
-            return;
-        }
-
-        var productModel = await productService.GetProductByIdAsync(Id.Value);
+        var productModel = await productService.GetProductByIdAsync(Id);
         
         if(productModel is null)
         {
@@ -34,7 +31,13 @@ public partial class ProductDetailPage(IProductService productService, Navigatio
             product = productModel;
         }
 
-        AlsoLike = await productService.GetAlsoLikeProductsAsync(1);
-        Reviews = await productService.GetProductReviewsAsync(1);
+        AlsoLike = await productService.GetAlsoLikeProductsAsync(Id);
+        Reviews = await reviewService.GetProductReviewsAsync(Id);
+    }
+
+    private async Task OnWriteReviewClicked(ReviewModel review)
+    {
+        await reviewService.AddProductReviewAsync(Id, review);
+        Reviews = await reviewService.GetProductReviewsAsync(Id);
     }
 }

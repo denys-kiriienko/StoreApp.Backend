@@ -16,9 +16,11 @@
                     Latest
                     <SvgDropdownArrowComponent></SvgDropdownArrowComponent>
                 </button>
-                
             </div>
-            <button class="create-review-button">Write a Review</button>
+            @if (!IsReadOnly)
+            {
+                <button @onclick="() => isReviewFormVisible = true" class="create-review-button">Write a Review</button>
+            }
         </div>
     </div>
 
@@ -37,3 +39,8 @@
         </div>
     </div>
 </div>
+
+@if (isReviewFormVisible)
+{
+    <ReviewForm OnSubmit="OnWriteReviewClicked"></ReviewForm>
+}
