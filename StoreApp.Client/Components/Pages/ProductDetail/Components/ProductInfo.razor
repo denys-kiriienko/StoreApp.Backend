@@ -51,10 +51,10 @@
         </div>
 
         <hr/>
-        
+
         <div class="product-buttons">
-            <Counter Min="1" Max="@Product.UnitsInStock"></Counter>
-            <button class="add-to-cart-button">Add to Cart</button>
+            <Counter @bind-Value="@quantity" Min="1" Max="@Product.UnitsInStock"></Counter>
+            <button @onclick="OnAddToCart" class="add-to-cart-button">Add to Cart</button>
         </div>
     </div>
 </div>

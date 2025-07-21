@@ -11,4 +11,17 @@ public partial class ProductInfo : ComponentBase
     public int SelectedColorIndex { get; set; } = 0;
 
     public int SelectedSizeIndex { get; set; } = 0;
+
+    [Parameter]
+    public EventCallback<int> OnAddToCartClicked { get; set; }
+
+    private int quantity = 1;
+
+    private void OnAddToCart()
+    {
+        if (OnAddToCartClicked.HasDelegate)
+        {
+            OnAddToCartClicked.InvokeAsync(quantity);
+        }
+    }
 }
