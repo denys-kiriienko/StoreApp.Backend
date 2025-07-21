@@ -2,6 +2,7 @@
 
 public class ProductModel
 {
+    public int Id { get; set; }
     public string Title { get; set; } = String.Empty;
     public double Rating { get; set; } = 0.0;
     public double CurrentPrice { get; set; }

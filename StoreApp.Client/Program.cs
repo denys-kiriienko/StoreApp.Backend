@@ -13,6 +13,7 @@ public class Program
 
         builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
         builder.Services.AddScoped<IProductService, ProductService>();
+        builder.Services.AddScoped<IReviewService, ReviewService>();
 
         await builder.Build().RunAsync();
     }

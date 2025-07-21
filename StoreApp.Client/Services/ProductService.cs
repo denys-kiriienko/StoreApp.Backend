@@ -8,7 +8,7 @@ public class ProductService(HttpClient httpClient) : IProductService
     public async Task<ProductModel?> GetProductByIdAsync(int productId)
     {
         await Task.Delay(1000);
-        return Task.FromResult(Mocks.Product).Result;
+        return Task.FromResult(Mocks.Products.First(p => p.Id == productId)).Result;
         
         // return await httpClient.GetFromJsonAsync<ProductModel>($"products/{productId}");
     }

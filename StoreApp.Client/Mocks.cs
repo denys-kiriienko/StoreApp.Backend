@@ -29,7 +29,7 @@ public static class Mocks
         new()
         {
             Id = 2,
-            ImageSrc = "/images/card-item-5.png",
+            ImageSrc = "/images/card-item-2.png",
             Description = "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
             Title = "Vertical Striped Shirt",
             Rating = 5.0,
@@ -49,13 +49,20 @@ public static class Mocks
         new()
         {
             Id = 3,
-            ImageSrc = "/images/card-item-6.png",
+            ImageSrc = "/images/card-item-3.png",
             Title = "Courage Graphic T-shirt",
             Description = "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
             Rating = 4.0,
             CurrentPrice = 212,
             OldPrice = 232,
             Discount = 0.2,
+            UnitsInStock = 10,
+            Images =
+            [
+                "/images/card-item-1.png",
+                "/images/card-item-3.png",
+                "/images/card-item-4.png"
+            ],
             Colors = ["#4F4631", "#314F4A", "#31344F"],
             Sizes = ["Small", "Medium", "Large", "X-Large"],
             
@@ -63,7 +70,7 @@ public static class Mocks
         new()
         {
             Id = 4,
-            ImageSrc = "/images/card-item-7.png",
+            ImageSrc = "/images/card-item-4.png",
             Title = "Loose Fit Bermuda Shorts",
             Description = "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
             Rating = 3.0,
@@ -83,7 +90,7 @@ public static class Mocks
         new()
         {
             Id = 5,
-            ImageSrc = "/images/card-item-8.png",
+            ImageSrc = "/images/card-item-5.png",
             Title = "Faded Skinny Jeans",
             Rating = 4.5,
             Description = "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
