@@ -1,4 +1,6 @@
-﻿.card-item {}
+﻿.card-item {
+    cursor: pointer;
+}
 
     .card-item .card-item-image-wrapper {
         width: 294px;
