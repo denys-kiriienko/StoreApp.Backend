@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
+using StoreApp.API.Middleware;
 using StoreApp.BLL.MapperProvider;
 using StoreApp.BLL.Options;
 using StoreApp.BLL.Security;
@@ -140,6 +141,8 @@ public class Program
 
         app.UseAuthentication();
         app.UseAuthorization();
+        
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.MapControllers();
         app.Run();
