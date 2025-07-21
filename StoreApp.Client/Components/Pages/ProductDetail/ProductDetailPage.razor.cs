@@ -20,23 +20,23 @@ public partial class ProductDetailPage(
 
     private bool isLoading;
     
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         isLoading = true;
-        
+
         var productModel = await productService.GetProductByIdAsync(Id);
-        
-        if(productModel is null)
+
+        if (productModel is null)
         {
             navigationManager.NavigateTo("/home");
-        }
-        else
-        {
-            product = productModel;
+            return;
         }
 
+        product = productModel;
         AlsoLike = await productService.GetAlsoLikeProductsAsync(Id);
         Reviews = await reviewService.GetProductReviewsAsync(Id);
+
+        isLoading = false;
     }
 
     private async Task OnWriteReviewClicked(ReviewModel review)
