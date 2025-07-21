@@ -5,7 +5,7 @@
 .counter-controls {
     display: flex;
     flex-direction: row;
-    width: 170px;
+    box-sizing: border-box;
 }
 
 .minus-button {
@@ -47,10 +47,6 @@
 }
 
 @media (max-width: 640px) {
-    .counter-controls {
-        width: 110px;
-    }
-    
     .plus-button {
         padding-right: 20px;
         padding-left: 0;

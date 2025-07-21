@@ -38,6 +38,7 @@
     align-items: center;
     gap: 16px;
     width: 100%;
+    max-width: 350px;
 }
 
 .filter-button {

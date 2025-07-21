@@ -1,6 +1,7 @@
 @using StoreApp.Client.Components.ComponentFiles.Buttons.BasicButton
 @using StoreApp.Client.Components.ComponentFiles.Select
 @using StoreApp.Client.Enums
+@using StoreApp.Client.Components.ComponentFiles.SvgFiles
 
 <div class="review-list-wrapper">
     <div class="review-list-header">
@@ -10,7 +11,11 @@
         </div>
 
         <div class="review-actions">
-            <BasicSelect TKey="ReviewSortOptions" Value="selectedSortOption" Options="sortOptions" ValueChanged="option => selectedSortOption = option" />
+            <button class="filter-button">
+                <SvgFilterComponent/>
+            </button>
+
+            <BasicSelect TKey="ReviewSortOptions" Value="selectedSortOption" Options="sortOptions" ValueChanged="option => selectedSortOption = option"/>
             @if (!IsReadOnly)
             {
                 <button @onclick="() => isReviewFormVisible = true" class="create-review-button">Write a Review</button>
