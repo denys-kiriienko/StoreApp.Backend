@@ -11,6 +11,8 @@ public class AppDbContext : DbContext
     public DbSet<UserEntity> Users { get; set; }
     public DbSet<ProductEntity> Products { get; set; }
     public DbSet<CartItemEntity> CartItems { get; set; }
+    
+    public DbSet<ReviewEntity> Reviews { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) 
     {
@@ -33,5 +35,15 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<ProductEntity>()
             .Property(p => p.Price)
             .HasColumnType("decimal(18,2)");
+        
+        modelBuilder.Entity<ReviewEntity>()
+            .HasOne(r => r.User)
+            .WithMany(u => u.Reviews)
+            .HasForeignKey(r => r.UserId);
+
+        modelBuilder.Entity<ReviewEntity>()
+            .HasOne(r => r.Product)
+            .WithMany(u => u.Reviews)
+            .HasForeignKey(r => r.ProductId);
     }
 }
