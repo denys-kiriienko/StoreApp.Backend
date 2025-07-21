@@ -6,6 +6,7 @@ public static class Mocks
 {
     public static ProductModel Product = new()
     {
+        Id = 1,
         ImageSrc = "/images/card-item-1.png",
         Title = "T-shirt with Tape Details",
         Rating = 4.5,
@@ -27,33 +28,77 @@ public static class Mocks
     public static List<ProductModel> Products = [
         new()
         {
+            Id = 2,
             ImageSrc = "/images/card-item-5.png",
+            Description = "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
             Title = "Vertical Striped Shirt",
             Rating = 5.0,
             CurrentPrice = 212,
             OldPrice = 232,
-            Discount = 0.0862 // ≈ 8.62%
+            Discount = 0.2,
+            Colors = ["#4F4631", "#314F4A", "#31344F"],
+            Sizes = ["Small", "Medium", "Large", "X-Large"],
+            UnitsInStock = 10,
+            Images =
+            [
+                "/images/card-item-1.png",
+                "/images/card-item-3.png",
+                "/images/card-item-4.png"
+            ],
         },
         new()
         {
+            Id = 3,
             ImageSrc = "/images/card-item-6.png",
             Title = "Courage Graphic T-shirt",
+            Description = "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
             Rating = 4.0,
-            CurrentPrice = 145
+            CurrentPrice = 212,
+            OldPrice = 232,
+            Discount = 0.2,
+            Colors = ["#4F4631", "#314F4A", "#31344F"],
+            Sizes = ["Small", "Medium", "Large", "X-Large"],
+            
         },
         new()
         {
+            Id = 4,
             ImageSrc = "/images/card-item-7.png",
             Title = "Loose Fit Bermuda Shorts",
+            Description = "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
             Rating = 3.0,
-            CurrentPrice = 80
+            CurrentPrice = 212,
+            OldPrice = 232,
+            Discount = 0.2,
+            Colors = ["#4F4631", "#314F4A", "#31344F"],
+            Sizes = ["Small", "Medium", "Large", "X-Large"],
+            UnitsInStock = 10,
+            Images =
+            [
+                "/images/card-item-1.png",
+                "/images/card-item-3.png",
+                "/images/card-item-4.png"
+            ],
         },
         new()
         {
+            Id = 5,
             ImageSrc = "/images/card-item-8.png",
             Title = "Faded Skinny Jeans",
             Rating = 4.5,
-            CurrentPrice = 210
+            Description = "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            CurrentPrice = 212,
+            OldPrice = 232,
+            Discount = 0.2,
+            Colors = ["#4F4631", "#314F4A", "#31344F"],
+            Sizes = ["Small", "Medium", "Large", "X-Large"],
+            UnitsInStock = 10,
+            Images =
+            [
+                "/images/card-item-1.png",
+                "/images/card-item-3.png",
+                "/images/card-item-4.png"
+            ],
         }
     ];
     
