@@ -7,7 +7,6 @@ public class ReviewService : IReviewService
     public async Task<List<ReviewModel>> GetProductReviewsAsync(int productId)
     {
         // Simulating a delay for the mock data
-        await Task.Delay(1000);
         return Task.FromResult(Mocks.Reviews).Result;
 
         // return await httpClient.GetFromJsonAsync<List<ReviewModel>>($"products/{productId}/reviews");
@@ -16,7 +15,6 @@ public class ReviewService : IReviewService
     public async Task AddProductReviewAsync(int productId, ReviewModel review)
     {
         // Simulating a delay for the mock data
-        await Task.Delay(1000);
         Mocks.Reviews.Add(review);
 
         // In a real application, you would send the review to the server here
