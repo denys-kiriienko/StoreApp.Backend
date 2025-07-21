@@ -24,7 +24,7 @@ public static class Mocks
         Sizes = ["Small", "Medium", "Large", "X-Large"]
     };
     
-    public static List<ProductModel> AlsoLike = [
+    public static List<ProductModel> Products = [
         new()
         {
             ImageSrc = "/images/card-item-5.png", Title = "Vertical Striped Shirt", Rating = 5.0, CurrentPrice = "$212",

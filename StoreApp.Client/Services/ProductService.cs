@@ -17,7 +17,7 @@ public class ProductService(HttpClient httpClient) : IProductService
     {
         // Simulating a delay for the mock data
         await Task.Delay(1000);
-        return Task.FromResult(Mocks.AlsoLike).Result;
+        return Task.FromResult(Mocks.Products).Result;
 
         // return await httpClient.GetFromJsonAsync<List<ProductModel>>($"products/{productId}/also-like");
     }
