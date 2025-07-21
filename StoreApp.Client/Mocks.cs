@@ -4,7 +4,7 @@ namespace StoreApp.Client;
 
 public static class Mocks
 {
-    public static readonly ProductModel Product = new()
+    public static ProductModel Product = new()
     {
         ImageSrc = "/images/card-item-1.png",
         Title = "T-shirt with Tape Details",
@@ -24,7 +24,7 @@ public static class Mocks
         Sizes = ["Small", "Medium", "Large", "X-Large"]
     };
     
-    public static readonly List<ProductModel> AlsoLike = [
+    public static List<ProductModel> AlsoLike = [
         new()
         {
             ImageSrc = "/images/card-item-5.png", Title = "Vertical Striped Shirt", Rating = 5.0, CurrentPrice = "$212",
@@ -44,7 +44,7 @@ public static class Mocks
         }
     ];
     
-    public static readonly List<ReviewModel> Reviews =
+    public static List<ReviewModel> Reviews =
     [
         new()
         {

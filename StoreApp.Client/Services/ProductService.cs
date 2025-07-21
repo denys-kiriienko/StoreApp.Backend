@@ -21,13 +21,4 @@ public class ProductService(HttpClient httpClient) : IProductService
 
         // return await httpClient.GetFromJsonAsync<List<ProductModel>>($"products/{productId}/also-like");
     }
-
-    public async Task<List<ReviewModel>> GetProductReviewsAsync(int productId)
-    {
-        // Simulating a delay for the mock data
-        await Task.Delay(1000);
-        return Task.FromResult(Mocks.Reviews).Result;
-
-        // return await httpClient.GetFromJsonAsync<List<ReviewModel>>($"products/{productId}/reviews");
-    }
 }
