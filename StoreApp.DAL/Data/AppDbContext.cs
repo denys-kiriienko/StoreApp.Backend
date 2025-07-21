@@ -45,5 +45,28 @@ public class AppDbContext : DbContext
             .HasOne(r => r.Product)
             .WithMany(u => u.Reviews)
             .HasForeignKey(r => r.ProductId);
+        
+        modelBuilder.Entity<SizeEntity>()
+            .HasIndex(s => s.Name)
+            .IsUnique();
+        
+        modelBuilder.Entity<ColorEntity>()
+            .HasIndex(c => c.Name)
+            .IsUnique();
+        
+        modelBuilder.Entity<ProductVariant>()
+            .HasOne(pv => pv.Product)
+            .WithMany(p => p.Variants)
+            .HasForeignKey(pv => pv.ProductId);
+        
+        modelBuilder.Entity<ProductVariant>()
+            .HasOne(pv => pv.Color)
+            .WithMany()
+            .HasForeignKey(pv => pv.ColorId);
+        
+        modelBuilder.Entity<ProductVariant>()
+            .HasOne(pv => pv.Size)
+            .WithMany()
+            .HasForeignKey(pv => pv.SizeId);
     }
 }
