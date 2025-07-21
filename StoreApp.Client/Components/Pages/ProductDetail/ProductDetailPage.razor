@@ -1,4 +1,4 @@
-@page "/ProductDetail/{Id:int}"
+@page "/products/{Id:int}"
 @using StoreApp.Client.Components.Pages.ProductDetail.Components
 @using StoreApp.Client.Components.ComponentFiles.Promo
 @using StoreApp.Client.Components.ComponentFiles.Header
@@ -8,20 +8,28 @@
 <PromoComponent />
 <HeaderComponent />
 
-<div class="product-detail-page-wrapper">
-    <ProductInfo Product="@product"></ProductInfo>
+@if (!isLoading)
+{
+    <div class="product-detail-page-wrapper">
+        <ProductInfo Product="@product"></ProductInfo>
 
-    <div class="tabs">
-        <button class="tab-button">Product Detail</button>
-        <button class="tab-button active">Rating & Reviews</button>
-        <button class="tab-button">FAQs</button>
-    </div>
+        <div class="tabs">
+            <button class="tab-button">Product Detail</button>
+            <button class="tab-button active">Rating & Reviews</button>
+            <button class="tab-button">FAQs</button>
+        </div>
     
-    <ReviewList WriteReviewClicked="OnWriteReviewClicked" Reviews="@Reviews"></ReviewList>
+        <ReviewList WriteReviewClicked="OnWriteReviewClicked" Reviews="@Reviews"></ReviewList>
     
-    <div class="also-see-wrapper">
-        <PromotedProductsComponent HeaderText="YOU MIGHT ALSO LIKE" ProductList="AlsoLike" IsVisibleViewAllButton="false" />
+        <div class="also-see-wrapper">
+            <PromotedProductsComponent HeaderText="YOU MIGHT ALSO LIKE" ProductList="AlsoLike" IsVisibleViewAllButton="false" />
+        </div>
     </div>
-</div>
+} else
+{
+    <div class="loading-indicator">
+        <p>Loading...</p>
+    </div>
+}
 
 <FooterComponent />

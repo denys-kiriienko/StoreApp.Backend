@@ -18,8 +18,12 @@ public partial class ProductDetailPage(
 
     private List<ReviewModel> Reviews;
 
+    private bool isLoading;
+    
     protected override async Task OnInitializedAsync()
     {
+        isLoading = true;
+        
         var productModel = await productService.GetProductByIdAsync(Id);
         
         if(productModel is null)
