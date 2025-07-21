@@ -11,6 +11,8 @@ public interface ICartService
     Task RemoveFromCartAsync(int productId);
     
     Task ClearCartAsync();
+
+    Task ChangeCartItemQuantityAsync(int productId, int quantity);
     
     Task<IEnumerable<OrderItemModel>> GetCartItemsAsync();
     
