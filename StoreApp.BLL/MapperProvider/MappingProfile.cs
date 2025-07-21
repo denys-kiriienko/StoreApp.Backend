@@ -22,5 +22,9 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.CartItems, opt => opt.Ignore());
 
         CreateMap<CartItemEntity, CartItemModel>().ReverseMap();
+
+        CreateMap<ReviewEntity, ReviewModel>()
+            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Email))
+            .ReverseMap();
     }
 }

@@ -14,6 +14,12 @@ public class ReviewRepository(AppDbContext context) : CrudRepository<ReviewEntit
             .ToListAsync();
     }
     
+    public async Task<ReviewEntity?> GetReviewByUserIdAndProductIdAsync(int userId, int productId)
+    {
+        return await GetQueryable()
+            .FirstOrDefaultAsync(r => r.UserId == userId && r.ProductId == productId);
+    }
+    
     protected override IQueryable<ReviewEntity> GetQueryable()
     {
         return Context.Reviews
