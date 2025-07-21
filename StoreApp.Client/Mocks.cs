@@ -9,9 +9,9 @@ public static class Mocks
         ImageSrc = "/images/card-item-1.png",
         Title = "T-shirt with Tape Details",
         Rating = 4.5,
-        CurrentPrice = "$120",
-        OldPrice = "$150",
-        Discount = "20%",
+        CurrentPrice = 120,
+        OldPrice = 150,
+        Discount = 0.2, // 20%
         Description = "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
         UnitsInStock = 10,
         Images =
@@ -23,24 +23,37 @@ public static class Mocks
         Colors = ["#4F4631", "#314F4A", "#31344F"],
         Sizes = ["Small", "Medium", "Large", "X-Large"]
     };
-    
+
     public static List<ProductModel> Products = [
         new()
         {
-            ImageSrc = "/images/card-item-5.png", Title = "Vertical Striped Shirt", Rating = 5.0, CurrentPrice = "$212",
-            OldPrice = "$232", Discount = "-20%"
+            ImageSrc = "/images/card-item-5.png",
+            Title = "Vertical Striped Shirt",
+            Rating = 5.0,
+            CurrentPrice = 212,
+            OldPrice = 232,
+            Discount = 0.0862 // ≈ 8.62%
         },
         new()
         {
-            ImageSrc = "/images/card-item-6.png", Title = "Courage Graphic T-shirt", Rating = 4.0, CurrentPrice = "$145"
+            ImageSrc = "/images/card-item-6.png",
+            Title = "Courage Graphic T-shirt",
+            Rating = 4.0,
+            CurrentPrice = 145
         },
         new()
         {
-            ImageSrc = "/images/card-item-7.png", Title = "Loose Fit Bermuda Shorts", Rating = 3.0, CurrentPrice = "$80"
+            ImageSrc = "/images/card-item-7.png",
+            Title = "Loose Fit Bermuda Shorts",
+            Rating = 3.0,
+            CurrentPrice = 80
         },
         new()
         {
-            ImageSrc = "/images/card-item-8.png", Title = "Faded Skinny Jeans", Rating = 4.5, CurrentPrice = "$210"
+            ImageSrc = "/images/card-item-8.png",
+            Title = "Faded Skinny Jeans",
+            Rating = 4.5,
+            CurrentPrice = 210
         }
     ];
     

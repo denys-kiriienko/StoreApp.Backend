@@ -8,7 +8,7 @@ public partial class CardItemComponent
     [Parameter] public string Title { get; set; } = string.Empty;
     [Parameter] public double Rating { get; set; } = 0.0;
     [Parameter] public string RatingText { get; set; } = string.Empty;
-    [Parameter] public string CurrentPrice { get; set; } = string.Empty;
-    [Parameter] public string? OldPrice { get; set; }
-    [Parameter] public string? Discount { get; set; }
+    [Parameter] public double CurrentPrice { get; set; }
+    [Parameter] public double? OldPrice { get; set; }
+    [Parameter] public double? Discount { get; set; }
 }
