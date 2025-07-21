@@ -2,7 +2,7 @@ namespace StoreApp.Client.Models;
 
 public class ReviewModel
 {
-    public double Rating { get; set; } = 0.0;
+    public int Rating { get; set; }
 
     public string Comment { get; set; } = String.Empty;
     
