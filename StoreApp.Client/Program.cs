@@ -11,7 +11,9 @@ public class Program
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
-        builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+        var apiUrl = builder.Configuration["ApiUrl"] ?? "http://localhost:5194/api/";
+        builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(apiUrl) });
+        
         builder.Services.AddScoped<IProductService, ProductService>();
         builder.Services.AddScoped<IReviewService, ReviewService>();
         builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();

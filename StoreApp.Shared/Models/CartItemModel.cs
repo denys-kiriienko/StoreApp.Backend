@@ -6,8 +6,9 @@ public class CartItemModel
 {
     public int Id { get; set; }
     public int UserId { get; set; }
-    public int ProductId { get; set; }
+
+    public ProductModel ProductModel { get; set; }
 
     [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 0")]
-    public int Quantity { get; set; }
+    public required int Quantity { get; set; }
 }

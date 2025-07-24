@@ -85,7 +85,7 @@ public class CartService(
     public async Task<decimal> GetTotalPriceAsync()
     {
         var cartItems = await GetCartItemsAsync();
-        return cartItems.Sum(item => item.TotalPrice);
+        return cartItems.Sum(item => (decimal)item.ProductModel.CurrentPrice * item.Quantity);
     }
 
     public async Task<int> GetCartItemCountAsync()

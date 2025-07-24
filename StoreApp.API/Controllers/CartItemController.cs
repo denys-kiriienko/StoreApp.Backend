@@ -5,18 +5,17 @@ using System.Security.Claims;
 
 namespace StoreApp.API.Controllers;
 
+// [Authorize] todo: uncomment when authentication is implemented
 [ApiController]
 [Route("api/[controller]")]
-public class CartItemController(ICartItemService cartItemService) : ControllerBase
+public class CartItemsController(ICartItemService cartItemService) : ControllerBase
 {
-    [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetByUserIdAsync()
     {
         return Ok(await cartItemService.GetCartItemsByUserIdAsync(GetUserId()));
     }
 
-    [Authorize]
     [HttpPost]
     public async Task<IActionResult> AddToCartAsync([FromQuery] int productId, [FromQuery] int quantity)
     {
@@ -25,7 +24,6 @@ public class CartItemController(ICartItemService cartItemService) : ControllerBa
             : BadRequest();
     }
 
-    [Authorize]
     [HttpPut]
     public async Task<IActionResult> UpdateQuantityAsync([FromQuery] int productId, [FromQuery] int quantity)
     {
@@ -34,7 +32,6 @@ public class CartItemController(ICartItemService cartItemService) : ControllerBa
             : BadRequest();
     }
 
-    [Authorize]
     [HttpDelete]
     public async Task<IActionResult> DeleteItemAsync([FromQuery] int productId)
     {
@@ -43,7 +40,6 @@ public class CartItemController(ICartItemService cartItemService) : ControllerBa
             : BadRequest();
     }
 
-    [Authorize]
     [HttpDelete("clear")]
     public async Task<IActionResult> ClearCartAsync()
     {
@@ -58,7 +54,8 @@ public class CartItemController(ICartItemService cartItemService) : ControllerBa
 
         if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out var userId))
         {
-            throw new UnauthorizedAccessException("User ID not found in claims.");
+            // throw new UnauthorizedAccessException("User ID not found in claims.");
+            userId = 1; // todo: uncomment when authentication is implemented
         }
 
         return userId;

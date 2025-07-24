@@ -29,7 +29,9 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.ImageUrl))
             .ForMember(dest => dest.CartItems, opt => opt.Ignore());
 
-        CreateMap<CartItemEntity, CartItemModel>().ReverseMap();
+        CreateMap<CartItemEntity, CartItemModel>()
+            .ForMember(dest => dest.ProductModel, opt => opt.MapFrom(src => src.Product))
+            .ReverseMap();
 
         CreateMap<ReviewEntity, ReviewModel>()
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Email))
