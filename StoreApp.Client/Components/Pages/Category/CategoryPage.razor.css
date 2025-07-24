@@ -1,0 +1,10 @@
+﻿*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.category-page-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
