@@ -1,0 +1,22 @@
+﻿@using StoreApp.Client.Components.ComponentFiles.CardItem
+<div class="product-list-wrapper">
+    <div class="products-header">
+        <div class="head-text">Casual</div>
+        <div class="selector">
+            Showing 1-10 of Products   Sort by:
+            @* TODO: implement selector *@
+        </div>
+    </div>
+    <div class="product-list">
+        @foreach (var product in ProductList)
+        {
+            <CardItemComponent ImageSrc="@product.ImageSrc"
+                               Title="@product.Title"
+                               Rating="@product.Rating"
+                               RatingText="@($"{product.Rating}/5")"
+                               CurrentPrice="@product.CurrentPrice"
+                               OldPrice="@product.OldPrice"
+                               Discount="@product.Discount" />
+        }
+    </div>
+</div>
