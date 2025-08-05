@@ -4,40 +4,37 @@ using StoreApp.Client.Services;
 
 namespace StoreApp.Client.Components.Pages.ProductDetail;
 
-public partial class ProductDetailPage(
-    IProductService productService,
-    IReviewService reviewService,
-    ICartService cartService,
-    NavigationManager navigationManager) : ComponentBase
+public partial class ProductDetailPage()
 {
-    [Parameter]
-    public int Id { get; set; }
+    [Inject] public required IProductService ProductService { get; set; }
+    [Inject] public required IReviewService ReviewService { get; set; }
+    [Inject] public required ICartService CartService { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
-    private ProductModel product;
-
-    private List<ProductModel> AlsoLike;
-
-    private List<ReviewModel> Reviews;
-
-    private bool isLoading;
+    [Parameter] public int Id { get; set; }
+    
+    private ProductModel? _product;
+    private List<ProductModel>? _alsoLike;
+    private List<ReviewModel>? _reviews;
+    private bool _isLoading;
     
     protected override async Task OnParametersSetAsync()
     {
-        isLoading = true;
+        _isLoading = true;
 
-        var productModel = await productService.GetProductByIdAsync(Id);
+        var productModel = await ProductService.GetProductByIdAsync(Id);
 
         if (productModel is null)
         {
-            navigationManager.NavigateTo("/home");
+            NavigationManager.NavigateTo("/home");
             return;
         }
 
-        product = productModel;
-        AlsoLike = await productService.GetAlsoLikeProductsAsync(Id);
-        Reviews = await reviewService.GetProductReviewsAsync(Id);
+        _product = productModel;
+        _alsoLike = await ProductService.GetAlsoLikeProductsAsync(Id);
+        _reviews = await ReviewService.GetProductReviewsAsync(Id);
 
-        isLoading = false;
+        _isLoading = false;
     }
 
     private async Task OnAddToCartClicked(int quantity)
@@ -50,15 +47,15 @@ public partial class ProductDetailPage(
         var cartItem = new OrderItemModel
         {
             Quantity = quantity,
-            ProductModel = product,
+            ProductModel = _product,
         };
 
-        await cartService.AddToCartAsync(cartItem);
+        await CartService.AddToCartAsync(cartItem);
     }
 
     private async Task OnWriteReviewClicked(ReviewModel review)
     {
-        await reviewService.AddProductReviewAsync(Id, review);
-        Reviews = await reviewService.GetProductReviewsAsync(Id);
+        await ReviewService.AddProductReviewAsync(Id, review);
+        _reviews = await ReviewService.GetProductReviewsAsync(Id);
     }
 }

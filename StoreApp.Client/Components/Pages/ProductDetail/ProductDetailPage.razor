@@ -1,17 +1,19 @@
 @page "/products/{Id:int}"
+
 @using StoreApp.Client.Components.Pages.ProductDetail.Components
 @using StoreApp.Client.Components.ComponentFiles.Promo
 @using StoreApp.Client.Components.ComponentFiles.Header
 @using StoreApp.Client.Components.ComponentFiles.Footer
 @using StoreApp.Client.Components.Pages.Home.Components.PromotedProducts
 
+
 <PromoComponent />
 <HeaderComponent />
 
-@if (!isLoading)
+@if (!_isLoading)
 {
     <div class="product-detail-page-wrapper">
-        <ProductInfo OnAddToCartClicked="OnAddToCartClicked" Product="@product"></ProductInfo>
+        <ProductInfo OnAddToCartClicked="OnAddToCartClicked" Product="@_product"></ProductInfo>
 
         <div class="tabs">
             <button class="tab-button">Product Detail</button>
@@ -19,10 +21,10 @@
             <button class="tab-button">FAQs</button>
         </div>
     
-        <ReviewList WriteReviewClicked="OnWriteReviewClicked" Reviews="@Reviews"></ReviewList>
+        <ReviewList WriteReviewClicked="OnWriteReviewClicked" Reviews="@_reviews"></ReviewList>
     
         <div class="also-see-wrapper">
-            <PromotedProductsComponent HeaderText="YOU MIGHT ALSO LIKE" ProductList="AlsoLike" IsVisibleViewAllButton="false" />
+            <PromotedProductsComponent HeaderText="YOU MIGHT ALSO LIKE" ProductList="_alsoLike" IsVisibleViewAllButton="false" />
         </div>
     </div>
 } else
