@@ -83,8 +83,8 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
-    justify-content: space-between;
+    gap: 20px;
+    justify-content: center;
 }
 
 .all-review-wrapper {
