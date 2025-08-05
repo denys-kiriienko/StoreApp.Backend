@@ -19,4 +19,6 @@ public class ProductModel
     public byte[]? ImageData { get; set; }
 
     public string? ImageUrl { get; set; }
+    
+    public List<ProductVariantModel> Variants { get; set; } = [];
 }

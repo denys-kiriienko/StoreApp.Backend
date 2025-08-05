@@ -48,6 +48,30 @@ namespace StoreApp.DAL.Data.Migrations
                     b.ToTable("CartItems");
                 });
 
+            modelBuilder.Entity("StoreApp.DAL.Entities.ColorEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("HexCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("ColorEntity");
+                });
+
             modelBuilder.Entity("StoreApp.DAL.Entities.ProductEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -72,6 +96,97 @@ namespace StoreApp.DAL.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("StoreApp.DAL.Entities.ProductVariant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SKU")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UnitsInStock")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColorId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SizeId");
+
+                    b.ToTable("ProductVariant");
+                });
+
+            modelBuilder.Entity("StoreApp.DAL.Entities.ReviewEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("StoreApp.DAL.Entities.SizeEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("SizeEntity");
                 });
 
             modelBuilder.Entity("StoreApp.DAL.Entities.UserEntity", b =>
@@ -126,14 +241,66 @@ namespace StoreApp.DAL.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("StoreApp.DAL.Entities.ProductVariant", b =>
+                {
+                    b.HasOne("StoreApp.DAL.Entities.ColorEntity", "Color")
+                        .WithMany()
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StoreApp.DAL.Entities.ProductEntity", "Product")
+                        .WithMany("Variants")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StoreApp.DAL.Entities.SizeEntity", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Color");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Size");
+                });
+
+            modelBuilder.Entity("StoreApp.DAL.Entities.ReviewEntity", b =>
+                {
+                    b.HasOne("StoreApp.DAL.Entities.ProductEntity", "Product")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StoreApp.DAL.Entities.UserEntity", "User")
+                        .WithMany("Reviews")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("StoreApp.DAL.Entities.ProductEntity", b =>
                 {
                     b.Navigation("CartItems");
+
+                    b.Navigation("Reviews");
+
+                    b.Navigation("Variants");
                 });
 
             modelBuilder.Entity("StoreApp.DAL.Entities.UserEntity", b =>
                 {
                     b.Navigation("CartItems");
+
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

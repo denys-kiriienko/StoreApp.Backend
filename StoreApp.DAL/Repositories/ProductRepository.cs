@@ -21,7 +21,13 @@ public class ProductRepository : IProductRepository
 
     public async Task<ProductEntity?> GetProductByIdAsync(int id)
     {
-        return await _appDbContext.Products.FindAsync(id);
+        return await _appDbContext.Products
+            .Include(p => p.Reviews)
+            .Include(p => p.Variants)
+                .ThenInclude(v => v.Color)
+            .Include(p => p.Variants)
+                .ThenInclude(v => v.Size)
+            .FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task AddProductAsync(ProductEntity product)
