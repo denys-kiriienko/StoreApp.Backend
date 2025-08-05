@@ -8,7 +8,8 @@
         <div class="cards-list-wrapper">
             @foreach (var product in ProductList)
             {
-                <CardItemComponent ImageSrc="@product.ImageSrc"
+                <CardItemComponent Id="@product.Id"
+                                   ImageSrc="@product.ImageSrc"
                                    Title="@product.Title"
                                    Rating="@product.Rating"
                                    RatingText="@($"{product.Rating}/5")"

@@ -9,4 +9,8 @@ public class ProductEntity
     public string? ImageUrl { get; set; }
 
     public ICollection<CartItemEntity> CartItems { get; set; } = new List<CartItemEntity>();
+    
+    public ICollection<ReviewEntity> Reviews { get; set; } = new List<ReviewEntity>();
+
+    public List<ProductVariant> Variants { get; set; } = [];
 }

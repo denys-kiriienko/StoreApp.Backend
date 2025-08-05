@@ -1,60 +1,63 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StoreApp.Shared.Interfaces.Services;
+using System.Security.Claims;
 
 namespace StoreApp.API.Controllers;
 
+// [Authorize] todo: uncomment when authentication is implemented
 [ApiController]
 [Route("api/[controller]")]
-public class CartItemController : ControllerBase
+public class CartItemsController(ICartItemService cartItemService) : ControllerBase
 {
-    private readonly ICartItemService _cartItemService;
-
-    public CartItemController(ICartItemService cartItemService)
+    [HttpGet]
+    public async Task<IActionResult> GetByUserIdAsync()
     {
-        _cartItemService = cartItemService;
+        return Ok(await cartItemService.GetCartItemsByUserIdAsync(GetUserId()));
     }
 
-    [Authorize]
-    [HttpGet("{userId}")]
-    public async Task<IActionResult> GetByUserIdAsync(int userId)
-    {
-        return Ok(await _cartItemService.GetCartItemsByUserIdAsync(userId));
-    }
-
-    [Authorize]
     [HttpPost]
-    public async Task<IActionResult> AddToCartAsync([FromQuery] int userId, [FromQuery] int productId, [FromQuery] int quantity)
+    public async Task<IActionResult> AddToCartAsync([FromQuery] int productId, [FromQuery] int quantity)
     {
-        return await _cartItemService.AddToCartAsync(userId, productId, quantity)
+        return await cartItemService.AddToCartAsync(GetUserId(), productId, quantity)
             ? Ok()
             : BadRequest();
     }
 
-    [Authorize]
     [HttpPut]
-    public async Task<IActionResult> UpdateQuantityAsync([FromQuery] int userId, [FromQuery] int productId, [FromQuery] int quantity)
+    public async Task<IActionResult> UpdateQuantityAsync([FromQuery] int productId, [FromQuery] int quantity)
     {
-        return await _cartItemService.UpdateCartItemAsync(userId, productId, quantity)
+        return await cartItemService.UpdateCartItemAsync(GetUserId(), productId, quantity)
             ? Ok() 
             : BadRequest();
     }
 
-    [Authorize]
     [HttpDelete]
-    public async Task<IActionResult> DeleteItemAsync([FromQuery] int userId, [FromQuery] int productId)
+    public async Task<IActionResult> DeleteItemAsync([FromQuery] int productId)
     {
-        return(await _cartItemService.DeleteCartItemAsync(userId, productId))
+        return await cartItemService.DeleteCartItemAsync(GetUserId(), productId)
             ? NoContent()
             : BadRequest();
     }
 
-    [Authorize]
-    [HttpDelete("clear/{userId}")]
-    public async Task<IActionResult> ClearCartAsync(int userId)
+    [HttpDelete("clear")]
+    public async Task<IActionResult> ClearCartAsync()
     {
-        return(await _cartItemService.ClearCartItemsByUserIdAsync(userId))
+        return await cartItemService.ClearCartItemsByUserIdAsync(GetUserId())
             ? NoContent()
             : BadRequest();
+    }
+
+    private int GetUserId()
+    {
+        var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+
+        if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out var userId))
+        {
+            // throw new UnauthorizedAccessException("User ID not found in claims.");
+            userId = 1; // todo: uncomment when authentication is implemented
+        }
+
+        return userId;
     }
 }

@@ -13,4 +13,6 @@ public class UserEntity
     public DateTime? RefreshTokenExpiryTime { get; set; }
 
     public ICollection<CartItemEntity> CartItems { get; set; } = new List<CartItemEntity>();
+    
+    public ICollection<ReviewEntity> Reviews { get; set; } = new List<ReviewEntity>();
 }

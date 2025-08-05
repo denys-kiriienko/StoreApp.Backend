@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
+using StoreApp.API.Middleware;
 using StoreApp.BLL.MapperProvider;
 using StoreApp.BLL.Options;
 using StoreApp.BLL.Security;
@@ -38,6 +39,7 @@ public class Program
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IProductRepository, ProductRepository>();
         builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+        builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
         // Services
         builder.Services.AddScoped<IJwtProvider, JwtProvider>();
@@ -46,6 +48,7 @@ public class Program
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IProductService, ProductService>();
         builder.Services.AddScoped<ICartItemService, CartItemService>();
+        builder.Services.AddScoped<IReviewService, ReviewService>();
 
         // Mapper
         builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -138,6 +141,8 @@ public class Program
 
         app.UseAuthentication();
         app.UseAuthorization();
+        
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.MapControllers();
         app.Run();
