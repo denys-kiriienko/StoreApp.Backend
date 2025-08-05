@@ -1,6 +1,14 @@
-﻿@inherits LayoutComponentBase
+﻿@using StoreApp.Client.Components.ComponentFiles.Footer
+@using StoreApp.Client.Components.ComponentFiles.Header
+@using StoreApp.Client.Components.ComponentFiles.Promo
+
+@inherits LayoutComponentBase
+
+<PromoComponent />
+<HeaderComponent />
 <div class="page">
     <main>
         @Body
     </main>
 </div>
+<FooterComponent />
