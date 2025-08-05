@@ -15,7 +15,12 @@
                 <SvgFilterComponent/>
             </button>
 
-            <BasicSelect TKey="ReviewSortOptions" Value="selectedSortOption" Options="sortOptions" ValueChanged="option => selectedSortOption = option"/>
+            <div class="custom-select">
+                <BasicSelect TKey="ReviewSortOptions" 
+                             Value="selectedSortOption" 
+                             Options="sortOptions" 
+                             ValueChanged="option => selectedSortOption = option"/>
+            </div>
             @if (!IsReadOnly)
             {
                 <button @onclick="() => isReviewFormVisible = true" class="create-review-button">Write a Review</button>

@@ -4,7 +4,7 @@
     <ImageGallery Images="@Product.Images"></ImageGallery>
     <div class="product-info">
         
-        <h3 class="product-title">@Product.Title</h3>
+        <h3 class="product-title">@Product.Title.ToUpper()</h3>
         
         <div class="product-rating">
             <ProductRating Rating="@Product.Rating" RatingText=@($"{Product.Rating}/5")></ProductRating>

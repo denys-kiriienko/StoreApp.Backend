@@ -67,7 +67,7 @@
 }
 
 .create-review-button {
-    font-family: "Satoshi", serif;
+    font-family: "Satoshi Medium", serif;
     font-weight: 500;
     font-size: 16px;
     color: white;
@@ -91,7 +91,6 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 24px;
 }
 
 .all-review-wrapper .load-button-wrapper {
@@ -125,5 +124,9 @@
     .review-actions {
         min-width: 180px;
         gap: 8px;
+    }
+
+    .custom-select {
+        display: none;
     }
 }

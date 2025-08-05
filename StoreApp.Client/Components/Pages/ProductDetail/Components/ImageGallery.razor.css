@@ -40,8 +40,7 @@
     cursor: pointer;
 }
 
-/* Responsive layout for mobile */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
     .image-gallery {
         flex-direction: column-reverse;
         align-items: center;

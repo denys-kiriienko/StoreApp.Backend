@@ -50,7 +50,23 @@
         padding: 0 16px;
     }
 
-    .also-see-wrapper {
-        margin: 32px 0;
-    }
+        .product-detail-page-wrapper .product-detail-page {
+            width: 100%;
+        }
+
+            .product-detail-page-wrapper .product-detail-page .tabs {
+                gap: 8px;
+                margin-top: 24px;
+            }
+
+                .product-detail-page-wrapper .product-detail-page .tabs .tab-button {
+                    flex: 1 1 100%;
+                    padding: 12px;
+                    font-size: 14px;
+                }
+
+            .product-detail-page-wrapper .product-detail-page .also-see-wrapper {
+                flex-direction: column;
+                margin: 32px 0;
+            }
 }

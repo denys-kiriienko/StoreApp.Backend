@@ -18,9 +18,11 @@
 .product-title {
     margin-top: 5px;
     margin-bottom: 0;
+    font-family: 'Integral CF Bold', sans-serif;
     font-weight: 700;
     font-size: 40px;
     line-height: 100%;
+    letter-spacing: 0;
     vertical-align: middle;
 }
 
@@ -33,7 +35,7 @@
 }
 
 .secondary-text {
-    font-family: "Satoshi", serif;
+    font-family: "Satoshi Regular", serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
@@ -93,7 +95,7 @@
 }
 
 .add-to-cart-button {
-    font-family: "Satoshi", serif;
+    font-family: "Satoshi Medium", serif;
     font-weight: 500;
     font-size: 16px;
     color: white;
@@ -115,24 +117,44 @@ hr {
     .product-detail {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
 
     .product-info {
-        padding: 0 16px;
+        padding: 0;
+        width: 100%;
     }
 
     .product-title {
-        font-size: 32px;
+        font-size: 28px;
+        text-align: left;
     }
 
     .product-rating,
     .product-price,
     .secondary-text {
         font-size: 14px;
+        text-align: left;
     }
-    
+
+    .selection-block {
+        align-items: flex-start;
+    }
+
+    .color-options,
+    .size-options,
+    .product-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
     .size-option {
         padding: 10px 20px;
         font-size: 14px;
+    }
+
+    .add-to-cart-button {
+        width: 100%;
+        padding: 14px 0;
     }
 }
