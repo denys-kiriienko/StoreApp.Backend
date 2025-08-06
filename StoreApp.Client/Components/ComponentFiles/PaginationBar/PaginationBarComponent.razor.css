@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 24px;
+    flex-wrap: wrap;
 }
 
 .nav-button {
@@ -58,4 +59,17 @@
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0;
+}
+
+@media (max-width: 640px) {
+    .pagination-wrapper,
+    .page-items {
+        gap: 0;
+    }
+
+    .nav-button,
+    .page-button,
+    .dots {
+        font-size: 12px;
+    }
 }
