@@ -1,22 +1,52 @@
 ﻿@using StoreApp.Client.Components.ComponentFiles.CardItem
+@using StoreApp.Client.Components.ComponentFiles.SvgFiles
+
+
 <div class="product-list-wrapper">
     <div class="products-header">
         <div class="head-text">Casual</div>
         <div class="selector">
-            Showing 1-10 of Products   Sort by:
+            <span class="selector-text">
+                Showing 1-10 of Products   Sort by:
+            </span>
             @* TODO: implement selector *@
+
+            <div class="toggle-filters-button" @onclick="() => OnToggleFilters.InvokeAsync()">
+                <SvgSettingsComponent Width="13" Height="12" />
+            </div>
         </div>
     </div>
     <div class="product-list">
-        @foreach (var product in ProductList)
-        {
-            <CardItemComponent ImageSrc="@product.ImageSrc"
-                               Title="@product.Title"
-                               Rating="@product.Rating"
-                               RatingText="@($"{product.Rating}/5")"
-                               CurrentPrice="@product.CurrentPrice"
-                               OldPrice="@product.OldPrice"
-                               Discount="@product.Discount" />
-        }
+        @* desktop *@
+        <div class="product-list desktop-only">
+            @foreach (var product in ProductList)
+            {
+                <CardItemComponent ImageSrc="@product.ImageSrc"
+                                   Title="@product.Title"
+                                   Rating="@product.Rating"
+                                   RatingText="@($"{product.Rating}/5")"
+                                   CurrentPrice="@product.CurrentPrice"
+                                   OldPrice="@product.OldPrice"
+                                   Discount="@product.Discount"
+                                   ImageWidth="294px"
+                                   ImageHeight="294px" />
+            }
+        </div>
+
+        @* mobile *@
+        <div class="product-list mobile-only">
+            @foreach (var product in ProductList)
+            {
+                <CardItemComponent ImageSrc="@product.ImageSrc"
+                                   Title="@product.Title"
+                                   Rating="@product.Rating"
+                                   RatingText="@($"{product.Rating}/5")"
+                                   CurrentPrice="@product.CurrentPrice"
+                                   OldPrice="@product.OldPrice"
+                                   Discount="@product.Discount"
+                                   ImageWidth="172px"
+                                   ImageHeight="172px" />
+            }
+        </div>
     </div>
 </div>

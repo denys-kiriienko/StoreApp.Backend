@@ -10,11 +10,12 @@
 
 
 <div class="category-page-wrapper">
-    <div class="filter-wrapper">
+    <div class="filter-wrapper @( _isFiltersOpen ? "show" : "hide")">
         <FiltersComponent />
     </div>
     <div class="products-wrapper">
-        <ProductListComponent ProductList="Casual" />
+        <ProductListComponent ProductList="Casual"
+                              OnToggleFilters="ToggleFilters" />
         <div class="separator" />
         <div class="pagination-bar">
             <PaginationBarComponent TotalPages="10" CurrentPage="1" MaxVisiblePages="4" />

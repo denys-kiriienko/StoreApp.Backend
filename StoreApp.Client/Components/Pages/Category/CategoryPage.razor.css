@@ -24,3 +24,17 @@
 .pagination-bar {
     margin-bottom: 80px;
 }
+
+@media (max-width: 640px) {
+    .products-wrapper {
+        padding: 0 16px;
+    }
+
+    .filter-wrapper {
+        display: none !important;
+    }
+
+        .filter-wrapper.show {
+            display: block !important;
+        }
+}
