@@ -3,12 +3,18 @@
 @using StoreApp.Client.Components.ComponentFiles.SvgFiles
 
 
-<div class="filters-wrapper">
+<div class="filters-wrapper @(IsMobileOverlay ? "overlay" : string.Empty)">
     <div class="head-wrapper header" style="margin-bottom: 0px;">
         <div class="head-text">Filters</div>
         <div class="settings-icon">
             <SvgSettingsComponent />
         </div>
+        @if (IsMobileOverlay)
+        {
+            <button class="close-overlay-button" @onclick="() => OnClose.InvokeAsync()" aria-label="Close filters">
+                <SvgCloseComponent Width="20" Height="20" />
+            </button>
+        }
     </div>
     <div class="separator" />
 

@@ -10,11 +10,13 @@
 
 
 <div class="category-page-wrapper">
+    <div class="filters-backdrop @( _isFiltersOpen ? "show" : "hide")" @onclick="CloseFilters"></div>
     <div class="filter-wrapper @( _isFiltersOpen ? "show" : "hide")">
-        <FiltersComponent />
+        <FiltersComponent IsMobileOverlay="true" OnClose="CloseFilters" />
     </div>
     <div class="products-wrapper">
         <ProductListComponent ProductList="Casual"
+                              HeaderText="Casual"
                               OnToggleFilters="ToggleFilters" />
         <div class="separator" />
         <div class="pagination-bar">

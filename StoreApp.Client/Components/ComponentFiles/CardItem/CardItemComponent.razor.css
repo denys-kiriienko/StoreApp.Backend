@@ -1,5 +1,6 @@
 ﻿.card-item {
     cursor: pointer;
+    width: 294px;
 }
 
     .card-item .card-item-image-wrapper {
@@ -24,6 +25,9 @@
         line-height: 100%;
         letter-spacing: 0;
         margin-top: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .card-item .card-item-rating {
@@ -77,9 +81,13 @@
             }
 
 @media (max-width: 640px) {
+    .card-item {
+        width: 172px;
+    }
+
     .card-item .card-item-image-wrapper {
-        width: 200px;
-        height: 200px;
+        width: 172px;
+        height: 172px;
     }
 
     .card-item .card-item-title {
