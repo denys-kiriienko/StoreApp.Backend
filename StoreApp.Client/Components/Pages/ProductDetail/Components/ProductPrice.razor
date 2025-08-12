@@ -1,8 +1,8 @@
 <div class="product-price">
-    <div class="current-price">@CurrentPrice.ToString("C")</div>
+    <div class="current-price">$ @CurrentPrice</div>
     @if (OldPrice is not null)
     {
-        <div class="old-price">@OldPrice.Value.ToString("C")</div>
+        <div class="old-price">$ @OldPrice.Value</div>
     }
     @if (Discount is not null)
     {
