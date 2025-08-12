@@ -1,4 +1,5 @@
 using StoreApp.Client.Models;
+using StoreApp.Client;
 using System.Net.Http.Json;
 
 namespace StoreApp.Client.Services;
@@ -73,7 +74,12 @@ public class CartService(
 
         if (cartItems == null || !cartItems.Any())
         {
-            return cartItems ?? [];
+            // Seed with a couple of mock items for development/demo
+            cartItems =
+            [
+                new OrderItemModel { ProductModel = Mocks.Products[0], Quantity = 1 },
+                new OrderItemModel { ProductModel = Mocks.Products[1], Quantity = 2 },
+            ];
         }
 
         await localStorageService.SetItemAsync(CartKey, cartItems);

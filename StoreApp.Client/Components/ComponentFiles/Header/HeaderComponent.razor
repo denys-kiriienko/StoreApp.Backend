@@ -32,7 +32,7 @@
 
         <div class="user-actions-wrapper">
             <div class="user-actions">
-                <div class="cart-icon-wrapper">
+                <div class="cart-icon-wrapper" @onclick="OnCartClick" style="cursor:pointer">
                     <SvgShoppingCartComponent />
 
                     @if (cartItemCount > 0)

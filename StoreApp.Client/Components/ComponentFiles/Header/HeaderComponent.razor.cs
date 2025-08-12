@@ -5,6 +5,8 @@ namespace StoreApp.Client.Components.ComponentFiles.Header;
 
 public partial class HeaderComponent(ICartService cartService) : ComponentBase
 {
+    [Inject] public required NavigationManager NavigationManager { get; set; }
+    
     private int cartItemCount;
 
     protected override async Task OnInitializedAsync()
@@ -17,5 +19,10 @@ public partial class HeaderComponent(ICartService cartService) : ComponentBase
     {
         cartItemCount = count;
         StateHasChanged();
+    }
+
+    private void OnCartClick()
+    {
+        NavigationManager.NavigateTo("/cart");
     }
 }
