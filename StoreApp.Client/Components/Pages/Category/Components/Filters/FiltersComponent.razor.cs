@@ -13,7 +13,7 @@ public partial class FiltersComponent
     private decimal? maxValue = 500;
     private string? searchTerm;
 
-    private async Task OnRangeChanged(ChangeEventArgs _)
+    private async Task ApplyPriceFilters()
     {
         await OnPriceChanged.InvokeAsync((minValue, maxValue));
     }

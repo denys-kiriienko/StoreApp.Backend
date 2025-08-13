@@ -62,11 +62,11 @@
             </div>
         </div>
         <div class="range-slider">
-            <input type="range" min="0" max="500" value="0" id="minRange" @oninput="OnRangeChanged">
-            <input type="range" min="0" max="500" value="500" id="maxRange" @oninput="OnRangeChanged">
+            <input type="range" min="0" max="500" id="minRange" @bind="minValue" @bind:event="oninput">
+            <input type="range" min="0" max="500" id="maxRange" @bind="maxValue" @bind:event="oninput">
             <div class="range-track" id="rangeTrack"></div>
         </div>
-        <div class="values" id="values">${minValue} - ${maxValue}</div>
+        <div class="values" id="values">$@minValue - $@maxValue</div>
     </div>
     <div class="separator" />
 
@@ -198,7 +198,8 @@
     <div class="apply-button">
         <BasicButtonComponent Text="Apply Filter"
                               Height="48px"
-                              FontSize="14px"/>
+                              FontSize="14px"
+                              OnClick="ApplyPriceFilters" />
     </div>
 </div>
 
