@@ -50,6 +50,7 @@
     display: grid;
     grid-template-columns: 96px 1fr auto;
     gap: 12px;
+    align-items: stretch;
 }
 
     .cart-item .image img {
@@ -62,8 +63,30 @@
     .cart-item .details {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: 6px;
+        min-width: 0;
     }
+
+        .cart-item .details .top-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .cart-item .details .top-row .title {
+                flex: 1 1 auto;
+            }
+
+            .cart-item .details .top-row .remove {
+                flex: 0 0 auto;
+            }
+
+        .cart-item .details .bottom-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
         .cart-item .details .title,
         .cart-item .details .meta {
@@ -78,6 +101,12 @@
             font-size: 24px;
         }
 
+        .cart-item .details .title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
     .cart-item .actions {
         display: flex;
         justify-content: space-between;
@@ -85,11 +114,11 @@
         align-items: flex-end;
     }
 
-        .cart-item .actions .remove {
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
+    .cart-item .remove {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
 
     .cart-item .quantity {
         display: flex;
@@ -179,12 +208,34 @@
 }
 
 @media (max-width: 640px) {
+    .cart-title {
+        font-size: 32px;
+    }
+
     .cart-page {
         width: 100%;
         padding: 0 16px;
+        gap: 0;
     }
 
     .content {
         grid-template-columns: 1fr;
+    }
+
+    .items {
+        padding: 14px;
+        gap: 16px;
+        margin-bottom: 0;
+    }
+
+    .summary-title {
+        font-size: 20px;
+    }
+
+    .summary .row,
+    .summary .total,
+    .summary .row .row-title,
+    .summary .total .row-title {
+        font-size: 16px;
     }
 }

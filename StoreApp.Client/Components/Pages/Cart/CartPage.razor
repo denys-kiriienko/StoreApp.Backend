@@ -36,17 +36,19 @@ else
                                     <img src="@item.ProductModel.ImageSrc" alt="@item.ProductModel.Title" />
                                 </div>
                                 <div class="details">
-                                    <div class="title">@item.ProductModel.Title</div>
-                                    <div class="meta">$@item.ProductModel.CurrentPrice</div>
-                                </div>
-                                <div class="actions">
-                                    <button class="remove" @onclick="() => RemoveItem(item)">
-                                        <SvgTrashComponent />
-                                    </button>
-                                    <div class="quantity">
-                                        <button class="qty-btn" @onclick="() => Decrease(item)">−</button>
-                                        <div class="qty">@item.Quantity</div>
-                                        <button class="qty-btn" @onclick="() => Increase(item)">＋</button>
+                                    <div class="top-row">
+                                        <div class="title">@item.ProductModel.Title</div>
+                                        <button class="remove" @onclick="() => RemoveItem(item)">
+                                            <SvgTrashComponent />
+                                        </button>
+                                    </div>
+                                    <div class="bottom-row">
+                                        <div class="meta">$@item.ProductModel.CurrentPrice</div>
+                                        <div class="quantity">
+                                            <button class="qty-btn" @onclick="() => Decrease(item)">−</button>
+                                            <div class="qty">@item.Quantity</div>
+                                            <button class="qty-btn" @onclick="() => Increase(item)">＋</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
