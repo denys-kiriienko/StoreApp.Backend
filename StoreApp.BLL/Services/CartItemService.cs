@@ -9,11 +9,16 @@ namespace StoreApp.BLL.Services;
 public class CartItemService : ICartItemService
 {
     private readonly ICartItemRepository _cartItemRepository;
+    private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
 
-    public CartItemService(ICartItemRepository cartItemRepository, IMapper mapper)
+    public CartItemService(
+        ICartItemRepository cartItemRepository,
+        IProductRepository productRepository,
+        IMapper mapper)
     {
         _cartItemRepository = cartItemRepository;
+        _productRepository = productRepository;
         _mapper = mapper;
     }
 
@@ -26,6 +31,11 @@ public class CartItemService : ICartItemService
 
     public async Task<bool> AddToCartAsync(int userId, int productId, int quantity)
     {
+        if (quantity <= 0) return false;
+
+        var productExists = await _productRepository.ProductExistsAsync(productId);
+        if (!productExists) return false;
+
         var existingItem = await _cartItemRepository.GetCartItemAsync(userId, productId);
 
         if (existingItem is not null)

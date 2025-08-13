@@ -8,9 +8,9 @@ namespace StoreApp.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ReviewsController(IReviewService service) : ControllerBase
+public class ReviewController(IReviewService service) : ControllerBase
 {
-    [HttpGet("{productId}")]
+    [HttpGet("by-product/{productId}")]
     public async Task<IActionResult> GetByProductIdAsync(int productId)
     {
         return Ok(await service.GetReviewsByProductIdAsync(productId));
@@ -23,7 +23,7 @@ public class ReviewsController(IReviewService service) : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("{productId}/user")]
+    [HttpGet("by-product/{productId}/user")]
     public async Task<IActionResult> IsReviewedByUser(int productId)
     {
         return Ok(await service.UserHasReviewedProductAsync(User.GetUserId(), productId));

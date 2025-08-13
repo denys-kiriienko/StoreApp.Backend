@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using StoreApp.DAL.Entities;
 using StoreApp.Shared.Dtos;
+using StoreApp.Shared.Dtos.Review;
 using StoreApp.Shared.Models;
 
 namespace StoreApp.BLL.MapperProvider;
@@ -36,5 +37,11 @@ public class MappingProfile : Profile
         CreateMap<ReviewEntity, ReviewModel>()
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Email))
             .ReverseMap();
+
+        CreateMap<CreateReview, ReviewEntity>()
+            .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.ProductId))
+            .ForMember(dest => dest.Comment, opt => opt.MapFrom(src => src.Comment))
+            .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => src.Rating))
+            .ForMember(dest => dest.UserId, opt => opt.Ignore());
     }
 }

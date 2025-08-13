@@ -7,13 +7,13 @@ public record CreateReview
 {
     [JsonPropertyName("productId")]
     [Required]
-    public int ProductId;
+    public int ProductId { get; init; }
 
     [JsonPropertyName("comment")]
-    public string? Comment;
+    public string? Comment { get; init; }
 
     [JsonPropertyName("rating")]
     [Required]
     [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5.")]
-    public int Rating;
+    public int Rating { get; init; }
 }

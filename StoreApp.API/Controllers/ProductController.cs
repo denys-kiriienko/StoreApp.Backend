@@ -16,14 +16,12 @@ public class ProductController : ControllerBase
         _productService = productService;
     }
 
-    [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(await _productService.GetAllProductsAsync());
     }
 
-    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync(int id)
     {
