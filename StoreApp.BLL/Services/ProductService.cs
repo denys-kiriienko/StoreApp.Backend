@@ -25,6 +25,12 @@ public class ProductService : IProductService
         return _mapper.Map<IEnumerable<ProductModel>>(productEntities);
     }
 
+    public async Task<IEnumerable<ProductModel>> GetFilteredProductsAsync(decimal? minPrice, decimal? maxPrice, string? searchTerm)
+    {
+        var productEntities = await _productRepository.GetFilteredProductsAsync(minPrice, maxPrice, searchTerm);
+        return _mapper.Map<IEnumerable<ProductModel>>(productEntities);
+    }
+
     public async Task<ProductModel?> GetProductByIdAsync(int id)
     {
         var productEntity = await _productRepository.GetProductByIdAsync(id);

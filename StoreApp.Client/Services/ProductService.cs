@@ -1,5 +1,4 @@
 using System.Net.Http.Json;
-using System.Linq;
 using StoreApp.Client.Models;
 
 namespace StoreApp.Client.Services;
@@ -15,6 +14,19 @@ public class ProductService(HttpClient httpClient) : IProductService
     public async Task<List<ProductModel>> GetAlsoLikeProductsAsync(int productId)
     {
         var apiProducts = await httpClient.GetFromJsonAsync<List<ApiProduct>>("product") ?? new();
+        return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
+    }
+
+    public async Task<List<ProductModel>> GetAllProductsAsync()
+    {
+        var apiProducts = await httpClient.GetFromJsonAsync<List<ApiProduct>>("product") ?? new();
+        return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
+    }
+
+    public async Task<List<ProductModel>> GetAllProductsAsyncWithFiltersAsync(decimal? minPrice, decimal? maxPrice, string? search)
+    {
+        var url = $"product?minPrice={(minPrice?.ToString() ?? string.Empty)}&maxPrice={(maxPrice?.ToString() ?? string.Empty)}&search={Uri.EscapeDataString(search ?? string.Empty)}";
+        var apiProducts = await httpClient.GetFromJsonAsync<List<ApiProduct>>(url) ?? new();
         return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
     }
 

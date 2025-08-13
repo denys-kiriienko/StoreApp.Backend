@@ -25,6 +25,33 @@ public class ProductRepository : IProductRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<ProductEntity>> GetFilteredProductsAsync(decimal? minPrice, decimal? maxPrice, string? searchTerm)
+    {
+        var query = _appDbContext.Products
+            .Include(p => p.Reviews)
+            .Include(p => p.Variants)
+                .ThenInclude(v => v.Color)
+            .Include(p => p.Variants)
+                .ThenInclude(v => v.Size)
+            .AsQueryable();
+
+        if (minPrice.HasValue)
+            query = query.Where(p => p.Price >= minPrice.Value);
+
+        if (maxPrice.HasValue)
+            query = query.Where(p => p.Price <= maxPrice.Value);
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            var term = searchTerm.Trim();
+            query = query.Where(
+                p => p.Name.Contains(term) || 
+                (p.Description != null && p.Description.Contains(term)));
+        }
+
+        return await query.ToListAsync();
+    }
+
     public async Task<ProductEntity?> GetProductByIdAsync(int id)
     {
         return await _appDbContext.Products

@@ -7,7 +7,7 @@
         <div class="head-text">@(!string.IsNullOrWhiteSpace(HeaderText) ? HeaderText : "Casual")</div>
         <div class="selector">
             <span class="selector-text">
-                Showing 1-10 of Products   Sort by:
+                Showing @ProductList.Count Products   Sort by:
             </span>
             @* TODO: implement selector *@
 
@@ -19,7 +19,8 @@
     <div class="product-list">
         @foreach (var product in ProductList)
         {
-            <CardItemComponent ImageSrc="@product.ImageSrc"
+            <CardItemComponent Id="@product.Id"
+                               ImageSrc="@product.ImageSrc"
                                Title="@product.Title"
                                Rating="@product.Rating"
                                RatingText="@($"{product.Rating}/5")"

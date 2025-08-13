@@ -62,11 +62,11 @@
             </div>
         </div>
         <div class="range-slider">
-            <input type="range" min="0" max="500" value="0" id="minRange">
-            <input type="range" min="0" max="500" value="500" id="maxRange">
+            <input type="range" min="0" max="500" value="0" id="minRange" @oninput="OnRangeChanged">
+            <input type="range" min="0" max="500" value="500" id="maxRange" @oninput="OnRangeChanged">
             <div class="range-track" id="rangeTrack"></div>
         </div>
-        <div class="values" id="values">$100 - $500</div>
+        <div class="values" id="values">${minValue} - ${maxValue}</div>
     </div>
     <div class="separator" />
 

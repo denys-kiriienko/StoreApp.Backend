@@ -12,15 +12,25 @@
 <div class="category-page-wrapper">
     <div class="filters-backdrop @( _isFiltersOpen ? "show" : "hide")" @onclick="CloseFilters"></div>
     <div class="filter-wrapper @( _isFiltersOpen ? "show" : "hide")">
-        <FiltersComponent IsMobileOverlay="true" OnClose="CloseFilters" />
+        <FiltersComponent IsMobileOverlay="true"
+                          OnClose="CloseFilters"
+                          OnPriceChanged="OnPriceChanged"
+                          OnSearchChanged="OnSearchChanged" />
     </div>
     <div class="products-wrapper">
-        <ProductListComponent ProductList="Casual"
-                              HeaderText="Casual"
-                              OnToggleFilters="ToggleFilters" />
-        <div class="separator" />
-        <div class="pagination-bar">
-            <PaginationBarComponent TotalPages="10" CurrentPage="1" MaxVisiblePages="4" />
-        </div>
+        @if (_isLoading)
+        {
+            <div class="loading-indicator"><p>Loading...</p></div>
+        }
+        else
+        {
+            <ProductListComponent ProductList="Casual"
+                                  HeaderText="All Products"
+                                  OnToggleFilters="ToggleFilters" />
+            <div class="separator" />
+            <div class="pagination-bar">
+                <PaginationBarComponent TotalPages="1" CurrentPage="1" MaxVisiblePages="4" />
+            </div>
+        }
     </div>
 </div>
