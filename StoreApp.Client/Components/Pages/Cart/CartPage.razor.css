@@ -80,15 +80,14 @@
 
     .cart-item .actions {
         display: flex;
+        justify-content: space-between;
         flex-direction: column;
         align-items: flex-end;
-        gap: 8px;
     }
 
         .cart-item .actions .remove {
             background: none;
             border: none;
-            color: rgba(0,0,0,0.6);
             cursor: pointer;
         }
 
@@ -155,9 +154,9 @@
     }
 
 
-    .summary .discount {
-        color: #E50000;
-    }
+.summary .discount {
+    color: #E50000;
+}
 
 .summary .promo {
     display: flex;
@@ -172,22 +171,11 @@
     }
 
     .summary .promo .apply {
-        padding: 10px 16px;
-        border-radius: 24px;
-        background: #000;
-        color: #fff;
-        border: none;
-        cursor: pointer;
+        display: none;
     }
 
 .summary .checkout {
-    width: 100%;
-    padding: 14px 16px;
-    border-radius: 28px;
-    background: #000;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+    display: none;
 }
 
 @media (max-width: 640px) {

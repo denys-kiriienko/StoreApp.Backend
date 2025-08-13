@@ -10,5 +10,7 @@
             </div>
         </div>
     }
-    <input placeholder="@Placeholder" style="@GetInputStyle()" />
+    <input type="@Type" value="@Value" placeholder="@Placeholder" style="@GetInputStyle()" 
+           @attributes="AdditionalAttributes"
+           @oninput="HandleInput" />
 </div>

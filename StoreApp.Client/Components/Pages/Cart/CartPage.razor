@@ -1,5 +1,8 @@
 @page "/cart"
 
+@using StoreApp.Client.Components.ComponentFiles.Inputs.BasicInput
+@using StoreApp.Client.Components.ComponentFiles.Buttons.BasicButton
+@using StoreApp.Client.Components.ComponentFiles.SvgFiles
 @using StoreApp.Client.Models
 
 
@@ -37,7 +40,9 @@ else
                                     <div class="meta">$@item.ProductModel.CurrentPrice</div>
                                 </div>
                                 <div class="actions">
-                                    <button class="remove" @onclick="() => RemoveItem(item)">Remove</button>
+                                    <button class="remove" @onclick="() => RemoveItem(item)">
+                                        <SvgTrashComponent />
+                                    </button>
                                     <div class="quantity">
                                         <button class="qty-btn" @onclick="() => Decrease(item)">−</button>
                                         <div class="qty">@item.Quantity</div>
@@ -73,11 +78,27 @@ else
                         </div>
 
                         <div class="promo">
-                            <input placeholder="Add promo code" @bind="_promoCode" />
-                            <button class="apply" @onclick="ApplyPromoCode">Apply</button>
+                            <BasicInputComponent Placeholder="Add promo code"
+                                                 BackgroundColor="#F0F0F0"
+                                                 Height="auto"
+                                                 Value="@_promoCode"
+                                                 ValueChanged="@(v => _promoCode = v ?? string.Empty)">
+                                <Icon>
+                                    <SvgLabelComponent />
+                                </Icon>
+                            </BasicInputComponent>
+                            <BasicButtonComponent Text="Apply"
+                                                  Width="auto"
+                                                  Height="auto"
+                                                  FontSize="14px"
+                                                  OnClick="ApplyPromoCode" />
                         </div>
 
-                        <button class="checkout" @onclick="GoToCheckout">Go to Checkout</button>
+                        <BasicButtonComponent Text="Go to Checkout"
+                                              Width="100%"
+                                              Height="auto"
+                                              FontSize="16px"
+                                              OnClick="GoToCheckout" />
                     </div>
                 </div>
             }
