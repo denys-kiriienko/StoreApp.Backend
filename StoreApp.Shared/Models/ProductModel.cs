@@ -21,4 +21,6 @@ public class ProductModel
     public string? ImageUrl { get; set; }
     
     public List<ProductVariantModel> Variants { get; set; } = [];
+
+    public double Rating { get; set; }
 }

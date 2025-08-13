@@ -52,7 +52,7 @@ public class ProductService(HttpClient httpClient) : IProductService
             Colors = colors,
             Sizes = sizes,
             UnitsInStock = unitsInStock,
-            Rating = 0
+            Rating = apiProduct.Rating
         };
     }
 
@@ -63,6 +63,7 @@ public class ProductService(HttpClient httpClient) : IProductService
         public string? Description { get; set; }
         public decimal Price { get; set; }
         public string? ImageUrl { get; set; }
+        public double Rating { get; set; }
         public List<ApiProductVariant> Variants { get; set; } = new();
     }
 

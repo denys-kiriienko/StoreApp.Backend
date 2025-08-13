@@ -16,7 +16,13 @@ public class ProductRepository : IProductRepository
 
     public async Task<IEnumerable<ProductEntity>> GetAllProductsAsync()
     {
-        return await _appDbContext.Products.ToListAsync();
+        return await _appDbContext.Products
+            .Include(p => p.Reviews)
+            .Include(p => p.Variants)
+                .ThenInclude(v => v.Color)
+            .Include(p => p.Variants)
+                .ThenInclude(v => v.Size)
+            .ToListAsync();
     }
 
     public async Task<ProductEntity?> GetProductByIdAsync(int id)

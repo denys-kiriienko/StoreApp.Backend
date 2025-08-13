@@ -24,7 +24,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.SizeName, opt => opt.MapFrom(src => src.Size.Name));
 
         CreateMap<ProductEntity, ProductModel>()
-            .ForMember(p => p.Variants, opt => opt.MapFrom(src => src.Variants));
+            .ForMember(p => p.Variants, opt => opt.MapFrom(src => src.Variants))
+            .ForMember(p => p.Rating, opt => opt.MapFrom(src => src.Reviews.Any() ? src.Reviews.Average(r => r.Rating) : 0));
         
         CreateMap<ProductModel, ProductEntity>()
             .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.ImageUrl))
