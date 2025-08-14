@@ -25,4 +25,9 @@ public partial class HeaderComponent(ICartService cartService) : ComponentBase
     {
         NavigationManager.NavigateTo("/cart");
     }
+
+    private void NavigateToAddProduct()
+    {
+        NavigationManager.NavigateTo("/add-product");
+    }
 }

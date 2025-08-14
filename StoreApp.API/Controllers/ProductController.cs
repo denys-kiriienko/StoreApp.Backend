@@ -31,7 +31,7 @@ public class ProductController : ControllerBase
             : BadRequest();
     }
 
-    [Authorize]
+    //[Authorize] TODO: set authorize in future
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromBody] ProductModel model)
     {
