@@ -2,14 +2,11 @@ using Microsoft.AspNetCore.Components;
 
 namespace StoreApp.Client.Components.ComponentFiles.Counter;
 
-public partial class Counter : ComponentBase
+public partial class CounterComponent : ComponentBase
 {
     [Parameter] public int Min { get; set; } = 1;
-
     [Parameter] public int Max { get; set; } = 10;
-    
     [Parameter] public int Value { get; set; } = 1;
-
     [Parameter] public EventCallback<int> ValueChanged { get; set; }
     
     private void Increment()

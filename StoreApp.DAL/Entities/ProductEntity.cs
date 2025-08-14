@@ -8,6 +8,7 @@ public class ProductEntity
     public required decimal Price { get; set; }
     public string? ImageUrl { get; set; }
     public decimal? Discount { get; set; }
+    public int UnitsInStock { get; set; }
 
     public ICollection<CartItemEntity> CartItems { get; set; } = new List<CartItemEntity>();
     

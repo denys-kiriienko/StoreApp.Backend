@@ -26,4 +26,6 @@ public class ProductModel
     public List<ProductVariantModel> Variants { get; set; } = [];
 
     public double Rating { get; set; }
+    
+    public int UnitsInStock { get; set; }
 }

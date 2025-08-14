@@ -5,7 +5,7 @@
 <div class="add-product-page-wrapper">
 	<h2>Add Product (stub)</h2>
 
-    <EditForm Model="product" OnValidSubmit="HandleSubmit">
+	<EditForm Model="product" OnValidSubmit="HandleSubmit">
 		<DataAnnotationsValidator />
 		<ValidationSummary />
 
@@ -31,6 +31,11 @@
 			</div>
 
 			<div class="form-field">
+				<label>Units In Stock</label>
+				<InputNumber class="form-control" @bind-Value="product.UnitsInStock" />
+			</div>
+
+			<div class="form-field">
 				<label>Image</label>
 				<InputFile OnChange="OnImageSelected" />
 				@if (!string.IsNullOrWhiteSpace(imagePreviewDataUrl))
@@ -39,17 +44,17 @@
 				}
 			</div>
 
-            <div class="form-actions">
-                <button type="submit" disabled="@isSubmitting">@((isSubmitting ? "Saving..." : "Save"))</button>
-                @if (!string.IsNullOrWhiteSpace(errorMessage))
-                {
-                    <span style="color:red; margin-left:8px;">@errorMessage</span>
-                }
-                @if (isSuccess)
-                {
-                    <span style="color:green; margin-left:8px;">Saved</span>
-                }
-            </div>
+			<div class="form-actions">
+				<button type="submit" disabled="@isSubmitting">@((isSubmitting ? "Saving..." : "Save"))</button>
+				@if (!string.IsNullOrWhiteSpace(errorMessage))
+				{
+					<span style="color:red; margin-left:8px;">@errorMessage</span>
+				}
+				@if (isSuccess)
+				{
+					<span style="color:green; margin-left:8px;">Saved</span>
+				}
+			</div>
 		</div>
 	</EditForm>
 
@@ -60,6 +65,7 @@
 			<div><strong>Name:</strong> @lastSavedProduct.Name</div>
 			<div><strong>Price:</strong> @lastSavedProduct.Price</div>
 			<div><strong>Description:</strong> @lastSavedProduct.Description</div>
+			<div><strong>Units In Stock:</strong> @lastSavedProduct.UnitsInStock</div>
 			@if (!string.IsNullOrWhiteSpace(lastSavedImageDataUrl))
 			{
 				<img src="@lastSavedImageDataUrl" alt="Saved Preview" style="max-width: 240px; display:block; margin-top: 8px;" />

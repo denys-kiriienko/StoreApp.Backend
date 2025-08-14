@@ -18,7 +18,7 @@ public class CartService(
             throw new ArgumentNullException(nameof(orderItem));
         }
 
-        var cartItems = await ChangeCartItemQuantity(orderItem.ProductModel.Id, orderItem.Quantity);
+        var cartItems = (await GetCartItemsAsync()).ToList();
         var existingItem = cartItems.FirstOrDefault(item => item.ProductModel.Id == orderItem.ProductModel.Id);
 
         if (existingItem is null)
@@ -27,11 +27,16 @@ public class CartService(
             await httpClient.PostAsync(
                 $"cartItems?productId={orderItem.ProductModel.Id}&quantity={orderItem.Quantity}",
                 null);
-            
-            OnCartItemCountChanged?.Invoke(cartItems.Count);
+        }
+        else
+        {
+            // Increment existing item quantity
+            existingItem.Quantity += orderItem.Quantity;
+            await httpClient.PutAsync($"cartItems?productId={orderItem.ProductModel.Id}&quantity={existingItem.Quantity}", null);
         }
 
         await localStorageService.SetItemAsync(CartKey, cartItems);
+        OnCartItemCountChanged?.Invoke(cartItems.Count);
     }
 
     public async Task RemoveFromCartAsync(int productId)
@@ -146,16 +151,20 @@ public class CartService(
             .Distinct()
             .ToList();
 
-        var unitsInStock = apiProduct.Variants.Sum(v => v.UnitsInStock);
+        var unitsInStock = apiProduct.UnitsInStock > 0 ? apiProduct.UnitsInStock : apiProduct.Variants.Sum(v => v.UnitsInStock);
+
+        var basePrice = apiProduct.Price;
+        var discount = apiProduct.Discount ?? 0m;
+        var discountedPrice = basePrice * (1 - discount);
 
         return new ProductModel
         {
             Id = apiProduct.Id,
             Title = apiProduct.Name,
             Description = apiProduct.Description ?? string.Empty,
-            CurrentPrice = (double)apiProduct.Price,
-            OldPrice = null,
-            Discount = null,
+            CurrentPrice = (double)discountedPrice,
+            OldPrice = discount > 0 ? (double)basePrice : null,
+            Discount = discount > 0 ? (double)discount : null,
             ImageSrc = imageSrc,
             Images = string.IsNullOrWhiteSpace(imageSrc) ? new List<string>() : new List<string> { imageSrc },
             Colors = colors,
@@ -180,6 +189,8 @@ public class CartService(
         public string? Description { get; set; }
         public decimal Price { get; set; }
         public string? ImageUrl { get; set; }
+        public decimal? Discount { get; set; }
+        public int UnitsInStock { get; set; }
         public List<ApiProductVariant> Variants { get; set; } = new();
     }
 

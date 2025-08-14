@@ -49,7 +49,9 @@ public class ProductService(HttpClient httpClient) : IProductService
             .Distinct()
             .ToList();
 
-        var unitsInStock = apiProduct.Variants.Sum(v => v.UnitsInStock);
+        var unitsInStock = apiProduct.UnitsInStock > 0 
+                            ? apiProduct.UnitsInStock 
+                            : apiProduct.Variants.Sum(v => v.UnitsInStock);
 
         var basePrice = apiProduct.Price;
         var discount = apiProduct.Discount ?? 0m;
@@ -81,6 +83,7 @@ public class ProductService(HttpClient httpClient) : IProductService
         public string? ImageUrl { get; set; }
         public decimal? Discount { get; set; }
         public double Rating { get; set; }
+        public int UnitsInStock { get; set; }
         public List<ApiProductVariant> Variants { get; set; } = new();
     }
 

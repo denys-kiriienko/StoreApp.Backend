@@ -10,6 +10,7 @@ public partial class AddProductPage : ComponentBase
 {
     [Inject] public required HttpClient HttpClient { get; set; }
     [Inject] public required NavigationManager NavigationManager { get; set; }
+	
 	private ProductFormModel product = new();
 	private string? imagePreviewDataUrl;
 	private byte[]? imageBytes;
@@ -50,6 +51,7 @@ public partial class AddProductPage : ComponentBase
 				Description = product.Description,
 				Price = product.Price,
 				Discount = product.Discount,
+				UnitsInStock = product.UnitsInStock,
 				ImageData = imageBytes
 			};
 
@@ -69,6 +71,7 @@ public partial class AddProductPage : ComponentBase
 					Name = product.Name,
 					Description = product.Description,
 					Price = product.Price,
+					UnitsInStock = product.UnitsInStock,
 				};
 				lastSavedImageDataUrl = imagePreviewDataUrl;
 			}
@@ -101,6 +104,9 @@ public partial class AddProductPage : ComponentBase
 
 		[Range(0, 1)]
 		public decimal? Discount { get; set; }
+
+		[Range(0, int.MaxValue)]
+		public int UnitsInStock { get; set; } = 1;
 	}
 
 	private sealed class ApiProduct
@@ -109,6 +115,7 @@ public partial class AddProductPage : ComponentBase
 		public string? Description { get; set; }
 		public decimal Price { get; set; }
 		public decimal? Discount { get; set; }
+		public int UnitsInStock { get; set; }
 		public byte[]? ImageData { get; set; }
 	}
 }

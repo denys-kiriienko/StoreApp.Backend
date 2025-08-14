@@ -61,7 +61,7 @@ public class ProductService : IProductService
         existingProduct.Description = product.Description;
         existingProduct.Price = product.Price;
         existingProduct.Discount = product.Discount;
-        existingProduct.Price = product.Price;
+        existingProduct.UnitsInStock = product.UnitsInStock;
 
         if (product.ImageData?.Length > 0)
         {
