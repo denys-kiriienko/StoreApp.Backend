@@ -45,6 +45,16 @@ public partial class ProductDetailPage()
             return;
         }
 
+        var cartItems = await CartService.GetCartItemsAsync();
+        var existingItem = cartItems.FirstOrDefault(item => item.ProductModel.Id == _product!.Id);
+        var currentInCart = existingItem?.Quantity ?? 0;
+        var availableStock = _product!.UnitsInStock;
+
+        if (currentInCart + quantity > availableStock)
+        {
+            return;
+        }
+
         var cartItem = new OrderItemModel
         {
             Quantity = quantity,

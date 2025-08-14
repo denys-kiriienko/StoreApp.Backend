@@ -52,6 +52,12 @@ public partial class CartPage : ComponentBase
     private async Task Increase(OrderItemModel item)
     {
         var newQty = item.Quantity + 1;
+        
+        if (newQty > item.ProductModel.UnitsInStock)
+        {
+            return;
+        }
+
         await CartService.ChangeCartItemQuantityAsync(item.ProductModel.Id, newQty);
         item.Quantity = newQty;
         await RecalculateAsync();
@@ -73,7 +79,6 @@ public partial class CartPage : ComponentBase
 
     private void GoToCheckout()
     {
-        // Placeholder navigation
         NavigationManager.NavigateTo("/checkout", forceLoad: false);
     }
 }
