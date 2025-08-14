@@ -26,6 +26,11 @@
 			</div>
 
 			<div class="form-field">
+				<label>Discount (0-1)</label>
+				<InputNumber class="form-control" @bind-Value="product.Discount" />
+			</div>
+
+			<div class="form-field">
 				<label>Image</label>
 				<InputFile OnChange="OnImageSelected" />
 				@if (!string.IsNullOrWhiteSpace(imagePreviewDataUrl))

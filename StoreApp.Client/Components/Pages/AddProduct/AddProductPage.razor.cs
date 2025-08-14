@@ -49,6 +49,7 @@ public partial class AddProductPage : ComponentBase
 				Name = product.Name,
 				Description = product.Description,
 				Price = product.Price,
+				Discount = product.Discount,
 				ImageData = imageBytes
 			};
 
@@ -97,6 +98,9 @@ public partial class AddProductPage : ComponentBase
 
 		[Range(0.01, double.MaxValue)]
 		public decimal Price { get; set; }
+
+		[Range(0, 1)]
+		public decimal? Discount { get; set; }
 	}
 
 	private sealed class ApiProduct
@@ -104,6 +108,7 @@ public partial class AddProductPage : ComponentBase
 		public string Name { get; set; } = string.Empty;
 		public string? Description { get; set; }
 		public decimal Price { get; set; }
+		public decimal? Discount { get; set; }
 		public byte[]? ImageData { get; set; }
 	}
 }

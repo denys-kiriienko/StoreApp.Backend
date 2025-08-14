@@ -36,6 +36,10 @@ public class AppDbContext : DbContext
             .Property(p => p.Price)
             .HasColumnType("decimal(18,2)");
         
+        modelBuilder.Entity<ProductEntity>()
+            .Property(p => p.Discount)
+            .HasColumnType("decimal(5,4)");
+        
         modelBuilder.Entity<ReviewEntity>()
             .HasOne(r => r.User)
             .WithMany(u => u.Reviews)

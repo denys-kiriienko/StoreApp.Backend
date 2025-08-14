@@ -7,6 +7,7 @@ public class ProductEntity
     public string? Description { get; set; }
     public required decimal Price { get; set; }
     public string? ImageUrl { get; set; }
+    public decimal? Discount { get; set; }
 
     public ICollection<CartItemEntity> CartItems { get; set; } = new List<CartItemEntity>();
     

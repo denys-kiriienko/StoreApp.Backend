@@ -51,14 +51,18 @@ public class ProductService(HttpClient httpClient) : IProductService
 
         var unitsInStock = apiProduct.Variants.Sum(v => v.UnitsInStock);
 
+        var basePrice = apiProduct.Price;
+        var discount = apiProduct.Discount ?? 0m;
+        var discountedPrice = basePrice * (1 - discount);
+
         return new ProductModel
         {
             Id = apiProduct.Id,
             Title = apiProduct.Name,
             Description = apiProduct.Description ?? string.Empty,
-            CurrentPrice = (double)apiProduct.Price,
-            OldPrice = null,
-            Discount = null,
+            CurrentPrice = (double)discountedPrice,
+            OldPrice = discount > 0 ? (double)basePrice : null,
+            Discount = discount > 0 ? (double)discount : null,
             ImageSrc = imageSrc,
             Images = string.IsNullOrWhiteSpace(imageSrc) ? new List<string>() : new List<string> { imageSrc },
             Colors = colors,
@@ -75,6 +79,7 @@ public class ProductService(HttpClient httpClient) : IProductService
         public string? Description { get; set; }
         public decimal Price { get; set; }
         public string? ImageUrl { get; set; }
+        public decimal? Discount { get; set; }
         public double Rating { get; set; }
         public List<ApiProductVariant> Variants { get; set; } = new();
     }

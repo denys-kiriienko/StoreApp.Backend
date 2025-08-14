@@ -20,6 +20,9 @@ public class ProductModel
 
     public string? ImageUrl { get; set; }
     
+    [Range(0, 1, ErrorMessage = "Discount must be between 0 and 1 (e.g., 0.15 for 15%)")]
+    public decimal? Discount { get; set; }
+    
     public List<ProductVariantModel> Variants { get; set; } = [];
 
     public double Rating { get; set; }
