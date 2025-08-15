@@ -88,6 +88,41 @@
                 flex: 0 0 auto;
             }
 
+        .cart-item .details .product-options {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin: 8px 0;
+        }
+
+        .cart-item .details .option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Satoshi Regular', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .cart-item .details .option-label {
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        .cart-item .details .color-preview {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item .details .option-value {
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
         .cart-item .details .bottom-row {
             display: flex;
             align-items: center;

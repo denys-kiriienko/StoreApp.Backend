@@ -145,6 +145,14 @@ public class Program
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.MapControllers();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            SeedData.SeedColorsAndSizes(context);
+            SeedData.SeedProductVariants(context);
+        }
+
         app.Run();
     }
 }

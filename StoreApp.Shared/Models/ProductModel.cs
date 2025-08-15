@@ -28,4 +28,7 @@ public class ProductModel
     public double Rating { get; set; }
     
     public int UnitsInStock { get; set; }
+
+    public List<ColorModel> AvailableColors { get; set; } = [];
+    public List<SizeModel> AvailableSizes { get; set; } = [];
 }

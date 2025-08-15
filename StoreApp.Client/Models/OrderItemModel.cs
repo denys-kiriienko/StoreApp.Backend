@@ -8,4 +8,7 @@ public class OrderItemModel
     public ProductModel ProductModel { get; set; }
 
     public required int Quantity { get; set; }
+
+    public ColorModel? SelectedColor { get; set; }
+    public SizeModel? SelectedSize { get; set; }
 }

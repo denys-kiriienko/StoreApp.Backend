@@ -46,6 +46,23 @@ else
                                             <SvgTrashComponent />
                                         </button>
                                     </div>
+                                    <div class="product-options">
+                                        @if (item.SelectedColor != null)
+                                        {
+                                            <div class="option">
+                                                <span class="option-label">Color:</span>
+                                                <div class="color-preview" style="background-color: @item.SelectedColor.HexCode;" title="@item.SelectedColor.Name"></div>
+                                                <span class="option-value">@item.SelectedColor.Name</span>
+                                            </div>
+                                        }
+                                        @if (item.SelectedSize != null)
+                                        {
+                                            <div class="option">
+                                                <span class="option-label">Size:</span>
+                                                <span class="option-value">@item.SelectedSize.Name</span>
+                                            </div>
+                                        }
+                                    </div>
                                     <div class="bottom-row">
                                         <div class="meta">$@item.ProductModel.CurrentPrice</div>
                                         <div class="quantity">

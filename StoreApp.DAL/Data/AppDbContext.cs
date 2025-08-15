@@ -11,8 +11,10 @@ public class AppDbContext : DbContext
     public DbSet<UserEntity> Users { get; set; }
     public DbSet<ProductEntity> Products { get; set; }
     public DbSet<CartItemEntity> CartItems { get; set; }
-    
     public DbSet<ReviewEntity> Reviews { get; set; }
+    public DbSet<ColorEntity> Colors { get; set; }
+    public DbSet<SizeEntity> Sizes { get; set; }
+    public DbSet<ProductVariant> ProductVariants { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) 
     {

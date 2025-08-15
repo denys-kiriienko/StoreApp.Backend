@@ -19,7 +19,11 @@ public class CartService(
         }
 
         var cartItems = (await GetCartItemsAsync()).ToList();
-        var existingItem = cartItems.FirstOrDefault(item => item.ProductModel.Id == orderItem.ProductModel.Id);
+        
+        var existingItem = cartItems.FirstOrDefault(item => 
+            item.ProductModel.Id == orderItem.ProductModel.Id &&
+            AreColorsEqual(item.SelectedColor, orderItem.SelectedColor) &&
+            AreSizesEqual(item.SelectedSize, orderItem.SelectedSize));
 
         if (existingItem is null)
         {
@@ -30,7 +34,6 @@ public class CartService(
         }
         else
         {
-            // Increment existing item quantity
             existingItem.Quantity += orderItem.Quantity;
             await httpClient.PutAsync($"cartItems?productId={orderItem.ProductModel.Id}&quantity={existingItem.Quantity}", null);
         }
@@ -113,72 +116,51 @@ public class CartService(
         if (itemToUpdate is not null)
         {
             itemToUpdate.Quantity = quantity;
-            await localStorageService.SetItemAsync(CartKey, cartItems);
-            OnCartItemCountChanged?.Invoke(cartItems.Count);
             await httpClient.PutAsync($"cartItems?productId={productId}&quantity={quantity}", null);
+            await localStorageService.SetItemAsync(CartKey, cartItems);
         }
 
         return cartItems;
     }
 
-    private OrderItemModel MapToClientCartItem(ApiCartItem apiCartItem)
+    private static OrderItemModel MapToClientCartItem(ApiCartItem apiCartItem)
     {
         return new OrderItemModel
         {
             Id = apiCartItem.Id,
             UserId = apiCartItem.UserId,
-            Quantity = apiCartItem.Quantity,
-            ProductModel = MapToClientProduct(apiCartItem.ProductModel)
+            ProductModel = new ProductModel
+            {
+                Id = apiCartItem.Product.Id,
+                Title = apiCartItem.Product.Name,
+                CurrentPrice = (double)apiCartItem.Product.Price,
+                ImageSrc = apiCartItem.Product.ImageUrl ?? string.Empty,
+                Description = apiCartItem.Product.Description ?? string.Empty,
+                UnitsInStock = apiCartItem.Product.UnitsInStock
+            },
+            Quantity = apiCartItem.Quantity
         };
     }
 
-    private ProductModel MapToClientProduct(ApiProduct apiProduct)
+    private static bool AreColorsEqual(ColorModel? color1, ColorModel? color2)
     {
-        var apiRoot = new Uri(httpClient.BaseAddress!, "../");
-        var imageSrc = string.IsNullOrWhiteSpace(apiProduct.ImageUrl)
-            ? string.Empty
-            : new Uri(apiRoot, apiProduct.ImageUrl.TrimStart('/')).ToString();
+        if (color1 == null && color2 == null) return true;
+        if (color1 == null || color2 == null) return false;
+        return color1.Id == color2.Id;
+    }
 
-        var colors = apiProduct.Variants
-            .Select(v => v.ColorHex)
-            .Where(h => !string.IsNullOrWhiteSpace(h))
-            .Distinct()
-            .ToList();
-
-        var sizes = apiProduct.Variants
-            .Select(v => v.SizeName)
-            .Where(s => !string.IsNullOrWhiteSpace(s))
-            .Distinct()
-            .ToList();
-
-        var unitsInStock = apiProduct.UnitsInStock > 0 ? apiProduct.UnitsInStock : apiProduct.Variants.Sum(v => v.UnitsInStock);
-
-        var basePrice = apiProduct.Price;
-        var discount = apiProduct.Discount ?? 0m;
-        var discountedPrice = basePrice * (1 - discount);
-
-        return new ProductModel
-        {
-            Id = apiProduct.Id,
-            Title = apiProduct.Name,
-            Description = apiProduct.Description ?? string.Empty,
-            CurrentPrice = (double)discountedPrice,
-            OldPrice = discount > 0 ? (double)basePrice : null,
-            Discount = discount > 0 ? (double)discount : null,
-            ImageSrc = imageSrc,
-            Images = string.IsNullOrWhiteSpace(imageSrc) ? new List<string>() : new List<string> { imageSrc },
-            Colors = colors,
-            Sizes = sizes,
-            UnitsInStock = unitsInStock,
-            Rating = 0
-        };
+    private static bool AreSizesEqual(SizeModel? size1, SizeModel? size2)
+    {
+        if (size1 == null && size2 == null) return true;
+        if (size1 == null || size2 == null) return false;
+        return size1.Id == size2.Id;
     }
 
     private sealed class ApiCartItem
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public ApiProduct ProductModel { get; set; }
+        public ApiProduct Product { get; set; } = new();
         public int Quantity { get; set; }
     }
 
@@ -189,18 +171,6 @@ public class CartService(
         public string? Description { get; set; }
         public decimal Price { get; set; }
         public string? ImageUrl { get; set; }
-        public decimal? Discount { get; set; }
         public int UnitsInStock { get; set; }
-        public List<ApiProductVariant> Variants { get; set; } = new();
-    }
-
-    private sealed class ApiProductVariant
-    {
-        public int Id { get; set; }
-        public string ColorName { get; set; } = string.Empty;
-        public string ColorHex { get; set; } = string.Empty;
-        public string SizeName { get; set; } = string.Empty;
-        public int UnitsInStock { get; set; }
-        public string SKU { get; set; } = string.Empty;
     }
 }

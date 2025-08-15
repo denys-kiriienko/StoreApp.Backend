@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using StoreApp.Client.Models;
 using StoreApp.Client.Services;
 using StoreApp.Client.Components.ComponentFiles.Breadcrumb;
+using StoreApp.Client.Components.Pages.ProductDetail.Components;
 
 namespace StoreApp.Client.Components.Pages.ProductDetail;
 
@@ -48,30 +49,32 @@ public partial class ProductDetailPage()
         _isLoading = false;
     }
 
-    private async Task OnAddToCartClicked(int quantity)
+    private async Task OnAddToCartClicked(ProductSelection selection)
     {
-        if (quantity <= 0)
+        if (selection.Quantity <= 0)
         {
             return;
         }
 
         var cartItems = await CartService.GetCartItemsAsync();
-        var existingItem = cartItems.FirstOrDefault(item => item.ProductModel.Id == _product!.Id);
+        var existingItem = cartItems.FirstOrDefault(item => item.ProductModel.Id == selection.ProductId);
         var currentInCart = existingItem?.Quantity ?? 0;
         var availableStock = _product!.UnitsInStock;
 
-        if (currentInCart + quantity > availableStock)
+        if (currentInCart + selection.Quantity > availableStock)
         {
             return;
         }
 
-        var cartItem = new OrderItemModel
+        var orderItem = new OrderItemModel
         {
-            Quantity = quantity,
             ProductModel = _product,
+            Quantity = selection.Quantity,
+            SelectedColor = selection.SelectedColor,
+            SelectedSize = selection.SelectedSize
         };
 
-        await CartService.AddToCartAsync(cartItem);
+        await CartService.AddToCartAsync(orderItem);
     }
 
     private async Task OnWriteReviewClicked(ReviewModel review)

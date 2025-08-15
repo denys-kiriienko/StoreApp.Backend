@@ -25,7 +25,9 @@ public class MappingProfile : Profile
 
         CreateMap<ProductEntity, ProductModel>()
             .ForMember(p => p.Variants, opt => opt.MapFrom(src => src.Variants))
-            .ForMember(p => p.Rating, opt => opt.MapFrom(src => src.Reviews.Any() ? src.Reviews.Average(r => r.Rating) : 0));
+            .ForMember(p => p.Rating, opt => opt.MapFrom(src => src.Reviews.Any() ? src.Reviews.Average(r => r.Rating) : 0))
+            .ForMember(p => p.AvailableColors, opt => opt.MapFrom(src => src.Variants.Select(v => v.Color).Distinct()))
+            .ForMember(p => p.AvailableSizes, opt => opt.MapFrom(src => src.Variants.Select(v => v.Size).Distinct()));
         
         CreateMap<ProductModel, ProductEntity>()
             .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.ImageUrl))
@@ -39,10 +41,9 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Email))
             .ReverseMap();
 
-        CreateMap<CreateReview, ReviewEntity>()
-            .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.ProductId))
-            .ForMember(dest => dest.Comment, opt => opt.MapFrom(src => src.Comment))
-            .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => src.Rating))
-            .ForMember(dest => dest.UserId, opt => opt.Ignore());
+        CreateMap<CreateReview, ReviewEntity>();
+
+        CreateMap<ColorEntity, ColorModel>();
+        CreateMap<SizeEntity, SizeModel>();
     }
 }

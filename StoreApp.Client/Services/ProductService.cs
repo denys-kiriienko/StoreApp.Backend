@@ -37,17 +37,22 @@ public class ProductService(HttpClient httpClient) : IProductService
             ? string.Empty
             : new Uri(apiRoot, apiProduct.ImageUrl.TrimStart('/')).ToString();
 
-        var colors = apiProduct.Variants
-            .Select(v => v.ColorHex)
-            .Where(h => !string.IsNullOrWhiteSpace(h))
-            .Distinct()
-            .ToList();
+        var availableColors = apiProduct.AvailableColors?.Select(c => new ColorModel
+        {
+            Id = c.Id,
+            Name = c.Name,
+            HexCode = c.HexCode
+        }).ToList() ?? new List<ColorModel>();
 
-        var sizes = apiProduct.Variants
-            .Select(v => v.SizeName)
-            .Where(s => !string.IsNullOrWhiteSpace(s))
-            .Distinct()
-            .ToList();
+        var availableSizes = apiProduct.AvailableSizes?.Select(s => new SizeModel
+        {
+            Id = s.Id,
+            Name = s.Name,
+            Description = s.Description
+        }).ToList() ?? new List<SizeModel>();
+
+        var colors = availableColors.Select(c => c.HexCode).ToList();
+        var sizes = availableSizes.Select(s => s.Name).ToList();
 
         var unitsInStock = apiProduct.UnitsInStock > 0 
                             ? apiProduct.UnitsInStock 
@@ -67,6 +72,8 @@ public class ProductService(HttpClient httpClient) : IProductService
             Discount = discount > 0 ? (double)discount : null,
             ImageSrc = imageSrc,
             Images = string.IsNullOrWhiteSpace(imageSrc) ? new List<string>() : new List<string> { imageSrc },
+            AvailableColors = availableColors,
+            AvailableSizes = availableSizes,
             Colors = colors,
             Sizes = sizes,
             UnitsInStock = unitsInStock,
@@ -85,6 +92,8 @@ public class ProductService(HttpClient httpClient) : IProductService
         public double Rating { get; set; }
         public int UnitsInStock { get; set; }
         public List<ApiProductVariant> Variants { get; set; } = new();
+        public List<ApiColor>? AvailableColors { get; set; }
+        public List<ApiSize>? AvailableSizes { get; set; }
     }
 
     private sealed class ApiProductVariant
@@ -95,5 +104,19 @@ public class ProductService(HttpClient httpClient) : IProductService
         public string SizeName { get; set; } = string.Empty;
         public int UnitsInStock { get; set; }
         public string SKU { get; set; } = string.Empty;
+    }
+
+    private sealed class ApiColor
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string HexCode { get; set; } = string.Empty;
+    }
+
+    private sealed class ApiSize
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
     }
 }
