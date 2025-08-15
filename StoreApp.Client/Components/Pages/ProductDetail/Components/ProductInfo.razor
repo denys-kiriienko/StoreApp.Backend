@@ -7,7 +7,7 @@
         <h3 class="product-title">@Product.Title.ToUpper()</h3>
         
         <div class="product-rating">
-            <ProductRating Rating="@Product.Rating" RatingText=@($"{Product.Rating}/5")></ProductRating>
+            <ProductRating Rating="@Product.Rating" RatingText=@($"{Product.Rating:0.0}/5")></ProductRating>
         </div>
         
         <div class="product-price">

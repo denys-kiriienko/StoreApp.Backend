@@ -15,6 +15,6 @@
     </div>
     @if(!string.IsNullOrEmpty(RatingText))
     {
-        <div class="rating-text">@RatingText</div>
+        <div class="rating-text">@($"{Rating:0.0}/5")</div>
     }
 </div>

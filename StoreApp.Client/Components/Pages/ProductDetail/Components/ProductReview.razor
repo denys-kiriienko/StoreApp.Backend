@@ -2,7 +2,7 @@
 <div class="review-wrapper">
     <div class="review">
         <div class="review-rating">
-            <ProductRating Rating="@Review.Rating" RatingText="@($"{Review.Rating}/5")"></ProductRating>
+            <ProductRating Rating="@Review.Rating" RatingText="@($"{Review.Rating:0.0}/5")"></ProductRating>
             <div class="svg-dots-wrapper">
                 <SvgDotsComponent />
             </div>

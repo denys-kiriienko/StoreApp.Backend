@@ -81,6 +81,8 @@ public class ProductService(HttpClient httpClient) : IProductService
         var discount = apiProduct.Discount ?? 0m;
         var discountedPrice = basePrice * (1 - discount);
 
+        var roundedRating = Math.Round(apiProduct.Rating, 1, MidpointRounding.AwayFromZero);
+
         return new ProductModel
         {
             Id = apiProduct.Id,
@@ -96,7 +98,7 @@ public class ProductService(HttpClient httpClient) : IProductService
             Colors = colors,
             Sizes = sizes,
             UnitsInStock = unitsInStock,
-            Rating = apiProduct.Rating
+            Rating = roundedRating
         };
     }
 }
