@@ -14,7 +14,7 @@ public class ProductService(HttpClient httpClient) : IProductService
 
     public async Task<List<ProductModel>> GetAlsoLikeProductsAsync(int productId)
     {
-        var apiProducts = await httpClient.GetFromJsonAsync<List<SharedProductModel>>("product") ?? new();
+        var apiProducts = await httpClient.GetFromJsonAsync<List<SharedProductModel>>("product/recommendations/" + productId) ?? new();
         return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
     }
 
@@ -28,6 +28,24 @@ public class ProductService(HttpClient httpClient) : IProductService
     {
         var url = $"product?minPrice={(minPrice?.ToString() ?? string.Empty)}&maxPrice={(maxPrice?.ToString() ?? string.Empty)}&search={Uri.EscapeDataString(search ?? string.Empty)}";
         var apiProducts = await httpClient.GetFromJsonAsync<List<SharedProductModel>>(url) ?? new();
+        return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
+    }
+
+    public async Task<List<ProductModel>> GetNewArrivalsAsync(int take = 8)
+    {
+        var apiProducts = await httpClient.GetFromJsonAsync<List<SharedProductModel>>($"product/new-arrivals?take={take}") ?? new();
+        return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
+    }
+
+    public async Task<List<ProductModel>> GetTopSellingAsync(int take = 8)
+    {
+        var apiProducts = await httpClient.GetFromJsonAsync<List<SharedProductModel>>($"product/top-selling?take={take}") ?? new();
+        return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
+    }
+
+    public async Task<List<ProductModel>> GetRecommendationsAsync(int productId, int take = 4)
+    {
+        var apiProducts = await httpClient.GetFromJsonAsync<List<SharedProductModel>>($"product/recommendations/{productId}?take={take}") ?? new();
         return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
     }
 

@@ -13,9 +13,7 @@ public partial class HomePage
 
     protected override async Task OnInitializedAsync()
     {
-        // TODO: implement rating system and top sales
-        var products = await ProductService.GetAlsoLikeProductsAsync(0);
-        NewArrivals = products.Take(4).ToList();
-        TopSelling = products.Skip(4).Take(4).ToList();
+        NewArrivals = await ProductService.GetNewArrivalsAsync(4);
+        TopSelling = await ProductService.GetTopSellingAsync(4);
     }
 }

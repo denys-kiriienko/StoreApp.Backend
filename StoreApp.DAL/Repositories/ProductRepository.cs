@@ -52,6 +52,48 @@ public class ProductRepository : IProductRepository
         return await query.ToListAsync();
     }
 
+    public async Task<IEnumerable<ProductEntity>> GetNewArrivalsAsync(int take)
+    {
+        return await _appDbContext.Products
+            .Include(p => p.Reviews)
+            .Include(p => p.Variants).ThenInclude(v => v.Color)
+            .Include(p => p.Variants).ThenInclude(v => v.Size)
+            .OrderByDescending(p => p.Id)
+            .Take(take)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<ProductEntity>> GetTopSellingAsync(int take)
+    {
+        return await _appDbContext.Products
+            .Include(p => p.CartItems)
+            .Include(p => p.Reviews)
+            .Include(p => p.Variants).ThenInclude(v => v.Color)
+            .Include(p => p.Variants).ThenInclude(v => v.Size)
+            .OrderByDescending(p => p.CartItems.Count)
+            .ThenByDescending(p => p.Reviews.Any() ? p.Reviews.Average(r => r.Rating) : 0)
+            .ThenByDescending(p => p.UnitsInStock)
+            .Take(take)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<ProductEntity>> GetRecommendationsAsync(int productId, int take)
+    {
+        var baseProduct = await _appDbContext.Products.AsNoTracking().FirstOrDefaultAsync(p => p.Id == productId);
+        var minPrice = baseProduct?.Price * 0.8m ?? 0m;
+        var maxPrice = baseProduct?.Price * 1.2m ?? decimal.MaxValue;
+
+        return await _appDbContext.Products
+            .Include(p => p.Reviews)
+            .Include(p => p.Variants).ThenInclude(v => v.Color)
+            .Include(p => p.Variants).ThenInclude(v => v.Size)
+            .Where(p => p.Id != productId && p.Price >= minPrice && p.Price <= maxPrice)
+            .OrderByDescending(p => p.Reviews.Any() ? p.Reviews.Average(r => r.Rating) : 0)
+            .ThenByDescending(p => p.Id)
+            .Take(take)
+            .ToListAsync();
+    }
+
     public async Task<ProductEntity?> GetProductByIdAsync(int id)
     {
         return await _appDbContext.Products

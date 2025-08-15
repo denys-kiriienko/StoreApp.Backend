@@ -31,6 +31,24 @@ public class ProductService : IProductService
         return _mapper.Map<IEnumerable<ProductModel>>(productEntities);
     }
 
+    public async Task<IEnumerable<ProductModel>> GetNewArrivalsAsync(int take)
+    {
+        var entities = await _productRepository.GetNewArrivalsAsync(take);
+        return _mapper.Map<IEnumerable<ProductModel>>(entities);
+    }
+
+    public async Task<IEnumerable<ProductModel>> GetTopSellingAsync(int take)
+    {
+        var entities = await _productRepository.GetTopSellingAsync(take);
+        return _mapper.Map<IEnumerable<ProductModel>>(entities);
+    }
+
+    public async Task<IEnumerable<ProductModel>> GetRecommendationsAsync(int productId, int take)
+    {
+        var entities = await _productRepository.GetRecommendationsAsync(productId, take);
+        return _mapper.Map<IEnumerable<ProductModel>>(entities);
+    }
+
     public async Task<ProductModel?> GetProductByIdAsync(int id)
     {
         var productEntity = await _productRepository.GetProductByIdAsync(id);

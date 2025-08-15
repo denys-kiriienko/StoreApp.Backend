@@ -42,8 +42,7 @@ public partial class ProductDetailPage()
             new() { Text = _product.Title, Url = $"/products/{_product.Id}" }
         };
         
-        var allProducts = await ProductService.GetAlsoLikeProductsAsync(Id);
-        _alsoLike = allProducts.Take(4).ToList();
+        _alsoLike = await ProductService.GetRecommendationsAsync(Id, 4);
         _reviews = await ReviewService.GetProductReviewsAsync(Id);
 
         _isLoading = false;

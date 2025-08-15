@@ -22,6 +22,27 @@ public class ProductController : ControllerBase
         return Ok(await _productService.GetFilteredProductsAsync(minPrice, maxPrice, search));
     }
 
+    [HttpGet("new-arrivals")]
+    public async Task<IActionResult> GetNewArrivalsAsync([FromQuery] int take = 8)
+    {
+        var result = await _productService.GetNewArrivalsAsync(take);
+        return Ok(result);
+    }
+
+    [HttpGet("top-selling")]
+    public async Task<IActionResult> GetTopSellingAsync([FromQuery] int take = 8)
+    {
+        var result = await _productService.GetTopSellingAsync(take);
+        return Ok(result);
+    }
+
+    [HttpGet("recommendations/{id}")]
+    public async Task<IActionResult> GetRecommendationsAsync(int id, [FromQuery] int take = 8)
+    {
+        var result = await _productService.GetRecommendationsAsync(id, take);
+        return Ok(result);
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync(int id)
     {
