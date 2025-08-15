@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using StoreApp.Client.Components.ComponentFiles.Breadcrumb;
 using StoreApp.Client.Models;
 using StoreApp.Client.Services;
 
@@ -15,6 +16,17 @@ public partial class CategoryPage
     private decimal? _minPrice;
     private decimal? _maxPrice;
     private string? _search;
+
+    private List<BreadcrumbComponent.BreadcrumbItem> _breadcrumbItems = new();
+
+    protected override void OnInitialized()
+    {
+        _breadcrumbItems = new List<BreadcrumbComponent.BreadcrumbItem>
+        {
+            new() { Text = "Home", Url = "/" },
+            new() { Text = "Casual", Url = "/category/" }
+        };
+    }
 
     private void ToggleFilters()
     {

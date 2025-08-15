@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using StoreApp.Client.Models;
 using StoreApp.Client.Services;
+using StoreApp.Client.Components.ComponentFiles.Breadcrumb;
 
 namespace StoreApp.Client.Components.Pages.ProductDetail;
 
@@ -17,6 +18,8 @@ public partial class ProductDetailPage()
     private List<ProductModel>? _alsoLike;
     private List<ReviewModel>? _reviews;
     private bool _isLoading;
+
+    private List<BreadcrumbComponent.BreadcrumbItem> _breadcrumbItems = new();
     
     protected override async Task OnParametersSetAsync()
     {
@@ -31,6 +34,13 @@ public partial class ProductDetailPage()
         }
 
         _product = productModel;
+        _breadcrumbItems = new List<BreadcrumbComponent.BreadcrumbItem>
+        {
+            new() { Text = "Home", Url = "/" },
+            new() { Text = "Casual", Url = "/category/" },
+            new() { Text = _product.Title, Url = $"/products/{_product.Id}" }
+        };
+        
         var allProducts = await ProductService.GetAlsoLikeProductsAsync(Id);
         _alsoLike = allProducts.Take(4).ToList();
         _reviews = await ReviewService.GetProductReviewsAsync(Id);

@@ -5,9 +5,14 @@
 @using StoreApp.Client.Components.ComponentFiles.PaginationBar
 @using StoreApp.Client.Components.ComponentFiles.Promo
 @using StoreApp.Client.Components.ComponentFiles.Separator
+@using StoreApp.Client.Components.ComponentFiles.Breadcrumb
 @using StoreApp.Client.Components.Pages.Category.Components.Filters
 @using StoreApp.Client.Components.Pages.Category.Components.ProductList
 
+
+<div class="breadcrumb-container">
+    <BreadcrumbComponent BreadcrumbItems="@_breadcrumbItems" />
+</div>
 
 <div class="category-page-wrapper">
     <div class="filters-backdrop @( _isFiltersOpen ? "show" : "hide")" @onclick="CloseFilters"></div>

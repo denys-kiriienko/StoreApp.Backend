@@ -5,7 +5,11 @@
 @using StoreApp.Client.Components.ComponentFiles.Header
 @using StoreApp.Client.Components.ComponentFiles.Footer
 @using StoreApp.Client.Components.Pages.Home.Components.PromotedProducts
+@using StoreApp.Client.Components.ComponentFiles.Breadcrumb
 
+<div class="breadcrumb-container">
+    <BreadcrumbComponent BreadcrumbItems="@_breadcrumbItems" />
+</div>
 
 @if (!_isLoading)
 {

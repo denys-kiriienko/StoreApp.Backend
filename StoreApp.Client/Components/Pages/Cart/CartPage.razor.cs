@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using StoreApp.Client.Models;
 using StoreApp.Client.Services;
+using StoreApp.Client.Components.ComponentFiles.Breadcrumb;
 
 namespace StoreApp.Client.Components.Pages.Cart;
 
@@ -20,8 +21,16 @@ public partial class CartPage : ComponentBase
     private string _promoCode = string.Empty;
     private bool _promoApplied;
 
+    private List<BreadcrumbComponent.BreadcrumbItem> _breadcrumbItems = new();
+
     protected override async Task OnInitializedAsync()
     {
+        _breadcrumbItems = new List<BreadcrumbComponent.BreadcrumbItem>
+        {
+            new() { Text = "Home", Url = "/" },
+            new() { Text = "Cart", Url = "/cart" }
+        };
+
         await LoadAsync();
     }
 

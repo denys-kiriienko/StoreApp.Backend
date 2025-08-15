@@ -4,7 +4,11 @@
 @using StoreApp.Client.Components.ComponentFiles.Buttons.BasicButton
 @using StoreApp.Client.Components.ComponentFiles.SvgFiles
 @using StoreApp.Client.Models
+@using StoreApp.Client.Components.ComponentFiles.Breadcrumb
 
+<div class="breadcrumb-container">
+    <BreadcrumbComponent BreadcrumbItems="@_breadcrumbItems" />
+</div>
 
 @if (_isLoading)
 {

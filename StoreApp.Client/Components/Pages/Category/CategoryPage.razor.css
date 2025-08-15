@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+.breadcrumb-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    margin-bottom: 12px;
+}
+
 .category-page-wrapper {
     display: flex;
     width: 100%;
@@ -26,6 +33,10 @@
 }
 
 @media (max-width: 640px) {
+    .breadcrumb-container {
+        padding: 0 16px;
+    }
+    
     .products-wrapper {
         padding: 0 16px;
     }
