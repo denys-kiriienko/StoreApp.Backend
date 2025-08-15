@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using System.Net.Http.Json;
+using SharedProductModel = StoreApp.Shared.Models.ProductModel;
 
 namespace StoreApp.Client.Components.Pages.AddProduct;
 
@@ -45,7 +46,7 @@ public partial class AddProductPage : ComponentBase
 
 		try
 		{
-			var apiProduct = new ApiProduct
+			var apiProduct = new SharedProductModel
 			{
 				Name = product.Name,
 				Description = product.Description,
@@ -108,16 +109,4 @@ public partial class AddProductPage : ComponentBase
 		[Range(0, int.MaxValue)]
 		public int UnitsInStock { get; set; } = 1;
 	}
-
-	private sealed class ApiProduct
-	{
-		public string Name { get; set; } = string.Empty;
-		public string? Description { get; set; }
-		public decimal Price { get; set; }
-		public decimal? Discount { get; set; }
-		public int UnitsInStock { get; set; }
-		public byte[]? ImageData { get; set; }
-	}
 }
-
-

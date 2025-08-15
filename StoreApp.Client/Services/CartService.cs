@@ -1,5 +1,6 @@
 using StoreApp.Client.Models;
 using System.Net.Http.Json;
+using SharedCartItemModel = StoreApp.Shared.Models.CartItemModel;
 
 namespace StoreApp.Client.Services;
 
@@ -75,8 +76,8 @@ public class CartService(
             return cartItems;
         }
 
-        var apiCartItems = await httpClient.GetFromJsonAsync<List<ApiCartItem>>("cartItems");
-        cartItems = (apiCartItems ?? new List<ApiCartItem>())
+        var apiCartItems = await httpClient.GetFromJsonAsync<List<SharedCartItemModel>>("cartItems");
+        cartItems = (apiCartItems ?? new List<SharedCartItemModel>())
             .Select(MapToClientCartItem)
             .ToList();
 
@@ -123,7 +124,7 @@ public class CartService(
         return cartItems;
     }
 
-    private static OrderItemModel MapToClientCartItem(ApiCartItem apiCartItem)
+    private static OrderItemModel MapToClientCartItem(SharedCartItemModel apiCartItem)
     {
         return new OrderItemModel
         {
@@ -131,12 +132,12 @@ public class CartService(
             UserId = apiCartItem.UserId,
             ProductModel = new ProductModel
             {
-                Id = apiCartItem.Product.Id,
-                Title = apiCartItem.Product.Name,
-                CurrentPrice = (double)apiCartItem.Product.Price,
-                ImageSrc = apiCartItem.Product.ImageUrl ?? string.Empty,
-                Description = apiCartItem.Product.Description ?? string.Empty,
-                UnitsInStock = apiCartItem.Product.UnitsInStock
+                Id = apiCartItem.ProductModel.Id,
+                Title = apiCartItem.ProductModel.Name,
+                CurrentPrice = (double)apiCartItem.ProductModel.Price,
+                ImageSrc = apiCartItem.ProductModel.ImageUrl ?? string.Empty,
+                Description = apiCartItem.ProductModel.Description ?? string.Empty,
+                UnitsInStock = apiCartItem.ProductModel.UnitsInStock
             },
             Quantity = apiCartItem.Quantity
         };
@@ -154,23 +155,5 @@ public class CartService(
         if (size1 == null && size2 == null) return true;
         if (size1 == null || size2 == null) return false;
         return size1.Id == size2.Id;
-    }
-
-    private sealed class ApiCartItem
-    {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public ApiProduct Product { get; set; } = new();
-        public int Quantity { get; set; }
-    }
-
-    private sealed class ApiProduct
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string? Description { get; set; }
-        public decimal Price { get; set; }
-        public string? ImageUrl { get; set; }
-        public int UnitsInStock { get; set; }
     }
 }

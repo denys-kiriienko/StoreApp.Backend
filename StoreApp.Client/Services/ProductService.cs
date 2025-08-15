@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using StoreApp.Client.Models;
+using SharedProductModel = StoreApp.Shared.Models.ProductModel;
 
 namespace StoreApp.Client.Services;
 
@@ -7,30 +8,30 @@ public class ProductService(HttpClient httpClient) : IProductService
 {
     public async Task<ProductModel?> GetProductByIdAsync(int productId)
     {
-        var apiProduct = await httpClient.GetFromJsonAsync<ApiProduct>($"product/{productId}");
+        var apiProduct = await httpClient.GetFromJsonAsync<SharedProductModel>($"product/{productId}");
         return apiProduct is null ? null : MapToClientModel(apiProduct, httpClient.BaseAddress!);
     }
 
     public async Task<List<ProductModel>> GetAlsoLikeProductsAsync(int productId)
     {
-        var apiProducts = await httpClient.GetFromJsonAsync<List<ApiProduct>>("product") ?? new();
+        var apiProducts = await httpClient.GetFromJsonAsync<List<SharedProductModel>>("product") ?? new();
         return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
     }
 
     public async Task<List<ProductModel>> GetAllProductsAsync()
     {
-        var apiProducts = await httpClient.GetFromJsonAsync<List<ApiProduct>>("product") ?? new();
+        var apiProducts = await httpClient.GetFromJsonAsync<List<SharedProductModel>>("product") ?? new();
         return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
     }
 
     public async Task<List<ProductModel>> GetAllProductsAsyncWithFiltersAsync(decimal? minPrice, decimal? maxPrice, string? search)
     {
         var url = $"product?minPrice={(minPrice?.ToString() ?? string.Empty)}&maxPrice={(maxPrice?.ToString() ?? string.Empty)}&search={Uri.EscapeDataString(search ?? string.Empty)}";
-        var apiProducts = await httpClient.GetFromJsonAsync<List<ApiProduct>>(url) ?? new();
+        var apiProducts = await httpClient.GetFromJsonAsync<List<SharedProductModel>>(url) ?? new();
         return apiProducts.Select(p => MapToClientModel(p, httpClient.BaseAddress!)).ToList();
     }
 
-    private static ProductModel MapToClientModel(ApiProduct apiProduct, Uri baseAddress)
+    private static ProductModel MapToClientModel(SharedProductModel apiProduct, Uri baseAddress)
     {
         var apiRoot = new Uri(baseAddress, "../");
         var imageSrc = string.IsNullOrWhiteSpace(apiProduct.ImageUrl)
@@ -79,44 +80,5 @@ public class ProductService(HttpClient httpClient) : IProductService
             UnitsInStock = unitsInStock,
             Rating = apiProduct.Rating
         };
-    }
-
-    private sealed class ApiProduct
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string? Description { get; set; }
-        public decimal Price { get; set; }
-        public string? ImageUrl { get; set; }
-        public decimal? Discount { get; set; }
-        public double Rating { get; set; }
-        public int UnitsInStock { get; set; }
-        public List<ApiProductVariant> Variants { get; set; } = new();
-        public List<ApiColor>? AvailableColors { get; set; }
-        public List<ApiSize>? AvailableSizes { get; set; }
-    }
-
-    private sealed class ApiProductVariant
-    {
-        public int Id { get; set; }
-        public string ColorName { get; set; } = string.Empty;
-        public string ColorHex { get; set; } = string.Empty;
-        public string SizeName { get; set; } = string.Empty;
-        public int UnitsInStock { get; set; }
-        public string SKU { get; set; } = string.Empty;
-    }
-
-    private sealed class ApiColor
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string HexCode { get; set; } = string.Empty;
-    }
-
-    private sealed class ApiSize
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
     }
 }
