@@ -11,7 +11,8 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        width: 1240px;
+        width: 100%;
+        max-width: var(--content-max-width);
     }
 
         .promo-section-wrapper .promo-wrapper .promo-text {

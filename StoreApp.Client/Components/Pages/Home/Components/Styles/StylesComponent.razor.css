@@ -6,7 +6,7 @@
 
     .styles-section-wrapper .styles-wrapper {
         width: 100%;
-        max-width: 1240px;
+        max-width: var(--content-max-width);
         margin-top: 80px;
         border-radius: 40px;
         background-color: #F0F0F0;
@@ -30,7 +30,7 @@
             justify-content: center;
             gap: 24px;
             margin: 64px auto 70px;
-            max-width: 1240px;
+            max-width: var(--content-max-width);
         }
 
             .styles-section-wrapper .styles-wrapper .style-cards .style-item {

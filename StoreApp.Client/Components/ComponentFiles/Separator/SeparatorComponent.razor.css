@@ -1,5 +1,6 @@
 ﻿.separator {
-    width: 1240px;
+    width: 100%;
+    max-width: var(--content-max-width);
     height: 1px;
     background-color: #000000;
     opacity: 10%;

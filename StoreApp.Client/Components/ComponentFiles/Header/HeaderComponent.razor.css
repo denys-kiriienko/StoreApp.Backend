@@ -9,7 +9,8 @@
     .header-section-wrapper .header-block-container {
         display: flex;
         align-items: center;
-        width: 1240px;
+        width: 100%;
+        max-width: var(--content-max-width);
         height: 48px;
         margin: 24px 0;
         gap: 0 40px;

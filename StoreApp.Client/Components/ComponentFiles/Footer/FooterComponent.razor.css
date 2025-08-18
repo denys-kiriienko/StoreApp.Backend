@@ -7,7 +7,8 @@
 }
 
     .footer-section-wrapper .newsletter-wrapper {
-        width: 1240px;
+        width: 100%;
+        max-width: var(--content-max-width);
         border-radius: 20px;
         background-color: #000000;
         position: relative;
@@ -66,7 +67,8 @@
             display: flex;
             justify-content: space-between;
             margin-top: 50px;
-            width: 1240px;
+            width: 100%;
+            max-width: var(--content-max-width);
             height: 176px;
         }
 
@@ -152,7 +154,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 1240px;
+        width: 100%;
+        max-width: var(--content-max-width);
         margin-bottom: 88px;
     }
 

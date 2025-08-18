@@ -22,7 +22,7 @@
     }
     
     .promoted-products-wrapper .promoted-products {
-        max-width: 1240px;
+        max-width: var(--content-max-width);
         width: 100%;
     }
 

@@ -4,7 +4,7 @@
 
 .breadcrumb-container {
     width: 100%;
-    max-width: 1240px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
 }
 
@@ -18,7 +18,8 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 1240px;
+        width: 100%;
+        max-width: var(--content-max-width);
     }
 
         .product-detail-page-wrapper .product-detail-page .tabs {
