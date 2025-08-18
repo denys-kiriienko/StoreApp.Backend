@@ -52,6 +52,29 @@
             margin: 64px 0;
         }
 
+@media (max-width: 1024px) and (min-width: 641px) {
+    .breadcrumb-container {
+        padding: 0 24px;
+    }
+
+    .product-detail-page-wrapper {
+        padding: 0 24px;
+    }
+
+        .product-detail-page-wrapper .product-detail-page .tabs {
+            gap: 12px;
+        }
+
+            .product-detail-page-wrapper .product-detail-page .tabs .tab-button {
+                padding: 14px;
+                font-size: 15px;
+            }
+
+        .product-detail-page-wrapper .product-detail-page .also-see-wrapper {
+            margin: 40px 0;
+        }
+}
+
 @media (max-width: 640px) {
     .breadcrumb-container {
         padding: 0 16px;
