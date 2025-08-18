@@ -11,9 +11,15 @@
     <BreadcrumbComponent BreadcrumbItems="@_breadcrumbItems" />
 </div>
 
-@if (!_isLoading)
-{
-    <div class="product-detail-page-wrapper">
+<div class="product-detail-page-wrapper">
+    @if (_isLoading)
+    {
+        <div class="loading-indicator">
+            <p>Loading...</p>
+        </div>
+    }
+    else
+    {
         <div class="product-detail-page">
             <ProductInfo OnAddToCartClicked="OnAddToCartClicked" Product="@_product"></ProductInfo>
 
@@ -22,17 +28,12 @@
                 <button class="tab-button active">Rating & Reviews</button>
                 <button class="tab-button">FAQs</button>
             </div>
-    
+
             <ReviewList WriteReviewClicked="OnWriteReviewClicked" Reviews="@_reviews"></ReviewList>
-    
+
             <div class="also-see-wrapper">
                 <PromotedProductsComponent HeaderText="YOU MIGHT ALSO LIKE" ProductList="_alsoLike" IsVisibleViewAllButton="false" />
             </div>
         </div>
-    </div>
-} else
-{
-    <div class="loading-indicator">
-        <p>Loading...</p>
-    </div>
-}
+    }
+</div>

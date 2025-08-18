@@ -10,15 +10,17 @@
     <BreadcrumbComponent BreadcrumbItems="@_breadcrumbItems" />
 </div>
 
-@if (_isLoading)
-{
-    <div class="loading-indicator">
-        <p>Loading...</p>
-    </div>
-}
-else
-{
-    <div class="cart-page-wrapper">
+<div class="cart-page-wrapper">
+    @if (_isLoading)
+    {
+        <div class="cart-page-wrapper">
+            <div class="loading-indicator">
+                <p>Loading...</p>
+            </div>
+        </div>
+    }
+    else
+    {
         <div class="cart-page">
             <div class="cart-title">YOUR CART</div>
 
@@ -127,7 +129,5 @@ else
             }
 
         </div>
-    </div>
-}
-
-
+    }
+</div>
