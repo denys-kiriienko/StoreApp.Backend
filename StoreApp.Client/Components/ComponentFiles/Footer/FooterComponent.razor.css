@@ -185,6 +185,48 @@
                 border-radius: 6px;
             }
 
+@media (max-width: 1024px) and (min-width: 641px) {
+    .footer-section-wrapper {
+        overflow-x: hidden;
+    }
+
+    .footer-section-wrapper .newsletter-wrapper .newsletter {
+        flex-direction: column;
+        align-items: stretch;
+        margin: 32px 28px;
+    }
+
+    .footer-section-wrapper .newsletter-wrapper .newsletter-title {
+        max-width: 100%;
+        text-align: center;
+        font-size: 36px;
+        line-height: 40px;
+        margin-bottom: 20px;
+    }
+
+    .footer-section-wrapper .newsletter-wrapper .newsletter-input-wrapper {
+        width: 100%;
+    }
+
+    .footer-section-wrapper .footer-wrapper .footer-nav-wrapper {
+        width: 95%;
+        margin-top: 32px;
+        height: auto;
+        gap: 30px;
+    }
+
+    .footer-section-wrapper .footer-wrapper .footer-nav-wrapper .submenu-grid {
+        flex-wrap: wrap;
+        gap: 48px;
+    }
+
+    .footer-section-wrapper .footer-bottom-wrapper {
+        width: 95%;
+        flex-wrap: wrap;
+        row-gap: 12px;
+    }
+}
+
 @media (max-width: 640px) {
     .footer-section-wrapper .newsletter-wrapper {
         width: 95%;
