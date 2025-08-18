@@ -55,7 +55,7 @@
 
 .cart-item {
     display: grid;
-    grid-template-columns: 96px 1fr auto;
+    grid-template-columns: 96px 1fr;
     gap: 12px;
     align-items: stretch;
 }
@@ -247,6 +247,33 @@
 
 .summary .checkout {
     display: none;
+}
+
+@media (max-width: 1024px) and (min-width: 641px) {
+    .breadcrumb-container {
+        padding: 0 24px;
+    }
+
+    .cart-page {
+        padding: 0 24px;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .items {
+        padding: 16px 20px;
+        margin-bottom: 0;
+    }
+
+    .summary {
+        width: 100%;
+    }
+
+    .summary .promo {
+        flex-wrap: wrap;
+    }
 }
 
 @media (max-width: 640px) {
