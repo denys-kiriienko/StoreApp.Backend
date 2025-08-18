@@ -270,10 +270,6 @@
     .summary {
         width: 100%;
     }
-
-    .summary .promo {
-        flex-wrap: wrap;
-    }
 }
 
 @media (max-width: 640px) {
